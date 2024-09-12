@@ -132,7 +132,7 @@ const RegistrationForm = () => {
         </div>
         <button
           type="submit"
-          className={`w-full py-2 rounded-md mt-1 transition duration-300  bg-blue-500 text-white hover bg-blue-500`}
+          className={`w-full py-2 rounded-md mt-1 transition duration-300 text-white hover bg-blue-500`}
         // disabled={credentials.name.length < 3}
         >
           Proceed

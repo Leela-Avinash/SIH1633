@@ -33,10 +33,8 @@ const App = () => {
           />
         </Routes>
       </Router>
-      {/* <h1>Helloo</h1> */}
     </div>
   );
 };
 
 export default App;
-console.log("THis is prem sagar from SIH 1633")
