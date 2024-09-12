@@ -1,81 +1,82 @@
-// import React from "react";
+import React from "react";
 import Input from "./authInput.jsx";
-// import { useDispatch, useSelector } from "react-redux";
-// import { setValidationErrors } from "../redux/slices/authSlice.jsx";
+import { useDispatch, useSelector } from "react-redux";
+import { setValidationErrors } from "../redux/slices/authSlice.js";
 
-const RegistrationForm = () => {
-  //   const dispatch = useDispatch();
-  //   const { errors, backendError } = useSelector((state) => state.auth);
+const RegistrationForm = ({ credentials, handleChange, onSubmit }) => {
+    const dispatch = useDispatch();
+    const { errors, backendError } = useSelector((state) => state.auth);
 
-  //   const isEmail = (email) => {
-  //     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  //     return re.test(email);
-  //   };
+    const isEmail = (email) => {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(email);
+    };
 
-  //   const isValidPassword = (password) => {
-  //     const re =
-  //       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-  //     return re.test(password);
-  //   };
+    const isValidPassword = (password) => {
+      const re =
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+      return re.test(password);
+    };
 
-  //   const validate = () => {
-  //     const newErrors = {};
-  //     if (!credentials.name) newErrors.name = "Please enter your name";
-  //     if (!credentials.username)
-  //       newErrors.username = "Please enter your preferred username";
-  //     if (!isEmail(credentials.email))
-  //       newErrors.email = "Please enter a valid email address";
-  //     if (credentials.password.length < 8)
-  //       newErrors.password = "Passwords must be eight or more characters";
-  //     else if (!isValidPassword(credentials.password))
-  //       newErrors.password =
-  //         "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character";
-  //     if (credentials.password !== credentials.cpassword)
-  //       newErrors.cpassword = "Passwords do not match";
-  //     return newErrors;
-  //   };
+    const validate = () => {
+      const newErrors = {};
+      if (!credentials.fname) newErrors.fname = "Please enter your name";
+      if (!credentials.lname) newErrors.lname = "Please enter your name";
+      if (!credentials.username)
+        newErrors.username = "Please enter your preferred username";
+      if (!isEmail(credentials.email))
+        newErrors.email = "Please enter a valid email address";
+      if (credentials.password.length < 8)
+        newErrors.password = "Passwords must be eight or more characters";
+      else if (!isValidPassword(credentials.password))
+        newErrors.password =
+          "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character";
+      if (credentials.password !== credentials.cpassword)
+        newErrors.cpassword = "Passwords do not match";
+      return newErrors;
+    };
 
-  //   const handleSubmit = (e) => {
-  //     e.preventDefault();
-  //     const validationErrors = validate();
-  //     if (Object.keys(validationErrors).length > 0) {
-  //       dispatch(setValidationErrors(validationErrors));
-  //     } else {
-  //       dispatch(setValidationErrors({}));
-  //       onSubmit(e);
-  //     }
-  //   };
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      const validationErrors = validate();
+      if (Object.keys(validationErrors).length > 0) {
+        dispatch(setValidationErrors(validationErrors));
+      } else {
+        dispatch(setValidationErrors({}));
+        onSubmit(e);
+      }
+    };
 
   return (
     <div >
       <form
         className=" bg-white rounded-br-lg rounded-tr-lg "
-        //   onSubmit={handleSubmit}
+        onSubmit={handleSubmit}
         noValidate
       >
         
         <Input
           type="text"
           name="fname"
-          // value={credentials.name}
-          // handleChange={handleChange}
+          value={credentials.fname}
+          handleChange={handleChange}
           label="First Name"
           minLength={3}
         />
-        {/* {errors.name && <p className="text-red-400">{errors.name}</p>} */}
+        {/* {errors.fname && <p className="text-red-400">{errors.fname}</p>} */}
         <Input
           type="text"
           name="lname"
-          // value={credentials.name}
-          // handleChange={handleChange}
+          value={credentials.lname}
+          handleChange={handleChange}
           label="Last Name"
           minLength={3}
         />
         <Input
           type="text"
           name="username"
-          // value={credentials.username}
-          // handleChange={handleChange}
+          value={credentials.username}
+          handleChange={handleChange}
           label="Username"
           minLength={3}
         />
@@ -85,16 +86,16 @@ const RegistrationForm = () => {
         <Input
           type="email"
           name="email"
-          // value={credentials.email}
-          // handleChange={handleChange}
+          value={credentials.email}
+          handleChange={handleChange}
           label="University Email"
         />
         {/* {errors.email && <p className="text-red-400 text-xs">{errors.email}</p>} */}
         <Input
           type="password"
           name="password"
-          // value={credentials.password}
-          // handleChange={handleChange}
+          value={credentials.password}
+          handleChange={handleChange}
           label="Password"
           minLength={8}
         />
@@ -104,8 +105,8 @@ const RegistrationForm = () => {
         <Input
           type="password"
           name="cpassword"
-          // value={credentials.cpassword}
-          // handleChange={handleChange}
+          value={credentials.cpassword}
+          handleChange={handleChange}
           label="Confirm Password"
           minLength={8}
         />

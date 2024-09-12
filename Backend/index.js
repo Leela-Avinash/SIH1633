@@ -1,30 +1,28 @@
-const express=require("express");
-const bodyParser=require("body-parser");
-const app=express();
+import express from "express";
+import dotenv from "dotenv";
+import connectDB from "./db/connectDB.js";
+import cookieParser from "cookie-parser";
+import userRoutes from "./routes/userRoutes.js";
+import cors from "cors";
 
-app.use(bodyParser.urlencoded({extended:true}));
+dotenv.config();
+connectDB();
+const app = express();
 
-app.get("/",function(req,res){
-    res.sendFile(__dirname+"/index.html");
-})
+const corsOptions = {
+    origin: 'http://localhost:3000', 
+    credentials: true,
+  };
+  
+  app.use(cors(corsOptions));
 
-app.get("/bmicalculator",function(req,res){
-    res.sendFile(__dirname+"/calculator.html");
-})
+app.use(express.json()); 
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
-app.post("/",function(req,res){
-    var num1=Number(req.body.num1);
-    var num2=Number(req.body.num2)  ;
-    var result=num1+num2;
-    res.send("Result of the calculation is "+result);
-})
+app.use("/api/users", userRoutes);
 
-app.post("/bmicalculator",function(req,res){
-    var num1=Number(req.body.num1);
-    var num2=Number(req.body.num2);
-    var result=num1/(num2*num2);
-    res.send("The BMI is "+result);
-})
-app.listen(3000,function(){
-    console.log("Server started at 3000");
-})
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+    console.log(`Server listening on port ${PORT}`);
+});

@@ -4,7 +4,8 @@ const initialState = {
     isSignUp: true,
     isAuthenticated: false,
     credentials: {
-        name: "",
+        fname: "",
+        lname: "",
         username: "",
         email: "",
         password: "",
