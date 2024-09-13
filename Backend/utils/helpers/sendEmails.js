@@ -17,9 +17,14 @@ async function sendEmail(email, subject, url) {
             from: process.env.USER,
             to: email,
             subject: subject,
-            html: `<p>Click the button below to verify your email:</p>
-                  <a href="${url}">
-                  <button>Verify Email</button></a>`
+            html: `<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; text-align: center;">
+                <p style="font-size: 18px; color: #333;">Click the button below to verify your email:</p>
+                <a href="${url}" style="text-decoration: none;">
+                  <button style="background-color: #3b82f6; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-size: 16px; cursor: pointer;">
+                    Verify Email
+                  </button>
+                </a>
+              </div>`
         };
 
         transporter.sendMail(mailOptions, (error, info) => {

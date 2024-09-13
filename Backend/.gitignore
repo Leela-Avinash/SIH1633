@@ -29,6 +29,12 @@ coverage
 # Grunt intermediate storage (https://gruntjs.com/creating-plugins#storing-task-files)
 .grunt
 
+client_secret_810309086852-9a2vt8ujidnueqosroc8bv8qk4klooq6.apps.googleusercontent.com.json
+documentai.js 
+IDCARD.jpg 
+IDCARD.pdf 
+MyAadhar_page-0001.pdf 
+natural-pipe-435404-f3-3e7d64d566f7.json
 # Bower dependency directory (https://bower.io/)
 bower_components
 
