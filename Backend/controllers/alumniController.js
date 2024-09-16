@@ -1,5 +1,5 @@
 // import User from "../models/userModel.js";
-import Alumni from "../models/AlumniSchema.js";
+import Alumni from "../models/alumniModel.js";
 import bcrypt from "bcryptjs";
 import generateTokenAndSetCookie from "../utils/helpers/generateToken.js";
 import Token from "../models/tokenModel.js";

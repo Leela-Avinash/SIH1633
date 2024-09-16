@@ -46,10 +46,13 @@ const AlumniReg=()=>{
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    name: credentials.name,
+                    fname: credentials.fname,
+                    lname: credentials.lname,
                     username: credentials.username,
                     email: credentials.email,
+                    collegeName: credentials.collegeName,
                     password: credentials.password,
+                    role: "alumni"
                 }),
                 credentials: "include",
             });

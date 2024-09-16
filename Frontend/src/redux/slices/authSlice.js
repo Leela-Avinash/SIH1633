@@ -8,6 +8,7 @@ const initialState = {
         lname: "",
         username: "",
         email: "",
+        collegeName: "",
         password: "",
         cpassword: "",
         identifier: "",

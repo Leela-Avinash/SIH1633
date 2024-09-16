@@ -1,15 +1,24 @@
-import User from "../models/userModel.js";
 import bcrypt from "bcryptjs";
 import generateTokenAndSetCookie from "../utils/helpers/generateToken.js";
 import Token from "../models/tokenModel.js";
 import sendEmail from "../utils/helpers/sendEmails.js";
 import crypto from "crypto";
+import Alumni from "../models/alumniModel.js"
+import Student from "../models/studentModel.js";
 
 const getUserProfile = async (req, res) => {
     const { username } = req.params;
     let success = false;
+    let modelName;
+    if (role === "alumni") {
+        modelName = Alumni;
+    } else if (role === "student") {
+        modelName = Student;
+    } else {
+        return res.status(400).json({ message: "Invalid role" });
+    }
     try {
-        const user = await User.findOne({ username })
+        const user = await modelName.findOne({ username })
             .select("-password")
             .select("-updatedAt");
 
@@ -39,31 +48,52 @@ const signupUser = async (req, res) => {
     try {
         console.log(req.body);
         let success = false;
-        const { fname, lname, email, username, password } = req.body;
+        const { fname, lname, email, username,collegeName, password, role} = req.body;
 
-        let userEmail = await User.findOne({ email });
-        if (userEmail) {
-            return res
-                .status(400)
-                .json({ success, message: "Email already exists" });
+        let modelName, otherModel;
+        if (role === "alumni") {
+            modelName = Alumni;
+            otherModel = Student
+        } else if (role === "student") {
+            modelName = Student;
+            otherModel = Alumni;
+        } else {
+            return res.status(400).json({ message: "Invalid role" });
         }
-
-        let userUsername = await User.findOne({ username });
-        if (userUsername) {
+        let user = await modelName.findOne({
+            $or: [
+                { email },
+                { username }
+            ]
+        });
+        if (user) {
             return res
                 .status(400)
-                .json({ success, message: "Username already exists" });
+                .json({ success, message: "Email or username already exists" });
+        }
+        user = await otherModel.findOne({
+            $or: [
+                { email },
+                { username }
+            ]
+        });
+        if (user) {
+            return res
+                .status(400)
+                .json({ success, message: "Email or username already exists" });
         }
 
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
-        const user = await User.create({
+        user = await modelName.create({
             fname,
             lname,
             username,
             email,
+            collegeName,
             password: hashedPassword,
+            role
         });
 
         if (user) {
@@ -72,11 +102,8 @@ const signupUser = async (req, res) => {
                 token : crypto.randomBytes(32).toString("hex")
             });
 
-            const url = `${process.env.BASE_URL}users/${user._id}/verify/${token.token}`;
-
+            const url = `${process.env.BASE_URL}users/${user.role}/${user._id}/verify/${token.token}`;
             await sendEmail(user.email, "Verify Email", url)
-
-            // generateTokenAndSetCookie(user._id, res);
             success = true;
 
             res.status(201).json({
@@ -87,6 +114,7 @@ const signupUser = async (req, res) => {
                     lname: user.lname,
                     username: user.username,
                     email: user.email,
+                    role: user.role
                 },
             });
         } else {
@@ -111,14 +139,19 @@ const loginUser = async (req, res) => {
         let success = false;
 
         const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(identifier);
-        const user = await User.findOne(
+        
+        let user = await Student.findOne(
             isEmail ? { email: identifier } : { username: identifier }
         );
-
         if (!user) {
-            return res
-                .status(400)
-                .json({ message: "Invalid Username or Email" });
+            user = await Alumni.findOne(
+                isEmail ? { email: identifier } : { username: identifier }
+            );
+            if (!user) {
+                return res
+                    .status(400)
+                    .json({ message: "Invalid Username or Email" });
+            }
         }
 
         const isPasswordCorrect = await bcrypt.compare(password, user.password);
@@ -135,14 +168,14 @@ const loginUser = async (req, res) => {
                     token : crypto.randomBytes(32).toString("hex")
                 });
     
-                const url = `${process.env.BASE_URL}users/${user._id}/verify/${token.token}`;
+                const url = `${process.env.BASE_URL}users/${user.role}/${user._id}/verify/${token.token}`;
     
                 await sendEmail(user.email, "Verify Email", url)
             }
             res.status(400).send({message: "verification Email Sent"})
         }
 
-        generateTokenAndSetCookie(user._id, res);
+        generateTokenAndSetCookie(user._id, user.role, res);
         console.log("success");
         success = true;
         res.status(201).json({
@@ -150,12 +183,9 @@ const loginUser = async (req, res) => {
             user: {
                 id: user._id,
                 fname: user.fname,
+                lname: user.lname,
                 username: user.username,
                 email: user.email,
-                profilepic: user.profilepic,
-                followersCount: user.followers.length,
-                followingCount: user.following.length,
-                bio: user.bio,
                 date: user.date,
             },
         });
@@ -262,10 +292,6 @@ const checkAuth = (req, res) => {
             fname: req.user.fname,
             username: req.user.username,
             email: req.user.email,
-            profilepic: req.user.profilepic,
-            followersCount: req.user.followers.length,
-            followingCount: req.user.following.length,
-            bio: req.user.bio,
             date: req.user.date,
         },
     });
@@ -273,7 +299,16 @@ const checkAuth = (req, res) => {
 
 const verifyUser = async (req, res) => {
     try {
-        const user = await User.findOne({_id: req.params.id});
+        const role = req.params.role;
+        let modelName;
+        if (role === "alumni") {
+            modelName = Alumni;
+        } else if (role === "student") {
+            modelName = Student;
+        } else {
+            return res.status(400).json({ message: "Invalid role" });
+        }
+        const user = await modelName.findOne({_id: req.params.id});
         if(!user) {
             return res.status(400).send({message: "Invalid Link"});
         }
@@ -282,10 +317,10 @@ const verifyUser = async (req, res) => {
             token: req.params.token
         });
         if(!token) {
-            return res.status(400).send({message: "Invvalid Link"});
+            return res.status(400).send({message: "Invalid Link"});
         }
 
-        await User.findOneAndUpdate(
+        await modelName.findOneAndUpdate(
             { _id: user._id },
             { verified: true }
         );

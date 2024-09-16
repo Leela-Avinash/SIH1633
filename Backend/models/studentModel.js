@@ -1,7 +1,12 @@
 import mongoose from "mongoose";
+import { type } from "os";
 
 const StudentSchema=mongoose.Schema({
-    name:{
+    fname:{
+        type:String,
+        required:true
+    },
+    lname:{
         type:String,
         required:true
     },
@@ -9,7 +14,7 @@ const StudentSchema=mongoose.Schema({
         type:String,
         required:true
     },
-    clgName:{
+    collegeName:{
         type:String,
         required:true
     },
@@ -24,6 +29,10 @@ const StudentSchema=mongoose.Schema({
     role:{
         type:String,
         required:true
+    },
+    verified: {
+        type: Boolean,
+        default: false
     },
     date: {
         type: Date,

@@ -7,7 +7,7 @@ const EmailVerify = () => {
     useEffect(() => {
         const verifyEmailUrl = async () => {
             try {
-                const url = `http://localhost:5000/api/users/${param.id}/verify/${param.token}`;
+                const url = `http://localhost:5000/api/users/${param.role}/${param.id}/verify/${param.token}`;
                 const response = await fetch(url, {
                     method: "GET",
                     headers: {
@@ -15,7 +15,9 @@ const EmailVerify = () => {
                     },
                 });
                 console.log(response);
-                setValidUrl(true)
+                if (response.status == 200){
+                    setValidUrl(true);
+                }
             } catch (error) {
                 
             }

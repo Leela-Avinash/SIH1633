@@ -1,4 +1,5 @@
-import User from "../models/userModel.js";
+import Alumni from "../models/alumniModel.js";
+import Student from "../models/studentModel.js";
 import jwt from "jsonwebtoken";
 
 const protectRoute = async (req, res, next) => {
@@ -10,8 +11,17 @@ const protectRoute = async (req, res, next) => {
         }
 
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const { userId, role } = decoded;
 
-        const user = await User.findById(decoded.userId).select("-password");
+        let modelName;
+        if (role === "alumni") {
+            modelName = Alumni;
+        } else if (role === "student") {
+            modelName = Student;
+        } else {
+            return res.status(400).json({ message: "Invalid role" });
+        }
+        const user = await modelName.findById(userId).select("-password");
 
         req.user = user;
 

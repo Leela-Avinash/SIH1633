@@ -84,6 +84,13 @@ const RegistrationForm = ({ credentials, handleChange, onSubmit }) => {
         <p className="text-red-400 text-xs">{errors.username}</p>
       )} */}
         <Input
+          type="text"
+          name="collegeName"
+          value={credentials.collegeName}
+          handleChange={handleChange}
+          label="College Name"
+        />
+        <Input
           type="email"
           name="email"
           value={credentials.email}

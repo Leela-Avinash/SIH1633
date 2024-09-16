@@ -1,7 +1,11 @@
 import mongoose from "mongoose";
 
 const AlumniSchema=mongoose.Schema({
-    name:{
+    fname:{
+        type:String,
+        required:true
+    },
+    lname:{
         type:String,
         required:true
     },
@@ -9,7 +13,7 @@ const AlumniSchema=mongoose.Schema({
         type:String,
         required:true
     },
-    clgName:{
+    collegeName:{
         type:String,
         required:true
     },
@@ -24,6 +28,14 @@ const AlumniSchema=mongoose.Schema({
     role:{
         type:String,
         required:true
+    },
+    verified: {
+        type: Boolean,
+        default: false
+    },
+    date: {
+        type: Date,
+        default: Date.now,
     }
 },{
     timeStamps:true,

@@ -50,7 +50,9 @@ const StudentReg=()=>{
                     lname: credentials.lname,
                     username: credentials.username,
                     email: credentials.email,
+                    collegeName: credentials.collegeName,
                     password: credentials.password,
+                    role: "student"
                 }),
                 credentials: "include",
             });
