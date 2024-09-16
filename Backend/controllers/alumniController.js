@@ -78,7 +78,7 @@ const signupAlumni = async (req, res) => {
 
             // await sendEmail(alumni.email, "Verify Email", url)
 
-            // generateTokenAndSetCookie(student._id, res);
+            generateTokenAndSetCookie(process.env.ALUMNI_SECRET,alumni._id, res);
             success = true;
 
             res.status(201).json({
@@ -297,6 +297,9 @@ const verifyUser = async (req, res) => {
         console.log("Error in update user: ", error.message);
     }
 }
+
+
+
 
 export {
     signupAlumni,

@@ -145,7 +145,7 @@ const loginStudent = async (req, res) => {
             res.status(400).send({message: "verification Email Sent"})
         }
 
-        generateTokenAndSetCookie(student._id, res);
+        generateTokenAndSetCookie(process.env.ALUMNI_SECRET,student._id, res);
         console.log("success");
         success = true;
         res.status(201).json({

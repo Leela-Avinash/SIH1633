@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import StudentReg from "./pages/StudentReg.jsx";
 import AlumniReg from "./pages/AlumniReg.jsx";
 import EmailVerify from "./pages/emailverify.jsx";
+import DocUpload from "./pages/docUpload.jsx";
 
 const App = () => {
     return (
@@ -17,6 +18,7 @@ const App = () => {
                     <Route path="/stusignup" element={<StudentReg />} />
                     <Route path="/alusignup" element={<AlumniReg />} />
                     <Route path="/users/:id/verify/:token" element={<EmailVerify />} />
+                    <Route path="/docai" element={<DocUpload/>}/>
                 </Routes>
             </Router>
         </div>
