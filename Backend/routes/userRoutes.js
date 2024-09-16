@@ -26,7 +26,7 @@ router.put("/update/:id", protectRoute, updateUser);
 router.get("/check-auth", protectRoute, checkAuth);
 router.get("/:id/verify/:token", verifyUser);
 
-router.post("//signup", signupStudent);
+router.post("/signup", signupStudent);
 router.post("/student/login", loginStudent);
 router.post("/student/logout",logoutStudent);
 
@@ -34,7 +34,7 @@ router.post("/alumni/signup",protectRoute,signupAlumni);
 router.post("/alumni/login", protectRoute,loginAlumni);
 router.post("/alumni/logout",protectRoute,logoutAlumni);
 
-router.post("/alumni/upload",docAI);
+router.post("/upload",docAI);
 
 
 

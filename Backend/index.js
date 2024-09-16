@@ -21,9 +21,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-// app.use("/api/users", userRoutes);
-app.use("/api/students", studentRoutes);
-app.use("/api/alumni", alumniRoutes); 
+app.use("/api/users", userRoutes);
+// app.use("/api/students", studentRoutes);
+// app.use("/api/alumni", alumniRoutes); 
 
 const PORT =  5000;
 app.listen(PORT, () => {
