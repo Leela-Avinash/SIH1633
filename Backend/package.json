@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "@google-cloud/documentai": "^8.9.0",
+    "@google-cloud/language": "^6.5.0",
     "@google-cloud/storage": "^7.12.1",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.6",
