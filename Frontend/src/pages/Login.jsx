@@ -1,11 +1,69 @@
-import React from "react";
-import Input from "./authInput.jsx";
+import React, { useEffect, useState } from "react";
+import Input from "../components/authInput.jsx";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setValidationErrors } from "../redux/slices/authSlice.js";
+import { setUser } from "../redux/slices/userSlice.js";
+import {
+    resetCredentials,
+    updateCredentials,
+    setError,
+    clearFieldError,
+} from "../redux/slices/authSlice";
 
-const Login = ({ credentials, handleChange, onSubmit }) => {
+const Login = ( ) => {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
+    const { credentials } = useSelector(
+        (state) => state.auth
+    );
+    const host = "http://localhost:5000";
+
+    useEffect(() => {
+        dispatch(resetCredentials());
+    }, [dispatch]);
+
     const { errors, backendError } = useSelector((state) => state.auth);
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        let sanitizedValue = value;
+
+        if (name === "username") {
+            sanitizedValue = value.toLowerCase().replace(/[^a-zA-Z0-9._-]/g, "");
+        }
+        if (name === "identifier") {
+            sanitizedValue = value.toLowerCase();
+        }
+        dispatch(updateCredentials({ name, value: sanitizedValue }));
+        dispatch(setError(""));
+        dispatch(clearFieldError(name));
+    };
+
+    const onSubmit = async (e) => {
+        e.preventDefault();
+        console.log(credentials);
+        const response = await fetch(`${host}/api/users/login`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                identifier: credentials.identifier,
+                password: credentials.password,
+            }),
+            credentials: "include",
+        });
+        const json = await response.json();
+        if (json.success) {
+            localStorage.setItem('user', JSON.stringify(json));
+            dispatch(setUser(json.user));
+            dispatch(resetCredentials());
+            navigate("/");
+        } else {
+            dispatch(setError(json.message));
+        }
+    };
 
     const validate = () => {
         const newErrors = {};
@@ -60,11 +118,6 @@ const Login = ({ credentials, handleChange, onSubmit }) => {
             >
                 Sign In
             </button>
-            <div className="flex items-center my-3">
-                <hr className="w-full border-gray-600" />
-                <span className="mx-4 text-gray-400">or</span>
-                <hr className="w-full border-gray-600" />
-            </div>
         </form>
     );
 };
