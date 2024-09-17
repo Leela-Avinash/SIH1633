@@ -6,10 +6,10 @@ import language from '@google-cloud/language';
 import Fuse from 'fuse.js';
 // Initialize Google Cloud Document AI client
 const clientdoc = new DocumentProcessorServiceClient({
-  keyFilename: 'D:/AVIATOR CODESPACE/Unknown2.0/Backend/natural-pipe-435404-f3-3e7d64d566f7.json',
+  keyFilename: 'D:/Codes/Web_Development/SIH1633/Backend/natural-pipe-435404-f3-3e7d64d566f7.json',
 });
 const clientlan = new language.LanguageServiceClient({
-  keyFilename: 'D:/AVIATOR CODESPACE/Unknown2.0/Backend/natural-pipe-435404-f3-3e7d64d566f7.json', // Update with the path to your JSON credentials file
+  keyFilename: 'D:/Codes/Web_Development/SIH1633/Backend/natural-pipe-435404-f3-3e7d64d566f7.json', // Update with the path to your JSON credentials file
 });
 const name = "J Prema";
 
@@ -139,32 +139,8 @@ const docAI = (req, res) => {
           message: 'Alumni Verification Failed: No match found.',
         });
       }
-    }
-
-
-    // // let entities={};
-    // for (let i = 0; i < protext.length; i++) {
-    //   await analyzeEntities(protext[i]);
-    // }
-    // const personEntries=entities.filter(entity => entity.type === 'PERSON');
-    // personEntries.forEach(entity => {
-    //   if(entity.name.toLowerCase()===name.toLowerCase()){
-    //     console.log("Name: ",entity.name);
-    //   }
-    //   else{
-    //     console.log("Name not found",entity);
-    //   }
-    // }
-    // )
-
-    // if (result.success) {
-    //   res.json({ text: "Alumni Verified Successfully" });
-    // } else {
-    //   res.status(500).json({ error: result.error,
-    //     text: "Alumni Verification Failed"
-    //    });
-    // }
-    catch (error) {
+    } catch (error) {
+      console.log(error);
       res.status(500).json({ error: 'Server error while processing document' });
     }
   });

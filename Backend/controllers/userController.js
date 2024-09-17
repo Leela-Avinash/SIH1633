@@ -48,7 +48,7 @@ const signupUser = async (req, res) => {
     try {
         console.log(req.body);
         let success = false;
-        const { fname, lname, email, username,collegeName, password, role} = req.body;
+        const { fname, lname, email, username,collegeName, password, role, degree, gyear, gmonth, rollnumber} = req.body;
 
         let modelName, otherModel;
         if (role === "alumni") {
@@ -93,7 +93,11 @@ const signupUser = async (req, res) => {
             email,
             collegeName,
             password: hashedPassword,
-            role
+            role,
+            degree, 
+            gyear, 
+            gmonth, 
+            rollnumber
         });
 
         if (user) {
@@ -160,7 +164,7 @@ const loginUser = async (req, res) => {
             return res.status(400).json({ message: "Invalid Password" });
         }
 
-        if(!user.verified) {
+        if(!user.email_verified) {
             let token = await Token.findOne({userId: user._id});
             if(!token) {
                 const token = await Token.create({
@@ -187,6 +191,10 @@ const loginUser = async (req, res) => {
                 username: user.username,
                 email: user.email,
                 date: user.date,
+                degree: user.degree, 
+                gyear: user.gyear, 
+                gmonth: user.gmonth, 
+                rollnumber: user.rollnumber
             },
         });
     } catch (err) {
@@ -322,7 +330,7 @@ const verifyUser = async (req, res) => {
 
         await modelName.findOneAndUpdate(
             { _id: user._id },
-            { verified: true }
+            { email_verified: true }
         );
         
         await Token.deleteOne({ _id: token._id });

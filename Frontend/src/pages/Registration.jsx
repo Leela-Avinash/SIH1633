@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
     resetCredentials,
     updateCredentials,
@@ -9,13 +9,17 @@ import {
 } from "../redux/slices/authSlice";
 import { setUser } from "../redux/slices/userSlice.js";
 import RegistrationForm from "../components/RegistrationForm"
-const AlumniReg=()=>{
+import RegistrationFormPage1 from "../components/RegistrationFormPage1.jsx";
+import RegistrationFormPage2 from "../components/RegistrationFormPage2.jsx";
+const Registration=()=>{
+    const host = "http://localhost:5000";
+    const param = useParams();
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
     const { credentials } = useSelector(
         (state) => state.auth
     );
-    const host = "http://localhost:5000";
 
     useEffect(() => {
         dispatch(resetCredentials());
@@ -25,7 +29,7 @@ const AlumniReg=()=>{
         const { name, value } = e.target;
         let sanitizedValue = value;
 
-        if (name === "username") { 
+        if (name === "username") {
             sanitizedValue = value.toLowerCase().replace(/[^a-zA-Z0-9._-]/g, "");
         }
         if (name === "identifier") {
@@ -52,7 +56,11 @@ const AlumniReg=()=>{
                     email: credentials.email,
                     collegeName: credentials.collegeName,
                     password: credentials.password,
-                    role: "alumni",
+                    role: param.role,
+                    degree: credentials.degree,
+                    gyear: credentials.gyear,
+                    gmonth: credentials.gmonth,
+                    rollno: credentials.rollno,
                 }),
                 credentials: "include",
             });
@@ -60,7 +68,7 @@ const AlumniReg=()=>{
             if (json.success) {
                 localStorage.setItem('user', JSON.stringify(json.user));
                 dispatch(setUser(json.user));
-                dispatch(resetCredentials());  
+                dispatch(resetCredentials());
             } else {
                 dispatch(setError(json.message));
             }
@@ -69,8 +77,12 @@ const AlumniReg=()=>{
     return(
         <div className="h-screen flex justify-center items-center ">
             <div className="w-1/3">
-            <h1 className="text-3xl font-bold text-blue-500 py-6">Register as Alumni</h1>
-            <RegistrationForm 
+            <h1 className="text-3xl font-bold text-blue-500 py-6">Register as Student</h1>
+            <RegistrationFormPage1 
+                credentials={credentials}
+                handleChange={handleChange}
+                onSubmit={handleSignupSubmit}/>
+            <RegistrationFormPage2 
                 credentials={credentials}
                 handleChange={handleChange}
                 onSubmit={handleSignupSubmit}
@@ -79,4 +91,4 @@ const AlumniReg=()=>{
         </div>
     )
 }
-export default AlumniReg;
+export default Registration;
