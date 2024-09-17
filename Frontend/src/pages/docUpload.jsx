@@ -29,7 +29,7 @@ function DocUpload() {
         },
       });
 
-      setExtractedText(response.data.text);
+      setExtractedText(response.data.message);
     } catch (error) {
       console.error('Error processing the file:', error);
       alert('An error occurred while processing the file.');
@@ -61,8 +61,8 @@ function DocUpload() {
 
         {isLoading && (
           <div className="flex justify-center items-center mt-6">
-            <div className="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12"></div>
-          </div>
+          <div className="loader ease-linear rounded-full border-4 border-t-4 border-blue-500 h-12 w-12"></div>
+        </div>
         )}
 
         {extractedText && (

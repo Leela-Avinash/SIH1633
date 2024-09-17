@@ -60,7 +60,7 @@ const AlumniReg=()=>{
             if (json.success) {
                 localStorage.setItem('user', JSON.stringify(json.user));
                 dispatch(setUser(json.user));
-                dispatch(resetCredentials());
+                dispatch(resetCredentials());  
             } else {
                 dispatch(setError(json.message));
             }

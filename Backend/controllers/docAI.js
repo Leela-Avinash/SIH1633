@@ -3,6 +3,7 @@ import { DocumentProcessorServiceClient } from '@google-cloud/documentai';
 import multer from 'multer';
 import path from 'path';
 import language from '@google-cloud/language';
+import Fuse from 'fuse.js';
 // Initialize Google Cloud Document AI client
 const clientdoc = new DocumentProcessorServiceClient({
   keyFilename: 'D:/AVIATOR CODESPACE/Unknown2.0/Backend/natural-pipe-435404-f3-3e7d64d566f7.json',
@@ -10,18 +11,18 @@ const clientdoc = new DocumentProcessorServiceClient({
 const clientlan = new language.LanguageServiceClient({
   keyFilename: 'D:/AVIATOR CODESPACE/Unknown2.0/Backend/natural-pipe-435404-f3-3e7d64d566f7.json', // Update with the path to your JSON credentials file
 });
-const name="J. Prema Sagar"
+const name = "J Prema";
 
-let entities=[];
+let entities = [];
 
 const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'uploads/'); // Directory to store uploaded files
-    },
-    filename: (req, file, cb) => {
-        cb(null, Date.now() + path.extname(file.originalname)); // Generate a unique filename
-    },
-  });
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/'); // Directory to store uploaded files
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname)); // Generate a unique filename
+  },
+});
 
 // Configure Multer for file uploads
 const upload = multer({ storage: storage }).single('file');
@@ -59,7 +60,7 @@ const processDocumentAI = async (filePath) => {
     return { success: false, error: 'Failed to process the document' };
   }
 };
-const analyzeEntities=async (text) =>{
+const analyzeEntities = async (text) => {
   const document = {
     content: text,
     type: 'PLAIN_TEXT',
@@ -69,7 +70,9 @@ const analyzeEntities=async (text) =>{
   const [result] = await clientlan.analyzeEntities({ document });
   const resentities = result.entities;
   resentities.forEach(entity => {
-    entities.push(entity);
+    if (entity.type === 'PERSON' || entity.type === 'ORGANIZATION' || entity.type === 'OTHER' || entity.type === 'DATE') {
+      entities.push(entity);
+    }
   });
 
   // entities.forEach(entity => {
@@ -94,39 +97,78 @@ const docAI = (req, res) => {
     }
 
     try {
+      const role = req.params.role;
+      let modelName;
+      if (role === "alumni") {
+        modelName = Alumni;
+      } else if (role === "student") {
+        modelName = Student;
+      } else {
+        return res.status(400).json({ message: "Invalid role" });
+      }
+      const user = await modelName.findOne({_id: req.params.id});
       // Process the uploaded file using Document AI
       const result = await processDocumentAI(req.file.path);
-      let protext=result.text;
-      protext=protext.split('\n')
-      // let entities={};
-      for (let i = 0; i < protext.length; i++) {
-        await analyzeEntities(protext[i]);
+      let protext = result.text;
+      let lines = protext.split('\n');
+      for (let i = 0; i < lines.length; i++) {
+        await analyzeEntities(lines[i]);
       }
-      const personEntries=entities.filter(entity => entity.type === 'PERSON');
-      personEntries.forEach(entity => {
-        if(entity.name.toLowerCase()===name.toLowerCase()){
-          console.log("Name: ",entity.name);
-        }
-        else{
-          console.log("Name not found",entity);
-        }
-      }
-      )
-      
-      if (result.success) {
-        res.json({ text: "Alumni Verified Successfully" });
+      const fuse = new Fuse(entities, {
+        keys: ['name'],  // Search in name field
+        includeScore: true,
+        threshold: 0.3,  // Adjust the threshold for fuzziness
+      });
+      const matchedName = fuse.search(user.fname+" "+user.lname);  // Search for the name of the user
+      const matchedClg=fuse.search(user.collegeName);
+      const matchedDegree=fuse.search(user.degree);
+      const matchedYear=fuse.search(user.year);
+      const matchedRoll=fuse.search(user.rollnumber);
+      console.log(matchedName,matchedClg,matchedClg ,matchedDegree,matchedYear,matchedRoll);
+
+      if (matchedName && matchedClg && matchedDegree && matchedYear && matchedRoll) {
+        // Response if match found
+        res.json({
+          message: 'Alumni Verified Successfully',
+          // extractedName: bestMatch,
+          // similarityScore: similarityScore,
+        });
       } else {
-        res.status(500).json({ error: result.error,
-          text: "Alumni Verification Failed"
-         });
+        // Response if no match found
+        res.status(400).json({
+          message: 'Alumni Verification Failed: No match found.',
+        });
       }
-    } catch (error) {
+    }
+
+
+    // // let entities={};
+    // for (let i = 0; i < protext.length; i++) {
+    //   await analyzeEntities(protext[i]);
+    // }
+    // const personEntries=entities.filter(entity => entity.type === 'PERSON');
+    // personEntries.forEach(entity => {
+    //   if(entity.name.toLowerCase()===name.toLowerCase()){
+    //     console.log("Name: ",entity.name);
+    //   }
+    //   else{
+    //     console.log("Name not found",entity);
+    //   }
+    // }
+    // )
+
+    // if (result.success) {
+    //   res.json({ text: "Alumni Verified Successfully" });
+    // } else {
+    //   res.status(500).json({ error: result.error,
+    //     text: "Alumni Verification Failed"
+    //    });
+    // }
+    catch (error) {
       res.status(500).json({ error: 'Server error while processing document' });
     }
   });
-}; 
+};
 
 // Function to analyze entities using Natural Language API
-
-
 export default docAI;
