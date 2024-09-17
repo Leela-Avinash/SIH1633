@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import {
@@ -8,7 +8,6 @@ import {
     clearFieldError,
 } from "../redux/slices/authSlice";
 import { setUser } from "../redux/slices/userSlice.js";
-import RegistrationForm from "../components/RegistrationForm"
 import RegistrationFormPage1 from "../components/RegistrationFormPage1.jsx";
 import RegistrationFormPage2 from "../components/RegistrationFormPage2.jsx";
 const Registration=()=>{
@@ -17,6 +16,7 @@ const Registration=()=>{
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    const [ toggleReg, setToggleReg ] = useState(false);
     const { credentials } = useSelector(
         (state) => state.auth
     );
@@ -78,15 +78,20 @@ const Registration=()=>{
         <div className="h-screen flex justify-center items-center ">
             <div className="w-1/3">
             <h1 className="text-3xl font-bold text-blue-500 py-6">Register as Student</h1>
-            <RegistrationFormPage1 
-                credentials={credentials}
-                handleChange={handleChange}
-                onSubmit={handleSignupSubmit}/>
-            <RegistrationFormPage2 
-                credentials={credentials}
-                handleChange={handleChange}
-                onSubmit={handleSignupSubmit}
-            />
+            {!toggleReg ? (
+                <RegistrationFormPage1 
+                    credentials={credentials}
+                    handleChange={handleChange}
+                    setToggleReg={setToggleReg}
+                />
+            ):(
+                <RegistrationFormPage2 
+                    credentials={credentials}
+                    handleChange={handleChange}
+                    onSubmit={handleSignupSubmit}
+                    setToggleReg={setToggleReg}
+                />
+            )}       
             </div>
         </div>
     )

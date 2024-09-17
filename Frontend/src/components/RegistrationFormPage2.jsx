@@ -3,20 +3,9 @@ import Input from "./authInput.jsx";
 import { useDispatch, useSelector } from "react-redux";
 import { setValidationErrors } from "../redux/slices/authSlice.js";
 
-const RegistrationFormPage2 = ({ credentials, handleChange }) => {
+const RegistrationFormPage2 = ({ credentials, handleChange, onSubmit, setToggleReg }) => {
     const dispatch = useDispatch();
     const { errors, backendError } = useSelector((state) => state.auth);
-
-    const isEmail = (email) => {
-        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return re.test(email);
-    };
-
-    const isValidPassword = (password) => {
-        const re =
-            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-        return re.test(password);
-    };
 
     const validate = () => {
         const newErrors = {};
@@ -35,6 +24,12 @@ const RegistrationFormPage2 = ({ credentials, handleChange }) => {
             onSubmit(e);
         }
     };
+
+    const handleBack = (e) => {
+        e.preventDefault();
+        setToggleReg(false);
+        console.log("toggle is false")
+    }
 
     return (
         <div>
@@ -81,7 +76,7 @@ const RegistrationFormPage2 = ({ credentials, handleChange }) => {
 
                 <Input
                     type="text"
-                    name="Rollno"
+                    name="rollno"
                     value={credentials.rollno}
                     handleChange={handleChange}
                     label="Roll number"
@@ -125,7 +120,7 @@ const RegistrationFormPage2 = ({ credentials, handleChange }) => {
                 <div>
                     <button
                         className={`w-full py-2 rounded-md mt-1 transition duration-300 text-white hover bg-blue-500`}
-                        // disabled={credentials.name.length < 3}
+                        onClick={handleBack}
                     >
                         BACK
                     </button>
