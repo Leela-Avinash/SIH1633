@@ -5,6 +5,7 @@ import { setValidationErrors } from "../redux/slices/authSlice.js";
 
 const RegistrationFormPage1 = ({ credentials, handleChange, setToggleReg}) => {
     const dispatch = useDispatch();
+    const { errors } = useSelector((state) => state.auth);
 
     const isEmail = (email) => {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -56,9 +57,9 @@ const RegistrationFormPage1 = ({ credentials, handleChange, setToggleReg}) => {
                     label="Username"
                     minLength={3}
                 />
-                {/* {errors.username && (
-        <p className="text-red-400 text-xs">{errors.username}</p>
-      )} */}
+                {errors.username && (
+                    <p className="text-red-400 text-xs">{errors.username}</p>
+                )}
                 <Input
                     type="email"
                     name="email"
@@ -66,7 +67,7 @@ const RegistrationFormPage1 = ({ credentials, handleChange, setToggleReg}) => {
                     handleChange={handleChange}
                     label="University Email"
                 />
-                {/* {errors.email && <p className="text-red-400 text-xs">{errors.email}</p>} */}
+                {errors.email && <p className="text-red-400 text-xs">{errors.email}</p>}
                 <Input
                     type="password"
                     name="password"
@@ -75,9 +76,9 @@ const RegistrationFormPage1 = ({ credentials, handleChange, setToggleReg}) => {
                     label="Password"
                     minLength={8}
                 />
-                {/* {errors.password && (
-        <p className="text-red-400 text-xs">{errors.password}</p>
-      )} */}
+                {errors.password && (
+                    <p className="text-red-400 text-xs">{errors.password}</p>
+                )}
                 <Input
                     type="password"
                     name="cpassword"
@@ -86,12 +87,9 @@ const RegistrationFormPage1 = ({ credentials, handleChange, setToggleReg}) => {
                     label="Confirm Password"
                     minLength={8}
                 />
-                {/* {errors.cpassword && (
-        <p className="text-red-400 text-xs">{errors.cpassword}</p>
-      )} */}
-                {/* <div className="w-full flex justify-center mt-2">
-        {backendError && <p className="text-red-400 text-sm">{backendError}</p>}
-      </div> */}
+                {errors.cpassword && (
+                    <p className="text-red-400 text-xs">{errors.cpassword}</p>
+                )}
                 <button
                     className={`w-full py-2 rounded-md mt-1 transition duration-300 text-white hover bg-blue-500`}
                     onClick={handleNext}

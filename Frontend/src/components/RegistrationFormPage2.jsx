@@ -46,7 +46,7 @@ const RegistrationFormPage2 = ({ credentials, handleChange, onSubmit, setToggleR
                     label="First Name"
                     minLength={3}
                 />
-                {/* {errors.fname && <p className="text-red-400">{errors.fname}</p>} */}
+                {errors.fname && <p className="text-red-400">{errors.fname}</p>}
 
                 <Input
                     type="text"
@@ -56,7 +56,7 @@ const RegistrationFormPage2 = ({ credentials, handleChange, onSubmit, setToggleR
                     label="Last Name"
                     minLength={3}
                 />
-                {/* {errors.lname && <p className="text-red-400">{errors.lname}</p>} */}
+                {errors.lname && <p className="text-red-400">{errors.lname}</p>}
 
                 <Input
                     type="text"
@@ -98,9 +98,9 @@ const RegistrationFormPage2 = ({ credentials, handleChange, onSubmit, setToggleR
                     label="Graduation month/Expected graduation month"
                 />
 
-                {/* <div className="w-full flex justify-center mt-2">
-        {backendError && <p className="text-red-400 text-sm">{backendError}</p>}
-      </div> */}
+                <div className="w-full flex justify-center mt-2">
+                    {backendError && <p className="text-red-400 text-sm">{backendError}</p>}
+                </div>
                 <div className="flex items-start my-2">
                     <input type="checkbox" id="terms" className="mr-2 mt-2" />
                     <label htmlFor="terms" className="text-gray-400 text-sm">
