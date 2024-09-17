@@ -52,7 +52,11 @@ const StudentReg=()=>{
                     email: credentials.email,
                     collegeName: credentials.collegeName,
                     password: credentials.password,
-                    role: "student"
+                    role: "student",
+                    degree: credentials.degree,
+                    gyear: credentials.gyear,
+                    gmonth: credentials.gmonth,
+                    rollnumber: credentials.rollnumber,
                 }),
                 credentials: "include",
             });
