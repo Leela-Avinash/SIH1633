@@ -5,10 +5,10 @@ import path from 'path';
 import language from '@google-cloud/language';
 // Initialize Google Cloud Document AI client
 const clientdoc = new DocumentProcessorServiceClient({
-  keyFilename: 'D:/AVIATOR CODESPACE/Unknown2.0/Backend/natural-pipe-435404-f3-3e7d64d566f7.json',
+  keyFilename: 'D:/Codes/Web_Development/SIH1633/Backend/natural-pipe-435404-f3-3e7d64d566f7.json',
 });
 const clientlan = new language.LanguageServiceClient({
-  keyFilename: 'D:/AVIATOR CODESPACE/Unknown2.0/Backend/natural-pipe-435404-f3-3e7d64d566f7.json', // Update with the path to your JSON credentials file
+  keyFilename: 'D:/Codes/Web_Development/SIH1633/Backend/natural-pipe-435404-f3-3e7d64d566f7.json', // Update with the path to your JSON credentials file
 });
 const name="J. Prema Sagar"
 
@@ -121,6 +121,7 @@ const docAI = (req, res) => {
          });
       }
     } catch (error) {
+      console.log(error);
       res.status(500).json({ error: 'Server error while processing document' });
     }
   });

@@ -8,6 +8,7 @@ import AlumniReg from "./pages/AlumniReg.jsx";
 import EmailVerify from "./pages/emailverify.jsx";
 import DocUpload from "./pages/docUpload.jsx";
 import Login from "./pages/Login.jsx";
+import Registration from "./pages/Registration.jsx";
 
 const App = () => {
     return (
@@ -18,6 +19,7 @@ const App = () => {
                     <Route path="/getstarted" element={<GetStarted />} />
                     <Route path="/stusignup" element={<StudentReg />} />
                     <Route path="/alusignup" element={<AlumniReg />} />
+                    <Route path="/:role/signup" element={<Registration />} />
                     <Route path="/users/:role/:id/verify/:token" element={<EmailVerify />} />
                     <Route path="/docai" element={<DocUpload/>}/>
                     <Route path="/login" element={<Login/>}/>

@@ -29,7 +29,27 @@ const AlumniSchema=mongoose.Schema({
         type:String,
         required:true
     },
-    verified: {
+    email_verified: {
+        type: Boolean,
+        default: false
+    },
+    degree: {
+        type: String,
+        required: true,
+    }, 
+    gyear: {
+        type: Number,
+        required: true,
+    }, 
+    gmonth: {
+        type: String,
+        required: true
+    }, 
+    rollnumber: {
+        type: String,
+        reuired: true
+    },
+    document_verification: {
         type: Boolean,
         default: false
     },

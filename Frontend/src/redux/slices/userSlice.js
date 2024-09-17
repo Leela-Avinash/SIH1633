@@ -1,14 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    name: "",
+    fname: "",
+    lname: "",
     username: "",
     email: "",
-    profilepic: "",
-    followersCount: 0,
-    followingCount: 0,
-    bio: "",
-    date: ""
+    collegeName: "",
+    password: "",
+    cpassword: "",
+    identifier: "",
+    degree: "",
+    gyear: "",
+    gmonth: "",
+    rollno: "",
 };
 
 const userSlice = createSlice({

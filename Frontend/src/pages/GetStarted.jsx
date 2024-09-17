@@ -16,7 +16,7 @@ const GetStarted = () => {
         <div className="space-y-4">
           <div className="pb-5">
             <Link
-              to="/alusignup"
+              to="/alumni/signup"
               className="w-full p-40 bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition duration-300"
             >
               Alumini
@@ -24,7 +24,7 @@ const GetStarted = () => {
           </div>
           <div>
             <Link
-              to="/stusignup"
+              to="/student/signup"
               className="w-full p-40 bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition duration-300"
             >
               Student

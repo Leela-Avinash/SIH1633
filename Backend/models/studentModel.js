@@ -30,13 +30,29 @@ const StudentSchema=mongoose.Schema({
         type:String,
         required:true
     },
-    verified: {
+    email_verified: {
         type: Boolean,
         default: false
     },
     date: {
         type: Date,
         default: Date.now,
+    },
+    degree: {
+        type: String,
+        required: true,
+    }, 
+    gyear: {
+        type: Number,
+        required: true,
+    }, 
+    gmonth: {
+        type: String,
+        required: true
+    }, 
+    rollnumber: {
+        type: String,
+        reuired: true
     }
 },{
     timeStamps:true,
