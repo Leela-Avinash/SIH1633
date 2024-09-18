@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import axios from 'axios';
+import {useNavigate} from 'react-router-dom';
 
 function DocUpload() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [extractedText, setExtractedText] = useState('');
   const [isLoading, setIsLoading] = useState(false); // To manage loading state
+  const navigate=useNavigate();
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -27,9 +29,12 @@ function DocUpload() {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
+        withCredentials: true, // Send cookies along with the request
       });
 
       setExtractedText(response.data.message);
+      navigate('/dashboard');
+      
     } catch (error) {
       console.error('Error processing the file:', error);
       alert('An error occurred while processing the file.');
@@ -61,7 +66,7 @@ function DocUpload() {
 
         {isLoading && (
           <div className="flex justify-center items-center mt-6">
-          <div className="loader ease-linear rounded-full border-4 border-t-4 border-blue-500 h-12 w-12"></div>
+          <div className="loader"></div>
         </div>
         )}
 

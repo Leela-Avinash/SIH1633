@@ -6,12 +6,11 @@ import language from '@google-cloud/language';
 import Fuse from 'fuse.js';
 // Initialize Google Cloud Document AI client
 const clientdoc = new DocumentProcessorServiceClient({
-  keyFilename: 'D:/Codes/Web_Development/SIH1633/Backend/natural-pipe-435404-f3-3e7d64d566f7.json',
+  keyFilename: 'D:/AVIATOR CODESPACE/Unknown2.0/Backend/natural-pipe-435404-f3-3e7d64d566f7.json',
 });
 const clientlan = new language.LanguageServiceClient({
-  keyFilename: 'D:/Codes/Web_Development/SIH1633/Backend/natural-pipe-435404-f3-3e7d64d566f7.json', // Update with the path to your JSON credentials file
+  keyFilename: 'D:/AVIATOR CODESPACE/Unknown2.0/Backend/natural-pipe-435404-f3-3e7d64d566f7.json', // Update with the path to your JSON credentials file
 });
-const name = "J Prema";
 
 let entities = [];
 
@@ -97,16 +96,7 @@ const docAI = (req, res) => {
     }
 
     try {
-      const role = req.params.role;
-      let modelName;
-      if (role === "alumni") {
-        modelName = Alumni;
-      } else if (role === "student") {
-        modelName = Student;
-      } else {
-        return res.status(400).json({ message: "Invalid role" });
-      }
-      const user = await modelName.findOne({_id: req.params.id});
+      const user=req.user
       // Process the uploaded file using Document AI
       const result = await processDocumentAI(req.file.path);
       let protext = result.text;
@@ -119,15 +109,17 @@ const docAI = (req, res) => {
         includeScore: true,
         threshold: 0.3,  // Adjust the threshold for fuzziness
       });
+      console.log(user);
       const matchedName = fuse.search(user.fname+" "+user.lname);  // Search for the name of the user
       const matchedClg=fuse.search(user.collegeName);
       const matchedDegree=fuse.search(user.degree);
-      const matchedYear=fuse.search(user.year);
+      const matchedYear=fuse.search(user.gmonth+" "+user.gyear.toString());
       const matchedRoll=fuse.search(user.rollnumber);
-      console.log(matchedName,matchedClg,matchedClg ,matchedDegree,matchedYear,matchedRoll);
+      
 
-      if (matchedName && matchedClg && matchedDegree && matchedYear && matchedRoll) {
+      if (matchedName.length>0 && matchedClg.length>0 && matchedDegree.length>0 && matchedYear.length>0 && matchedRoll.length>0) {
         // Response if match found
+        console.log(matchedName[0],matchedClg[0],matchedDegree[0],matchedYear[0],matchedRoll[0]);
         res.json({
           message: 'Alumni Verified Successfully',
           // extractedName: bestMatch,
