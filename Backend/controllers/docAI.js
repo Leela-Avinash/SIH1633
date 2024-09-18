@@ -4,6 +4,7 @@ import multer from 'multer';
 import path from 'path';
 import language from '@google-cloud/language';
 import Fuse from 'fuse.js';
+import Alumni from '../models/alumniModel.js';
 // Initialize Google Cloud Document AI client
 const clientdoc = new DocumentProcessorServiceClient({
   keyFilename: 'D:/Codes/Web_Development/SIH1633/Backend/natural-pipe-435404-f3-3e7d64d566f7.json',
@@ -125,6 +126,10 @@ const docAI = (req, res) => {
       if (matchedName.length>0 && matchedClg.length>0 && matchedDegree.length>0 && matchedYear.length>0 && matchedRoll.length>0) {
         // Response if match found
         console.log(matchedName[0],matchedClg[0],matchedDegree[0],matchedYear[0],matchedRoll[0]);
+        await Alumni.findOneAndUpdate(
+          { _id: user._id },
+          { document_verification: true }
+      );
         res.json({
           message: 'Alumni Verified Successfully',
           // extractedName: bestMatch,
