@@ -35,6 +35,7 @@ function DocUpload() {
       setExtractedText(response.data.message);
       navigate('/dashboard');
       
+      
     } catch (error) {
       console.error('Error processing the file:', error);
       alert('An error occurred while processing the file.');
