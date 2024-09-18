@@ -179,23 +179,13 @@ const loginUser = async (req, res) => {
             res.status(400).send({message: "verification Email Sent"})
         }
 
-        generateTokenAndSetCookie(user._id, user.role, res);
+        generateTokenAndSetCookie(user={userId: user._id, role: user.role}, res);
         console.log("success");
+        delete user.password;
         success = true;
         res.status(201).json({
             success,
-            user: {
-                id: user._id,
-                fname: user.fname,
-                lname: user.lname,
-                username: user.username,
-                email: user.email,
-                date: user.date,
-                degree: user.degree, 
-                gyear: user.gyear, 
-                gmonth: user.gmonth, 
-                rollnumber: user.rollnumber
-            },
+            user
         });
     } catch (err) {
         res.status(500).json({ message: err.message });

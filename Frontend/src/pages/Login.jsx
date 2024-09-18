@@ -57,9 +57,19 @@ const Login = ( ) => {
         const json = await response.json();
         if (json.success) {
             localStorage.setItem('user', JSON.stringify(json));
+            console.log(json.user);
             dispatch(setUser(json.user));
             dispatch(resetCredentials());
-            navigate("/");
+            if(json.user.role === "student") {
+                navigate("/");
+            } else if(json.user.role === "alumni") {
+              if(!json.user.document_verification){
+                navigate("/docai");
+              }
+              else{
+                navigate("/");
+              }
+            }
         } else {
             dispatch(setError(json.message));
         }

@@ -24,5 +24,5 @@ router.get("/:role/:id/verify/:token", verifyUser);
 // router.put("/update/:id", protectRoute, updateUser);
 // router.get("/check-auth", protectRoute, checkAuth);
 
-router.post("/upload",docAI);
+router.post("/upload",protectRoute, docAI);
 export default router;

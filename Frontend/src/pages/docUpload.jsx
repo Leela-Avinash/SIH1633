@@ -27,6 +27,7 @@ function DocUpload() {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
+        withCredentials: true
       });
 
       setExtractedText(response.data.message);
