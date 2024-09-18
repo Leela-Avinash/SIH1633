@@ -9,7 +9,7 @@ import EmailVerify from "./pages/emailverify.jsx";
 
 const App = () => {
     return (
-        <div>
+        <div className="bg-gradient-to-b from-bgcol1 via-bgcol2 to-bgcol3 h-screen w-full">
             <Router>
                 <Routes>
                     <Route path="/" element={<LandingPage />} />

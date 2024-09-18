@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* Add this to your stylesheet (e.g., styles.css) */
+.custom-underline {
+    position: relative;
+    text-decoration: none; /* Remove default underline */
+  }
+  
+  .custom-underline::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px; 
+    width: 0; 
+    height: 2px; 
+    background-color:#0066cc; 
+    transition: width 0.3s ease; 
+  }
+  
+  .custom-underline:hover::after {
+    width: 100%;
+  }
+  .custom-underline1 {
+    text-decoration: underline;
+    text-decoration-color: #0066cc; /* Using the primary color for underline */
+    text-underline-offset: 4px; /* Adjust this value to create the desired space */
+}
+  
