@@ -61,20 +61,19 @@ const Login = ( ) => {
             dispatch(setUser(json.user));
             dispatch(resetCredentials());
             if(json.user.role === "student") {
-                navigate("/dashboard");
+                navigate("/");
             } else if(json.user.role === "alumni") {
               if(!json.user.document_verification){
                 navigate("/docai");
               }
               else{
-                navigate("/dashboard");
+                navigate("/");
               }
-
+            }
         } else {
             dispatch(setError(json.message));
         }
     };
-  };
 
     const validate = () => {
         const newErrors = {};
@@ -132,5 +131,4 @@ const Login = ( ) => {
         </form>
     );
 };
-
 export default Login;

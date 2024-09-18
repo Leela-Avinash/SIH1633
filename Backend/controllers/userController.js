@@ -181,6 +181,7 @@ const loginUser = async (req, res) => {
         generateTokenAndSetCookie(user._id,user.role, res);
         delete user.password;
         console.log("success");
+        delete user.password;
         success = true;
         res.status(201).json({
             success,

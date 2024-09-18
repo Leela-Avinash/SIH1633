@@ -29,7 +29,7 @@ function DocUpload() {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
-        withCredentials: true, // Send cookies along with the request
+        withCredentials: true
       });
 
       setExtractedText(response.data.message);
