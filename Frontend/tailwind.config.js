@@ -12,6 +12,7 @@ export default {
         bgcol1:'#ffffff',
         bgcol2:'#e6f2ff',
         bgcol3:'#cce6ff',
+        
       },
     },
   },
