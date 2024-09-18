@@ -283,15 +283,10 @@ const updateUser = async (req, res) => {
 
 const checkAuth = (req, res) => {
     console.log(req.user);
+    const user = req.user;
     res.status(200).json({
         success: true,
-        user: {
-            id: req.user._id,
-            fname: req.user.fname,
-            username: req.user.username,
-            email: req.user.email,
-            date: req.user.date,
-        },
+        user,
     });
 };
 

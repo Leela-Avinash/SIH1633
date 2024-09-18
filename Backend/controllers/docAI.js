@@ -6,10 +6,10 @@ import language from '@google-cloud/language';
 import Fuse from 'fuse.js';
 // Initialize Google Cloud Document AI client
 const clientdoc = new DocumentProcessorServiceClient({
-  keyFilename: 'D:/AVIATOR CODESPACE/Unknown2.0/Backend/natural-pipe-435404-f3-3e7d64d566f7.json',
+  keyFilename: 'D:/Codes/Web_Development/SIH1633/Backend/natural-pipe-435404-f3-3e7d64d566f7.json',
 });
 const clientlan = new language.LanguageServiceClient({
-  keyFilename: 'D:/AVIATOR CODESPACE/Unknown2.0/Backend/natural-pipe-435404-f3-3e7d64d566f7.json', // Update with the path to your JSON credentials file
+  keyFilename: 'D:/Codes/Web_Development/SIH1633/Backend/natural-pipe-435404-f3-3e7d64d566f7.json', // Update with the path to your JSON credentials file
 });
 
 let entities = [];
@@ -107,7 +107,7 @@ const docAI = (req, res) => {
       const fuse = new Fuse(entities, {
         keys: ['name'],  // Search in name field
         includeScore: true,
-        threshold: 0.3,  // Adjust the threshold for fuzziness
+        threshold: 0.5 ,  // Adjust the threshold for fuzziness
       });
       console.log(user);
       const matchedName = fuse.search(user.fname+" "+user.lname);  // Search for the name of the user
@@ -115,7 +115,12 @@ const docAI = (req, res) => {
       const matchedDegree=fuse.search(user.degree);
       const matchedYear=fuse.search(user.gmonth+" "+user.gyear.toString());
       const matchedRoll=fuse.search(user.rollnumber);
-      
+      // console.log(entities);
+      console.log(matchedName);
+      console.log(matchedClg);
+      console.log(matchedDegree);
+      console.log(matchedYear);
+      console.log(matchedRoll);
 
       if (matchedName.length>0 && matchedClg.length>0 && matchedDegree.length>0 && matchedYear.length>0 && matchedRoll.length>0) {
         // Response if match found

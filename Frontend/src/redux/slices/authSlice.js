@@ -15,7 +15,7 @@ const initialState = {
         degree: "",
         gyear: "",
         gmonth: "",
-        rollno: "",
+        rollnumber: "",
     },
     backendError: "", 
     errors: {}, 

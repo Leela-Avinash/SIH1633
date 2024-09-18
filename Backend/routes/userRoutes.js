@@ -22,7 +22,7 @@ router.post("/logout", logoutUser);
 router.get("/:role/:id/verify/:token", verifyUser);
 // router.put("/follow/:id", protectRoute, followUnfollow);
 // router.put("/update/:id", protectRoute, updateUser);
-// router.get("/check-auth", protectRoute, checkAuth);
+router.get("/check-auth", protectRoute, checkAuth);
 
 router.post("/upload",protectRoute,docAI);
 export default router;

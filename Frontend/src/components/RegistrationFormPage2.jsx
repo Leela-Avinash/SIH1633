@@ -76,8 +76,8 @@ const RegistrationFormPage2 = ({ credentials, handleChange, onSubmit, setToggleR
 
                 <Input
                     type="text"
-                    name="rollno"
-                    value={credentials.rollno}
+                    name="rollnumber"
+                    value={credentials.rollnumber}
                     handleChange={handleChange}
                     label="Roll number"
                 />

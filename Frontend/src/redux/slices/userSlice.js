@@ -12,7 +12,7 @@ const initialState = {
     degree: "",
     gyear: "",
     gmonth: "",
-    rollno: "",
+    rollnumber: "",
 };
 
 const userSlice = createSlice({

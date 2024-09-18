@@ -61,13 +61,13 @@ const Login = ( ) => {
             dispatch(setUser(json.user));
             dispatch(resetCredentials());
             if(json.user.role === "student") {
-                navigate("/");
+                navigate("/dashboard");
             } else if(json.user.role === "alumni") {
               if(!json.user.document_verification){
                 navigate("/docai");
               }
               else{
-                navigate("/");
+                navigate("/dashboard");
               }
             }
         } else {

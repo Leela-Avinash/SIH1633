@@ -60,7 +60,7 @@ const Registration=()=>{
                     degree: credentials.degree,
                     gyear: credentials.gyear,
                     gmonth: credentials.gmonth,
-                    rollno: credentials.rollno,
+                    rollnumber: credentials.rollnumber,
                 }),
                 credentials: "include",
             });

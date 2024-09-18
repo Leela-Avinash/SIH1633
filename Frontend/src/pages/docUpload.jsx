@@ -5,7 +5,7 @@ import {useNavigate} from 'react-router-dom';
 function DocUpload() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [extractedText, setExtractedText] = useState('');
-  const [isLoading, setIsLoading] = useState(false); // To manage loading state
+  const [isLoading, setIsLoading] = useState(false);
   const navigate=useNavigate();
 
   const handleFileChange = (event) => {
