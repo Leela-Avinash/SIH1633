@@ -5,8 +5,8 @@ function Navbar(){
         <div>
         <div className="container mx-auto flex justify-between items-center p-5">
         <div className="flex items-center pl-0 md:pl-20 sm:mx-0 mx-auto ml-5 sm:ml-0">
-            <img src="../public/logo1.svg" className="h-24 w-24" alt="logo" />
-            <h1 className="pl-2 text-xl font-bold flex flex-col">Alumni<span className="text-custom1 text-3xl"><span className="text-custom2 text-4xl font-bold">C</span>onnect</span></h1>
+            <img src="../public/logo1.svg" className="h-20 w-20" alt="logo" />
+            <h1 className="pl-1 text-xl font-bold flex flex-col">Alumni<span className="text-custom1 text-3xl"><span className="text-custom2 text-4xl font-bold">C</span>onnect</span></h1>
         </div>
         <div class="hidden sm:block flex mx-auto space-x-6 pr-10">
         <a href="#" className="text-custom1 transition-colors duration-300 font-bold custom-underline hover:text-custom1">About</a>
