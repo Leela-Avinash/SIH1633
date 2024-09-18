@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     isSignUp: true,
     isAuthenticated: false,
+    isDocVerified: false,
     credentials: {
         fname: "",
         lname: "",
@@ -37,6 +38,9 @@ const authSlice = createSlice({
         setAuth: (state, action) => {
             state.isAuthenticated = action.payload;
         },
+        setDoc: (state, action) => {
+            state.isDocVerified = action.payload;
+        },
         setSignUp: (state, action) => {
             state.isSignUp = action.payload;
             state.credentials = { ...initialState.credentials };
@@ -65,7 +69,8 @@ export const {
     setSignUp,
     setError,
     setValidationErrors,
-    clearFieldError
+    clearFieldError,
+    setDoc
 } = authSlice.actions;
 
 export default authSlice.reducer;

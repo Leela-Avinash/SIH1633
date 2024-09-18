@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "./redux/slices/userSlice.js";
-import { setAuth } from "./redux/slices/authSlice.js";
+import { setAuth,setDoc } from "./redux/slices/authSlice.js";
 import LandingPage from "./pages/Landingpage.jsx";
 import GetStarted from "./pages/GetStarted.jsx";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
@@ -14,8 +14,8 @@ import Dashboard from "./pages/dashBoard.jsx";
 const App = () => {
     const dispatch = useDispatch();
     const { isAuthenticated } = useSelector((state) => state.auth);
+    const { isDocVerified } = useSelector((state) => state.auth);
     const user = useSelector((state) => state.user);
-    const [documentVerified, setDocumentVerified] = useState(false);
 
     useEffect(() => {
         const checkAuth = async () => {
@@ -34,9 +34,9 @@ const App = () => {
                     dispatch(setUser(json.user));
                     dispatch(setAuth(true));
 
-                    const storedUser = JSON.parse(localStorage.getItem("user"));
+                    const storedUser = await JSON.parse(localStorage.getItem("user"));
                     if (storedUser && storedUser.document_verification) {
-                        setDocumentVerified(storedUser.document_verification);
+                        dispatch(setDoc(storedUser.document_verification))
                     }
                 }
             } catch (error) {
@@ -47,20 +47,20 @@ const App = () => {
         checkAuth();
     }, [dispatch]);
     console.log(user);
-    console.log(documentVerified)
+    console.log(isDocVerified)
     console.log(isAuthenticated)
+
     return (
         <div>
             <Router>
                 <Routes>
                     <Route path="/" element= {<LandingPage />} />
-                    <Route path="/getstarted" element={isAuthenticated? (documentVerified? <Navigate to="/dashboard" /> : <Navigate to="/docai"/>): <GetStarted />} />
-                    <Route path="/:role/signup" element={isAuthenticated? (documentVerified? <Navigate to="/dashboard" /> : <Navigate to="/docai"/>) : <Registration />} />
+                    <Route path="/getstarted" element={isAuthenticated? (isDocVerified? <Navigate to="/dashboard" /> : <Navigate to="/docai"/>): <GetStarted />} />
+                    <Route path="/:role/signup" element={isAuthenticated? (isDocVerified? <Navigate to="/dashboard" /> : <Navigate to="/docai"/>) : <Registration />} />
                     <Route path="/users/:role/:id/verify/:token" element={<EmailVerify />} />
-                    <Route path="/docai" element={<DocUpload/>}/>
-                    <Route path="/login" element={isAuthenticated ? (documentVerified? <Navigate to="/dashboard" /> : <Navigate to="/docai"/>) : <Login/>}/>
-                    <Route path="/dashboard" element={!isAuthenticated ? <Navigate to='/'/> : (documentVerified? <Dashboard /> : <Navigate to="/docai"/>)} />
-                    {/* <Route path="/dashboard" element={<Dashboard />} /> */}
+                    <Route path="/docai" element={isAuthenticated ? (isDocVerified? <Navigate to="/dashboard" />: <DocUpload/>):<Login/>}/>
+                    <Route path="/login" element={isAuthenticated ? (isDocVerified? <Navigate to="/dashboard" /> : <Navigate to="/docai"/>) : <Login/>}/>
+                    <Route path="/dashboard" element={isAuthenticated ? (isDocVerified ? <Dashboard /> : <Navigate to="/docai" />) : <Navigate to="/login" />} />
                 </Routes>
             </Router>
         </div>

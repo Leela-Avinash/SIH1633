@@ -5,8 +5,8 @@ IDCARD.jpg
 IDCARD.pdf 
 MyAadhar_page-0001.pdf 
 natural-pipe-435404-f3-3e7d64d566f7.json
-
-controllers/docAi.js
+uploads/
+controllers/docAI.js
 # Logs
 logs
 *.log
