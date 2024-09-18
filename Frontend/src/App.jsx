@@ -7,6 +7,7 @@ import EmailVerify from "./pages/emailverify.jsx";
 import DocUpload from "./pages/docUpload.jsx";
 import Login from "./pages/Login.jsx";
 import Registration from "./pages/Registration.jsx";
+import Dashboard from "./pages/dashBoard.jsx";
 
 const App = () => {
     return (
@@ -19,6 +20,7 @@ const App = () => {
                     <Route path="/users/:role/:id/verify/:token" element={<EmailVerify />} />
                     <Route path="/docai" element={<DocUpload/>}/>
                     <Route path="/login" element={<Login/>}/>
+                    <Route path="/dashboard" element={<Dashboard/>}/>
                 </Routes>
             </Router>
         </div>

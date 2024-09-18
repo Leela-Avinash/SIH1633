@@ -12,7 +12,7 @@ const protectRoute = async (req, res, next) => {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         const { userId, role } = decoded;
         let modelName;
-        if (role === "alumni") {
+        if (role === "alumni") { 
             modelName = Alumni;
         } else if (role === "student") {
             modelName = Student;
