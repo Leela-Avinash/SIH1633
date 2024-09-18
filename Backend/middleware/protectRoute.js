@@ -5,17 +5,12 @@ import jwt from "jsonwebtoken";
 const protectRoute = async (req, res, next) => {
     try {
         const token = req.cookies.jwt;
-        console.log(token);
-
         if (!token) {
             return res.status(401).json({ message: "Unauthorized" });
         }
 
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        const { tokenUser } = decoded;
-        console.log(decoded);
-        console.log(tokenUser);
-
+        const { userId, role } = decoded;
         let modelName;
         if (tokenUser.role === "alumni") {
             modelName = Alumni;
@@ -29,8 +24,7 @@ const protectRoute = async (req, res, next) => {
         req.user = user;
 
         next();
-    } catch (err) {
-        
+    } catch (err) {    
         res.status(500).json({ message: err.message });
         console.log("Error from protectRoute: ", err.message);
     }

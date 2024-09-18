@@ -178,14 +178,14 @@ const loginUser = async (req, res) => {
             }
             res.status(400).send({message: "verification Email Sent"})
         }
-
-        generateTokenAndSetCookie(user={userId: user._id, role: user.role}, res);
+        generateTokenAndSetCookie(user._id,user.role, res);
+        delete user.password;
         console.log("success");
         delete user.password;
         success = true;
         res.status(201).json({
             success,
-            user
+            user        
         });
     } catch (err) {
         res.status(500).json({ message: err.message });

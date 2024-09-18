@@ -61,19 +61,30 @@ const Login = ( ) => {
             dispatch(setUser(json.user));
             dispatch(resetCredentials());
             if(json.user.role === "student") {
+<<<<<<< HEAD
                 navigate("/");
+=======
+                navigate("/dashboard");
+>>>>>>> ee54b04ff670bf1aa6368a56affacb4be36f14d9
             } else if(json.user.role === "alumni") {
               if(!json.user.document_verification){
                 navigate("/docai");
               }
               else{
+<<<<<<< HEAD
                 navigate("/");
               }
             }
+=======
+                navigate("/dashboard");
+              }
+
+>>>>>>> ee54b04ff670bf1aa6368a56affacb4be36f14d9
         } else {
             dispatch(setError(json.message));
         }
     };
+  };
 
     const validate = () => {
         const newErrors = {};
