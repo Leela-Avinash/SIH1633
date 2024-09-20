@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { updateCredentials } from '../redux/slices/authSlice';
+import { updateCredentials, resetCredentials } from '../redux/slices/authSlice';
 import ProfileUpdate from '../components/Profile Customization/profileUpdate.jsx';
 import CareerUpdate from '../components/Profile Customization/careerUpdate.jsx';
 import ProfessionalUpdate from '../components/Profile Customization/professionalUpdate.jsx';
 import LocationUpdate from '../components/Profile Customization/locationUpdate.jsx';
 import SocialUpdate from '../components/Profile Customization/socialUpdate.jsx';
+import { useNavigate } from 'react-router-dom';
+import { setUser } from '../redux/slices/userSlice.js';
 
 const ProfileCompletionForm = () => {
-
+  const navigate = useNavigate()
   const [step, setStep] = useState(1); // Step tracker
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
@@ -84,54 +86,66 @@ const ProfileCompletionForm = () => {
     console.log(credentials);
     const formData = new FormData();
     formData.append('bio', credentials.bio);
-    formData.append('skills', credentials.skills);
-    formData.append('interests', credentials.interests);
-    
     formData.append('fieldOfStudy', credentials.fieldOfStudy);
-    formData.append('location', credentials.location);
-    formData.append('experiences', credentials.experiences);
-    formData.append('Social', credentials.Social);
+    // formData.append('skills', credentials.skills);
+    // formData.append('interests', credentials.interests);
+    // formData.append('location', credentials.location);
+    // formData.append('experiences', credentials.experiences);
+    // formData.append('Social', credentials.Social);
 
 
     // Append skills, interests, and experiences arrays if they exist
-    // if (inputs.skills) {
-    //   inputs.skills.forEach(skill => formData.append('skills[]', skill));
-    // }
+    if (credentials.skills) {
+      credentials.skills.forEach(skill => formData.append('skills[]', skill));
+    }
 
-    // if (inputs.interests) {
-    //   inputs.interests.forEach(interest => formData.append('interests[]', interest));
-    // }
+    if (credentials.interests) {
+      credentials.interests.forEach(interest => formData.append('interests[]', interest));
+    }
 
-    // inputs.experiences.forEach((exp, index) => {
-    //   formData.append(experiences[${ index }][JobTitle], exp.JobTitle);
-    //   formData.append(experiences[${ index }][CompanyName], exp.CompanyName);
-    //   formData.append(experiences[${ index }][Location], exp.Location);
-    //   formData.append(experiences[${ index }][StartDate], exp.StartDate);
-    //   formData.append(experiences[${ index }][EndDate], exp.EndDate);
-    // });
+    if(credentials.experiences){
+    credentials.experiences.forEach((exp, index) => {
+      formData.append(`experiences[${ index }][JobTitle]`, exp.JobTitle);
+      formData.append(`experiences[${ index }][CompanyName]`, exp.CompanyName);
+      formData.append(`experiences[${ index }][Location]`, exp.Location);
+      formData.append(`experiences[${ index }][StartDate]`, exp.StartDate);
+      formData.append(`experiences[${ index }][EndDate]`, exp.EndDate);
+    });}
 
     // Append location object fields if they exist
-    // if (inputs.location) {
-    //   formData.append('location[City]', inputs.location.City);
-    //   formData.append('location[State]', inputs.location.State);
-    //   formData.append('location[Code]', inputs.location.Code);
-    //   formData.append('location[Country]', inputs.location.Country);
-    //   formData.append('location[Phone]', inputs.location.Phone);
-    // }
+    if (credentials.location) {
+      formData.append('location[City]', credentials.location.City);
+      formData.append('location[State]', credentials.location.State);
+      formData.append('location[Code]', credentials.location.Code);
+      formData.append('location[Country]', credentials.location.Country);
+      formData.append('location[Phone]', credentials.location.Phone);
+    }
 
-    // formData.append('contactPhone', inputs.contactPhone);
-    // formData.append('linkedIn', inputs.linkedIn);
+    if(credentials.Social){
+        formData.append('Social[linkedinProfile]', credentials.Social.linkedinProfile);
+        formData.append('Social[githubProfile]', credentials.Social.githubProfile);
+        formData.append('Social[websiteURL]', credentials.Social.websiteURL);
+      }
 
     // Append profile picture if it's a file
     if (profileImage instanceof File) {
       formData.append('profilepic', profileImage);
     }
 
-    const response = await fetch(`http:localhost:5000/api/users/update/${ user.id }`, {
+    const response = await fetch(`http://localhost:5000/api/users/update/${ user._id }`, {
       method: "PUT",
       body: formData,
       credentials: "include",
     });
+    const json = await response.json();
+    if (response.status === 200) {
+        console.log(json.user);
+        dispatch(setUser(json.user));
+        dispatch(resetCredentials());
+        navigate("/dashboard");
+    } else {
+        console.log("Update Unsuccessful")
+    }
   };
 
   return (
