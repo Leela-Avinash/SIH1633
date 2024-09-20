@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Navbar from './navBar.jsx';
-import Sidebar from './Sidebar.jsx';
+import Navbar from '../components/navBar.jsx';
+import Sidebar from '../components/Sidebar.jsx';
 import MainContent from './MainContent.jsx';
 import ProfilePage from './profilePage.jsx';
 

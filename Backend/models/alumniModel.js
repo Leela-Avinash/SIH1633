@@ -1,82 +1,89 @@
 import mongoose from "mongoose";
-const ExperienceSchema=mongoose.Schema({
-    JobTitle:{
-        type:String,
-        required:true
+const ExperienceSchema = mongoose.Schema({
+    JobTitle: {
+        type: String,
+        required: true
     },
-    CompanyName:{
-        type:String,
-        required:true
+    CompanyName: {
+        type: String,
+        required: true
     },
-    Location:{
-        type:String,
-        required:true
+    Location: {
+        type: String,
+        required: true
     },
-    StartDate:{
-        type:Date,
-        required:true
+    StartDate: {
+        type: Date,
+        required: true
     },
-    EndDate:{
-        type:Date,
-        required:true
+    EndDate: {
+        type: Date,
+        required: true
     },
-},{_id:false});
-const LocationSchema=mongoose.Schema({
-    City:{
-        type:String,
-        required:true,
+}, { _id: false });
+const LocationSchema = mongoose.Schema({
+    City: {
+        type: String,
+        required: true,
     },
-    State:{
-        type:String,
-        required:true,
+    State: {
+        type: String,
+        required: true,
     },
-    Code:{
-        type:String,
-        required:true,
+    Code: {
+        type: String,
+        required: true,
     },
-    Country:{
-        type:String,
-        required:true,
+    Country: {
+        type: String,
+        required: true,
     },
-    Phone:{
-        type:String,
-        required:true,
+    Phone: {
+        type: String,
+        required: true,
     },
-    }
+}, { _id: false }
 );
-const SocialSchema=mongoose.Schema({
-    linkedinProfile:{
-        type:String,
+const SocialSchema = mongoose.Schema({
+    linkedinProfile: {
+        type: String,
     },
-});
-const AlumniSchema=mongoose.Schema({
-    fname:{
-        type:String,
-        required:true
+    githubProfile: {
+        type: String,
     },
-    lname:{
-        type:String,
-        required:true
+    websiteURL: {
+        type: String,
     },
-    username:{
-        type:String,
-        required:true
+}, { _id: false }
+);
+const AlumniSchema = mongoose.Schema({
+    fname: {
+        type: String,
+        required: true
     },
-    collegeName:{
-        type:String,
-        required:true
+    lname: {
+        type: String,
+        required: true
     },
-    email:{
-        type:String,
-        required:true
+    username: {
+        type: String,
+        required: true
     },
-    password:{
-        type:String,
-        required:true
+    collegeName: {
+        type: String,
+        required: true
     },
-    role:{
-        type:String,
-        required:true
+    email: {
+        type: String,
+        required: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    role: {
+        type: String,
+        required: true
     },
     email_verified: {
         type: Boolean,
@@ -85,15 +92,15 @@ const AlumniSchema=mongoose.Schema({
     degree: {
         type: String,
         required: true,
-    }, 
+    },
     gyear: {
         type: Number,
         required: true,
-    }, 
+    },
     gmonth: {
         type: String,
         required: true
-    }, 
+    },
     rollnumber: {
         type: String,
         reuired: true
@@ -110,28 +117,28 @@ const AlumniSchema=mongoose.Schema({
         type: String,
         default: "sample"
     },
-    skills:{
-        type:[String],
+    skills: {
+        type: [String],
     },
-    interests:{
-        type:[String],
+    interests: {
+        type: [String],
     },
-    fieldOfStudy:{
-        type:String,
+    fieldOfStudy: {
+        type: String,
     },
-    Experience:{
-        type:[ExperienceSchema],
+    Experience: {
+        type: [ExperienceSchema],
     },
-    Location:{
-        type:LocationSchema,
+    Location: {
+        type: LocationSchema,
     },
-    Social:{
-        type:SocialSchema,
+    Social: {
+        type: SocialSchema,
     },
 
-},{
-    timeStamps:true,
+}, {
+    timeStamps: true,
 })
 
-const Alumni=mongoose.model("Alumni",AlumniSchema);
+const Alumni = mongoose.model("Alumni", AlumniSchema);
 export default Alumni;
