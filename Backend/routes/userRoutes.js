@@ -11,9 +11,12 @@ import {
 } from "../controllers/userController.js";
 import protectRoute from "../middleware/protectRoute.js";
 import docAI from "../controllers/docAI.js";
+import multer from "multer";
 
 
 const router = express.Router();
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
 
 // router.get("/profile/:username", getUserProfile);
 router.post("/signup", signupUser);
@@ -21,7 +24,7 @@ router.post("/login", loginUser);
 router.post("/logout", logoutUser);
 router.get("/:role/:id/verify/:token", verifyUser);
 // router.put("/follow/:id", protectRoute, followUnfollow);
-// router.put("/update/:id", protectRoute, updateUser);
+router.put("/update/:id", protectRoute, upload.single('profilepic'), updateUser);
 router.get("/check-auth", protectRoute, checkAuth);
 
 router.post("/upload",protectRoute,docAI);

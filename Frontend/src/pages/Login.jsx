@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Input from "../components/authInput.jsx";
+import { setAuth, setDoc } from "../redux/slices/authSlice.js";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setValidationErrors } from "../redux/slices/authSlice.js";
@@ -14,6 +15,7 @@ import {
 const Login = ( ) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    
     const { credentials } = useSelector(
         (state) => state.auth
     );
@@ -56,6 +58,7 @@ const Login = ( ) => {
         });
         const json = await response.json();
         if (json.success) {
+            dispatch(setAuth(true));
             localStorage.setItem('user', JSON.stringify(json));
             console.log(json.user);
             dispatch(setUser(json.user));
@@ -67,6 +70,7 @@ const Login = ( ) => {
                 navigate("/docai");
               }
               else{
+                dispatch(setDoc(true));
                 navigate("/dashboard");
               }
             }

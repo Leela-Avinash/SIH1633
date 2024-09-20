@@ -5,6 +5,8 @@ import sendEmail from "../utils/helpers/sendEmails.js";
 import crypto from "crypto";
 import Alumni from "../models/alumniModel.js"
 import Student from "../models/studentModel.js";
+import { v2 as cloudinary } from "cloudinary";
+import streamifier from "streamifier";
 
 const getUserProfile = async (req, res) => {
     const { username } = req.params;
@@ -244,12 +246,37 @@ const followUnfollow = async (req, res) => {
     }
 };
 
+const uploadToCloudinary = (buffer) => {
+    return new Promise((resolve, reject) => {
+        const stream = cloudinary.uploader.upload_stream(
+            { folder: 'profile_pics' },
+            (error, result) => {
+                if (result) resolve(result.secure_url);
+                else reject(error);
+            }
+        );
+        streamifier.createReadStream(buffer).pipe(stream);
+    });
+};
+
 const updateUser = async (req, res) => {
     try {
-        const { fname, username, email, password, profilepic, bio } = req.body;
+        const { fieldOfStudy, skills, interests, experiences, location, contactPhone, linkedIn } = req.body;
         const userId = req.user._id;
+        const role = req.user.role;
 
-        let user = await User.findById(userId);
+        let modelName, otherModel;
+        if (role === "alumni") {
+            modelName = Alumni;
+            otherModel = Student
+        } else if (role === "student") {
+            modelName = Student;
+            otherModel = Alumni;
+        } else {
+            return res.status(400).json({ message: "Invalid role" });
+        }
+
+        let user = await modelName.findById(userId);
         if (!user) {
             return res.status(400).json({ message: "User not found" });
         }
@@ -260,22 +287,50 @@ const updateUser = async (req, res) => {
                 .json({ message: "You cannot update other user's profile" });
         }
 
-        if (password) {
-            const salt = await bcrypt.genSalt(10);
-            const hashedPassword = bcrypt.hash(password, salt);
-            user.password = hashedPassword;
+        let profilepic = user.profilepic; 
+
+        if (req.file) {
+            if (user.profilepic) {
+                const publicId = user.profilepic.split("/").pop().split(".")[0];
+                await cloudinary.uploader.destroy(publicId);
+            }
+
+            profilepic = await uploadToCloudinary(req.file.buffer);
         }
 
-        user.fname = fname || user.fname;
-        user.username = username || user.username;
-        user.email = email || user.email;
         user.profilepic = profilepic || user.profilepic;
-        user.bio = bio || user.bio;
+        user.fieldOfStudy = fieldOfStudy || user.fieldOfStudy;
+        user.skills = skills || user.skills;
+        user.interests = interests || user.interests;
+
+        if (experiences) {
+            user.Experience = experiences.map(exp => ({
+                JobTitle: exp.JobTitle,
+                CompanyName: exp.CompanyName,
+                Location: exp.Location,
+                StartDate: exp.StartDate,
+                EndDate: exp.EndDate
+            }));
+        }
+
+        if (location) {
+            user.Location = {
+                City: location.City || user.Location.City,
+                State: location.State || user.Location.State,
+                Code: location.Code || user.Location.Code,
+                Country: location.Country || user.Location.Country,
+                Phone: location.Phone || user.Location.Phone,
+            };
+        }
+
+        user.contactPhone = contactPhone || user.contactPhone;
+        user.Social.linkedinProfile = linkedIn || user.Social.linkedinProfile;
 
         user = await user.save();
 
         res.status(200).json({ message: "Profile updated Successfully", user });
     } catch (err) {
+        console.error("Error in update user:", err.message);
         res.status(500).json({ message: err.message });
         console.log("Error in update user: ", err.message);
     }

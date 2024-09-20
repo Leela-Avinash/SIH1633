@@ -47,10 +47,6 @@ const App = () => {
 
         checkAuth();
     }, [dispatch]);
-    // console.log(user);
-    // console.log(isDocVerified)
-    // console.log(isAuthenticated)
-    
 
     return (
         <div>
