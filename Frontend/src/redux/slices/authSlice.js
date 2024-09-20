@@ -21,7 +21,13 @@ const initialState = {
         skills: [],
         interests: [],
         fieldOfStudy: '',
-        location: {},
+        location: {
+            City:'',
+            State:'',
+            Code:'',
+            Country:'',
+            Phone:'',
+        },
         experiences: [
             {
               JobTitle: '',
@@ -31,8 +37,12 @@ const initialState = {
               EndDate: '',
             },
         ],
-        contactPhone: '',
-        linkedIn: ''
+        Social:{
+            linkedinProfile:'',
+            githubProfile:'',
+            websiteURL:'',
+        },
+        bio:'',
     },
     backendError: "",
     errors: {},
