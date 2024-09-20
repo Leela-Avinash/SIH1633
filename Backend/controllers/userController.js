@@ -297,6 +297,7 @@ const updateUser = async (req, res) => {
             profilepic = await uploadToCloudinary(req.file.buffer);
         }
 
+        user.bio = bio || user.bio;
         user.profilepic = profilepic || user.profilepic;
         user.fieldOfStudy = fieldOfStudy || user.fieldOfStudy;
         user.skills = skills || user.skills;

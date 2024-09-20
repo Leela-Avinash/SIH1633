@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
-import { updateCredentials } from '../redux/slices/authSlice';
+import { updateCredentials, resetCredentials } from '../redux/slices/authSlice';
 import ProfileUpdate from '../components/Profile Customization/profileUpdate.jsx';
 import CareerUpdate from '../components/Profile Customization/careerUpdate.jsx';
 import ProfessionalUpdate from '../components/Profile Customization/professionalUpdate.jsx';
 import LocationUpdate from '../components/Profile Customization/locationUpdate.jsx';
 import SocialUpdate from '../components/Profile Customization/socialUpdate.jsx';
 import { useNavigate } from 'react-router-dom';
+import { setUser } from '../redux/slices/userSlice.js';
 
 const ProfileCompletionForm = () => {
-
+  const navigate = useNavigate()
   const [step, setStep] = useState(1); // Step tracker
   const dispatch = useDispatch();
   const Navigate=useNavigate();
@@ -120,14 +121,12 @@ const ProfileCompletionForm = () => {
       formData.append('location[Country]', credentials.location.Country);
       formData.append('location[Phone]', credentials.location.Phone);
     }
-    if(credentials.Social){
-      formData.append('Social[linkedinProfile]', credentials.Social.linkedinProfile);
-      formData.append('Social[githubProfile]', credentials.Social.githubProfile);
-      formData.append('Social[websiteURL]', credentials.Social.websiteURL);
-    }
 
-    // formData.append('contactPhone', inputs.contactPhone);
-    // formData.append('linkedIn', inputs.linkedIn);
+    if(credentials.Social){
+        formData.append('Social[linkedinProfile]', credentials.Social.linkedinProfile);
+        formData.append('Social[githubProfile]', credentials.Social.githubProfile);
+        formData.append('Social[websiteURL]', credentials.Social.websiteURL);
+      }
 
     // Append profile picture if it's a file
     if (profileImage instanceof File) {
@@ -140,13 +139,14 @@ const ProfileCompletionForm = () => {
       credentials: "include",
     });
     const json = await response.json();
-    console.log(response);
-        if (response.status===200) {
-            console.log("Profile updated successfully");
-            Navigate('/dashboard');
-        } else {
-            console.log('Profile Update Unsuccessfull');
-        }
+    if (response.status === 200) {
+        console.log(json.user);
+        dispatch(setUser(json.user));
+        dispatch(resetCredentials());
+        navigate("/dashboard");
+    } else {
+        console.log("Update Unsuccessful")
+    }
   };
 
   return (
