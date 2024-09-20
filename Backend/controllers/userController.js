@@ -261,17 +261,16 @@ const uploadToCloudinary = (buffer) => {
 
 const updateUser = async (req, res) => {
     try {
-        const { fieldOfStudy, skills, interests, experiences, location, contactPhone, linkedIn } = req.body;
+        const { bio,fieldOfStudy, skills, interests, experiences, location,Social } = req.body;
         const userId = req.user._id;
         const role = req.user.role;
+        console.log(req.body);
 
-        let modelName, otherModel;
+        let modelName;
         if (role === "alumni") {
             modelName = Alumni;
-            otherModel = Student
         } else if (role === "student") {
             modelName = Student;
-            otherModel = Alumni;
         } else {
             return res.status(400).json({ message: "Invalid role" });
         }
@@ -323,8 +322,7 @@ const updateUser = async (req, res) => {
             };
         }
 
-        user.contactPhone = contactPhone || user.contactPhone;
-        user.Social.linkedinProfile = linkedIn || user.Social.linkedinProfile;
+        user.Social = Social || user.Social;
 
         user = await user.save();
 
