@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "./redux/slices/userSlice.js";
 import { setAuth,setDoc } from "./redux/slices/authSlice.js";
@@ -11,7 +11,7 @@ import Login from "./pages/Login.jsx";
 import Registration from "./pages/Registration.jsx";
 import Dashboard from "./pages/dashBoard.jsx";
 import ProfilePage from "./pages/profilePage.jsx";
-import ProfileCompletionForm from "./pages/ProfileCompletionFOrm.jsx";
+import ProfileCompletionForm from "./pages/ProfileCompletionForm.jsx";
 const App = () => {
     const dispatch = useDispatch();
     const { isAuthenticated } = useSelector((state) => state.auth);

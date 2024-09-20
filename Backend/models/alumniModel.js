@@ -110,7 +110,7 @@ const AlumniSchema = mongoose.Schema({
     },
     profileImg: {
         type: String,
-        default: "sample"
+        default: ""
     },
     skills: {
         type: [String],

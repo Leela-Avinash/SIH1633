@@ -13,15 +13,14 @@ const ProfileCompletionForm = () => {
   const navigate = useNavigate()
   const [step, setStep] = useState(1); // Step tracker
   const dispatch = useDispatch();
-  const Navigate=useNavigate();
   const user = useSelector((state) => state.user);
   const { credentials } = useSelector(
     (state) => state.auth
   );
-  const [profileImage, setProfileImage] = useState(null);
+
   const handleImageChange = (e) => {
     if (e.target.files && e.target.files[0]) {
-      setProfileImage(e.target.files[0]);
+      dispatch(updateCredentials({ name: 'profileImage', value: e.target.files[0] }));
     }
   };
 
@@ -45,7 +44,6 @@ const ProfileCompletionForm = () => {
 
   const handleChange = (e) => {
     dispatch(updateCredentials({ name: e.target.name, value: e.target.value }));
-
   };
   const handleLocationChange = (e) => {
     const { name, value } = e.target;
@@ -129,8 +127,8 @@ const ProfileCompletionForm = () => {
       }
 
     // Append profile picture if it's a file
-    if (profileImage instanceof File) {
-      formData.append('profilepic', profileImage);
+    if (credentials.profileImage instanceof File) {
+      formData.append('profilepic', credentials.profileImage);
     }
 
     const response = await fetch(`http://localhost:5000/api/users/update/${ user._id }`, {

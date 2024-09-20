@@ -286,19 +286,19 @@ const updateUser = async (req, res) => {
                 .json({ message: "You cannot update other user's profile" });
         }
 
-        let profilepic = user.profilepic; 
+        let profilepic = user.profileImg; 
 
         if (req.file) {
-            if (user.profilepic) {
-                const publicId = user.profilepic.split("/").pop().split(".")[0];
+            if (user.profileImg) {
+                const publicId = user.profileImg.split("/").slice(-2).join("/").split(".")[0];
                 await cloudinary.uploader.destroy(publicId);
             }
-
             profilepic = await uploadToCloudinary(req.file.buffer);
+            console.log(profilepic);
         }
 
         user.bio = bio || user.bio;
-        user.profilepic = profilepic || user.profilepic;
+        user.profileImg = profilepic || user.profileImg;
         user.fieldOfStudy = fieldOfStudy || user.fieldOfStudy;
         user.skills = skills || user.skills;
         user.interests = interests || user.interests;
@@ -329,7 +329,6 @@ const updateUser = async (req, res) => {
 
         res.status(200).json({ message: "Profile updated Successfully", user });
     } catch (err) {
-        console.error("Error in update user:", err.message);
         res.status(500).json({ message: err.message });
         console.log("Error in update user: ", err.message);
     }
