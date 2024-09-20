@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 function Navbar() {
+  const Navigate =useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -29,12 +30,13 @@ function Navbar() {
           >
             Home
           </a>
-          <a
-            href="#"
+          <button
+            type="button"
+            onClick={()=>Navigate("/Doc_AI")}
             className="text-custom1 transition-colors duration-300 font-bold custom-underline hover:text-custom1"
           >
             About
-          </a>
+          </button>
           <a
             href="#"
             className="text-custom1 transition-colors duration-300 font-bold custom-underline hover:text-custom1"

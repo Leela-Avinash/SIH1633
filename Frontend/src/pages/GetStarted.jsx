@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+
 const GetStarted = () => {
   const Navigate=useNavigate();
   return (
@@ -13,7 +14,7 @@ const GetStarted = () => {
       <div className="flex justify-center items-center flex-col mt-8"> 
         <p className="font-bold font-medium text-3xl">Click here to Register as</p>
         <button type="button" onClick={()=>Navigate("/alusignup")} className="mt-5 lg:w-1/5 text-2xl text-white bg-custom1 p-4 rounded-lg text-center hover:bg-blue-800">Alumni</button>
-        <p className="text-lg mt-3 pb-10">Have an account? <a href="" className="text-custom1 hover:text-blue-600 text-md hover:underline">Login</a></p>
+        <p className="text-lg mt-3 pb-10">Have an account? <button type="button" onClick={()=>Navigate("/login")} className="text-custom1 hover:text-blue-600 text-md hover:underline">Login</button></p>
       </div>
     </div>
 
@@ -24,7 +25,7 @@ const GetStarted = () => {
       <div className="flex justify-center items-center flex-col mt-11"> 
         <p className="font-bold font-medium text-3xl">Click here to Register as</p>
         <button type="button" onClick={()=>Navigate("/stusignup")} className="mt-5 lg:w-1/5 text-2xl text-white bg-custom1 p-4 rounded-lg text-center hover:bg-blue-800">Student</button>
-        <p className="text-lg mt-3 pb-10">Have an account? <a href="" className="text-custom1 hover:text-blue-600 text-md hover:underline">Login</a></p>
+        <p className="text-lg mt-3 pb-10">Have an account? <button type="button" onClick={()=>Navigate("/login")}className="text-custom1 hover:text-blue-600 text-md hover:underline">Login</button></p>
       </div>
     </div>
   </div>    
