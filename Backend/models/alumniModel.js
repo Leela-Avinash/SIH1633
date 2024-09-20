@@ -1,5 +1,54 @@
 import mongoose from "mongoose";
-
+const ExperienceSchema=mongoose.Schema({
+    JobTitle:{
+        type:String,
+        required:true
+    },
+    CompanyName:{
+        type:String,
+        required:true
+    },
+    Location:{
+        type:String,
+        required:true
+    },
+    StartDate:{
+        type:Date,
+        required:true
+    },
+    EndDate:{
+        type:Date,
+        required:true
+    },
+},{_id:false});
+const LocationSchema=mongoose.Schema({
+    City:{
+        type:String,
+        required:true,
+    },
+    State:{
+        type:String,
+        required:true,
+    },
+    Code:{
+        type:String,
+        required:true,
+    },
+    Country:{
+        type:String,
+        required:true,
+    },
+    Phone:{
+        type:String,
+        required:true,
+    },
+    }
+);
+const SocialSchema=mongoose.Schema({
+    linkedinProfile:{
+        type:String,
+    },
+});
 const AlumniSchema=mongoose.Schema({
     fname:{
         type:String,
@@ -56,7 +105,30 @@ const AlumniSchema=mongoose.Schema({
     date: {
         type: Date,
         default: Date.now,
-    }
+    },
+    profileImg: {
+        type: String,
+        default: "sample"
+    },
+    skills:{
+        type:[String],
+    },
+    interests:{
+        type:[String],
+    },
+    fieldOfStudy:{
+        type:String,
+    },
+    Experience:{
+        type:[ExperienceSchema],
+    },
+    Location:{
+        type:LocationSchema,
+    },
+    Social:{
+        type:SocialSchema,
+    },
+
 },{
     timeStamps:true,
 })

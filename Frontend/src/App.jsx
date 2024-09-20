@@ -10,7 +10,8 @@ import DocUpload from "./pages/docUpload.jsx";
 import Login from "./pages/Login.jsx";
 import Registration from "./pages/Registration.jsx";
 import Dashboard from "./pages/dashBoard.jsx";
-
+import ProfilePage from "./pages/profilePage.jsx";
+import ProfileCompletionForm from "./pages/ProfileCompletionFOrm.jsx";
 const App = () => {
     const dispatch = useDispatch();
     const { isAuthenticated } = useSelector((state) => state.auth);
@@ -46,9 +47,10 @@ const App = () => {
 
         checkAuth();
     }, [dispatch]);
-    console.log(user);
-    console.log(isDocVerified)
-    console.log(isAuthenticated)
+    // console.log(user);
+    // console.log(isDocVerified)
+    // console.log(isAuthenticated)
+    
 
     return (
         <div>
@@ -58,9 +60,11 @@ const App = () => {
                     <Route path="/getstarted" element={isAuthenticated? (isDocVerified? <Navigate to="/dashboard" /> : <Navigate to="/docai"/>): <GetStarted />} />
                     <Route path="/:role/signup" element={isAuthenticated? (isDocVerified? <Navigate to="/dashboard" /> : <Navigate to="/docai"/>) : <Registration />} />
                     <Route path="/users/:role/:id/verify/:token" element={<EmailVerify />} />
-                    <Route path="/docai" element={isAuthenticated ? (isDocVerified? <Navigate to="/dashboard" />: <DocUpload/>):<Login/>}/>
+                    <Route path="/docai" element={isAuthenticated ? (isDocVerified? <Navigate to="/dashboard" />: <DocUpload/>):<Navigate to="/login"/>}/>
                     <Route path="/login" element={isAuthenticated ? (isDocVerified? <Navigate to="/dashboard" /> : <Navigate to="/docai"/>) : <Login/>}/>
-                    <Route path="/dashboard" element={isAuthenticated ? (isDocVerified ? <Dashboard /> : <Navigate to="/docai" />) : <Navigate to="/login" />} />
+                    <Route path="/dashboard" element={isAuthenticated ? (isDocVerified ? <Dashboard user={user}/> : <Navigate to="/docai" />) : <Navigate to="/login" />} />
+                    <Route path="/profile" element={<ProfilePage user={user} /> } />
+                    <Route path="/profilecompletion" element={<ProfileCompletionForm/>}/>
                 </Routes>
             </Router>
         </div>

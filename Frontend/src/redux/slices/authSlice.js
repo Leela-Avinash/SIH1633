@@ -17,9 +17,25 @@ const initialState = {
         gyear: "",
         gmonth: "",
         rollnumber: "",
+        profileImage: null,
+        skills: [],
+        interests: [],
+        fieldOfStudy: '',
+        location: {},
+        experiences: [
+            {
+              JobTitle: '',
+              CompanyName: '',
+              Location: '',
+              StartDate: '',
+              EndDate: '',
+            },
+        ],
+        contactPhone: '',
+        linkedIn: ''
     },
-    backendError: "", 
-    errors: {}, 
+    backendError: "",
+    errors: {},
 };
 
 const authSlice = createSlice({
@@ -32,7 +48,7 @@ const authSlice = createSlice({
         },
         resetCredentials: (state) => {
             state.credentials = { ...initialState.credentials };
-            state.errors = {}; 
+            state.errors = {};
             state.backendError = "";
         },
         setAuth: (state, action) => {
@@ -51,7 +67,7 @@ const authSlice = createSlice({
             state.backendError = action.payload;
         },
         setValidationErrors: (state, action) => {
-            state.errors = action.payload; 
+            state.errors = action.payload;
         },
         clearFieldError: (state, action) => {
             const field = action.payload;

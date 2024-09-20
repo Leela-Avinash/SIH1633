@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import Navbar from './navBar.jsx';
 import Sidebar from './Sidebar.jsx';
 import MainContent from './MainContent.jsx';
+import ProfilePage from './profilePage.jsx';
 
-const App = () => {
+const App = ({user}) => {
   const [activePage, setActivePage] = useState('home');
 
   const handleNavClick = (page) => {
@@ -13,9 +14,12 @@ const App = () => {
   return (
     <div className="flex flex-col h-screen">
       <Navbar onNavClick={handleNavClick} />
-      <div className="flex flex-1">
+      <div className="flex">
         <Sidebar />
-        <MainContent activePage={activePage} />
+        <div className='bg-black w-full'>
+          {/* <MainContent activePage={activePage} /> */}
+          <ProfilePage user={user} />
+        </div>
       </div>
     </div>
   );
