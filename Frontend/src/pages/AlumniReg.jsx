@@ -62,7 +62,7 @@ const RegisterForm = () => {
   return (
     <div className="grid flex flex-col-reverse lg:grid-cols-2 bg-blue-50">
 
-      <div className={`mx-auto  bg-white p-6 shadow-lg rounded-lg w-8/12 ${step===2 ? "mt-10":"lg:h-fit mt-20 h-full "}`}>
+      <div className={`mx-auto  bg-white p-6 shadow-lg rounded-lg lg:w-8/12 w-11/12 ${step===2 ? "mt-10":"lg:h-fit mt-20 h-full "}`}>
       
         <div className="flex justify-center mb-6 mt-5">
           <div className="flex items-center space-x-4">
