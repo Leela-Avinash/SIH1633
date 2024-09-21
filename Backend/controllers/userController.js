@@ -11,35 +11,24 @@ import streamifier from "streamifier";
 const getUserProfile = async (req, res) => {
     const { username } = req.params;
     let success = false;
-    let modelName;
-    if (role === "alumni") {
-        modelName = Alumni;
-    } else if (role === "student") {
-        modelName = Student;
-    } else {
-        return res.status(400).json({ message: "Invalid role" });
-    }
     try {
-        const user = await modelName.findOne({ username })
+        let user = await Alumni.findOne({ username })
             .select("-password")
             .select("-updatedAt");
 
         if (!user) {
-            return res.status(400).json({success, message: "User not found" });
+            user = await Student.findOne({ username })
+            .select("-password")
+            .select("-updatedAt");
+            if (!user) {
+                return res
+                    .status(400)
+                    .json({ message: "User not found" });
+            }
         }
 
         success = true
-        res.status(200).json({ success, user: {
-            id: user._id,
-            name: user.name,
-            username: user.username,
-            email: user.email,
-            profilepic: user.profilepic,
-            followersCount: user.followers.length,
-            followingCount: user.following.length,
-            bio: user.bio,
-            date: user.date,
-        } });
+        res.status(200).json({ success, user });
     } catch (err) {
         res.status(500).json({ message: err.message });
         console.log("Error in get user: ", err.message);
@@ -183,7 +172,6 @@ const loginUser = async (req, res) => {
         generateTokenAndSetCookie(user._id,user.role, res);
         delete user.password;
         console.log("success");
-        delete user.password;
         success = true;
         res.status(201).json({
             success,
@@ -261,7 +249,7 @@ const uploadToCloudinary = (buffer) => {
 
 const updateUser = async (req, res) => {
     try {
-        const { bio,fieldOfStudy, skills, interests, experiences, location,Social } = req.body;
+        const { bio,fieldOfStudy, skills, interests, experiences, location,social } = req.body;
         const userId = req.user._id;
         const role = req.user.role;
         console.log(req.body);
@@ -323,7 +311,7 @@ const updateUser = async (req, res) => {
             };
         }
 
-        user.Social = Social || user.Social;
+        user.social = social || user.social;
 
         user = await user.save();
 

@@ -1,20 +1,6 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
 
-const ProfilePage = () => {
-    const user = useSelector((state) => state.user);
-    console.log(user);
-
-    const formatDate = (isoString) => {
-        if (!isoString) return 'Present';
-        
-        const dateObj = new Date(isoString);
-        const day = dateObj.getDate();
-        const month = dateObj.toLocaleString('default', { month: 'short' });
-        const year = dateObj.getFullYear();
-        
-        return `${day}-${month}-${year}`;
-      };
+const ProfilePage = ({user, formatDate}) => {
     return (
         <div className="p-6">
             {/* Profile Card */}

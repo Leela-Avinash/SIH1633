@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import Navbar from '../components/navBar.jsx';
 import Sidebar from '../components/Sidebar.jsx';
 import MainContent from './MainContent.jsx';
-import ProfilePage from './profilePage.jsx';
+
+import Profile from './Profile.jsx';
 
 const Dashboard = () => {
   const [activePage, setActivePage] = useState('home');
@@ -18,7 +19,7 @@ const Dashboard = () => {
         <Sidebar />
         <div className='bg-black w-full'>
           {/* <MainContent activePage={activePage} /> */}
-          <ProfilePage />
+          <Profile />
         </div>
       </div>
     </div>

@@ -22,7 +22,7 @@ const Registration=()=>{
     );
 
     useEffect(() => {
-        dispatch(updateCredentials({ name: 'profilepic', value: e.target.files[0] }));
+        dispatch(resetCredentials());
     }, [dispatch]);
 
     const handleChange = (e) => {

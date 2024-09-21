@@ -56,10 +56,10 @@ const ProfileCompletionForm = () => {
   const handleSocialChange = (e) => {
     const { name, value } = e.target;
     const updatedSocial = {
-      ...credentials.Social,
+      ...credentials.social,
       [name]: value,
     };
-    dispatch(updateCredentials({ name: 'Social', value: updatedSocial }));
+    dispatch(updateCredentials({ name: 'social', value: updatedSocial }));
   };
 
 
@@ -120,10 +120,10 @@ const ProfileCompletionForm = () => {
       formData.append('location[Phone]', credentials.location.Phone);
     }
 
-    if(credentials.Social){
-        formData.append('Social[linkedinProfile]', credentials.Social.linkedinProfile);
-        formData.append('Social[githubProfile]', credentials.Social.githubProfile);
-        formData.append('Social[websiteURL]', credentials.Social.websiteURL);
+    if(credentials.social){
+        formData.append('social[linkedinProfile]', credentials.social.linkedinProfile);
+        formData.append('social[githubProfile]', credentials.social.githubProfile);
+        formData.append('social[websiteURL]', credentials.social.websiteURL);
       }
 
     // Append profile picture if it's a file
