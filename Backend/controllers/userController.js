@@ -286,11 +286,11 @@ const updateUser = async (req, res) => {
                 .json({ message: "You cannot update other user's profile" });
         }
 
-        let profilepic = user.profileImg; 
+        let profilepic = user.profilepic; 
 
         if (req.file) {
-            if (user.profileImg) {
-                const publicId = user.profileImg.split("/").slice(-2).join("/").split(".")[0];
+            if (user.profilepic) {
+                const publicId = user.profilepic.split("/").slice(-2).join("/").split(".")[0];
                 await cloudinary.uploader.destroy(publicId);
             }
             profilepic = await uploadToCloudinary(req.file.buffer);
@@ -298,13 +298,13 @@ const updateUser = async (req, res) => {
         }
 
         user.bio = bio || user.bio;
-        user.profileImg = profilepic || user.profileImg;
+        user.profilepic = profilepic || user.profilepic;
         user.fieldOfStudy = fieldOfStudy || user.fieldOfStudy;
         user.skills = skills || user.skills;
         user.interests = interests || user.interests;
 
         if (experiences) {
-            user.Experience = experiences.map(exp => ({
+            user.experiences = experiences.map(exp => ({
                 JobTitle: exp.JobTitle,
                 CompanyName: exp.CompanyName,
                 Location: exp.Location,

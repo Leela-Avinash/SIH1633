@@ -1,6 +1,7 @@
 import React from 'react';
-
+import { useSelector } from 'react-redux';
 const Navbar = ({ onNavClick }) => {
+  const user = useSelector((state) => state.user);
   return (
     <nav className="flex justify-between items-center bg-gray-800 text-white p-4">
       <div className="text-xl font-bold">
@@ -13,7 +14,7 @@ const Navbar = ({ onNavClick }) => {
         <button onClick={() => onNavClick('forums')} className="hover:underline">Discussion Forums</button>
       </div>
       <div>
-        <img src="profile.jpg" alt="Profile" className="w-10 h-10 rounded-full" />
+        <img src={user.profilepic} alt="Profile" className="w-10 h-10 rounded-full" />
       </div>
     </nav>
   );

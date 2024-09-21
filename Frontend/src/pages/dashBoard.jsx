@@ -4,7 +4,7 @@ import Sidebar from '../components/Sidebar.jsx';
 import MainContent from './MainContent.jsx';
 import ProfilePage from './profilePage.jsx';
 
-const App = ({user}) => {
+const Dashboard = () => {
   const [activePage, setActivePage] = useState('home');
 
   const handleNavClick = (page) => {
@@ -18,11 +18,11 @@ const App = ({user}) => {
         <Sidebar />
         <div className='bg-black w-full'>
           {/* <MainContent activePage={activePage} /> */}
-          <ProfilePage user={user} />
+          <ProfilePage />
         </div>
       </div>
     </div>
   );
 };
 
-export default App;
+export default Dashboard;

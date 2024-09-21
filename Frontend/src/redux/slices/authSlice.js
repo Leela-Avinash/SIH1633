@@ -17,7 +17,7 @@ const initialState = {
         gyear: "",
         gmonth: "",
         rollnumber: "",
-        profileImage: null,
+        profilepic: null,
         skills: [],
         interests: [],
         fieldOfStudy: '',
@@ -37,7 +37,7 @@ const initialState = {
               EndDate: '',
             },
         ],
-        Social:{
+        social:{
             linkedinProfile:'',
             githubProfile:'',
             websiteURL:'',

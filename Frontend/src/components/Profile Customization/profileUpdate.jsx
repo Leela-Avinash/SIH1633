@@ -10,13 +10,13 @@ const profileUpdate = ({handleImageChange,handleChange,nextStep}) => {
       <h2 className="text-xl font-semibold mb-4 text-gray-800">Personal Information</h2>
       {/* Profile Image */}
       {/* <div className="mb-4">
-        <label className="block text-gray-700 font-medium mb-2" htmlFor="profileImage">
+        <label className="block text-gray-700 font-medium mb-2" htmlFor="profilepic">
           Upload Profile Image
         </label>
         <input
           type="file"
-          id="profileImage"
-          name="profileImage"
+          id="profilepic"
+          name="profilepic"
           accept="image/*"
           onChange={handleImageChange}
           className="w-full p-3 border border-gray-300 rounded-lg"
@@ -30,9 +30,9 @@ const profileUpdate = ({handleImageChange,handleChange,nextStep}) => {
           <div className="flex justify-center mb-4">
               <img
                   src={
-                      credentials.profileImage instanceof File
-                          ? URL.createObjectURL(credentials.profileImage)
-                          : credentials.profileImage || defaultProfilePic
+                      credentials.profilepic instanceof File
+                          ? URL.createObjectURL(credentials.profilepic)
+                          : credentials.profilepic || defaultProfilePic
                   }
                   alt="Profile Preview"
                   className="h-24 w-24 rounded-full object-cover"

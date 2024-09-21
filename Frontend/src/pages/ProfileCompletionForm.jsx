@@ -20,7 +20,7 @@ const ProfileCompletionForm = () => {
 
   const handleImageChange = (e) => {
     if (e.target.files && e.target.files[0]) {
-      dispatch(updateCredentials({ name: 'profileImage', value: e.target.files[0] }));
+      dispatch(updateCredentials({ name: 'profilepic', value: e.target.files[0] }));
     }
   };
 
@@ -127,8 +127,8 @@ const ProfileCompletionForm = () => {
       }
 
     // Append profile picture if it's a file
-    if (credentials.profileImage instanceof File) {
-      formData.append('profilepic', credentials.profileImage);
+    if (credentials.profilepic instanceof File) {
+      formData.append('profilepic', credentials.profilepic);
     }
 
     const response = await fetch(`http://localhost:5000/api/users/update/${ user._id }`, {

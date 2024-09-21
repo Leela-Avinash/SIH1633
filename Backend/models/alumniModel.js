@@ -108,7 +108,7 @@ const AlumniSchema = mongoose.Schema({
         type: Date,
         default: Date.now,
     },
-    profileImg: {
+    profilepic: {
         type: String,
         default: ""
     },
@@ -121,13 +121,13 @@ const AlumniSchema = mongoose.Schema({
     fieldOfStudy: {
         type: String,
     },
-    Experience: {
+    experiences: {
         type: [ExperienceSchema],
     },
-    Location: {
+    location: {
         type: LocationSchema,
     },
-    Social: {
+    social: {
         type: SocialSchema,
     },
 
