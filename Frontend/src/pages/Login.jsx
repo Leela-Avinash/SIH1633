@@ -160,7 +160,7 @@ const Login = () => {
                             type="submit"
                             className="w-full py-2 rounded-md mt-3 transition duration-300 bg-blue-500 text-white hover:bg-blue-600"
                         >
-                            Login In
+                            Login
                         </button>
                     </form>
                 </div>

@@ -163,43 +163,23 @@ const ProfilePage = () => {
 
 
                         <div className="border-t border-gray-300 ">
-                        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-4">
-                            {/* Skills Section */}
-                            <div>
-                                <h3 className="text-lg font-medium text-gray-800">
-                                    Skills
-                                </h3>
 
-                                {user.skills && user.skills.length > 0 ? (
-                                    <ul className="text-gray-600 list-disc list-inside">
-                                        {user.skills.map((skill, index) => (
-                                            <li key={index}>{skill}</li>
-                                        ))}
-                                    </ul>
-                                ) : (
-                                    <p className="text-gray-600">
-                                        No skills listed.
-                                    </p>
-                                )}
-                            </div>
-                            {/* Experience Section */}
-                            <div>
-                                <h3 className="text-lg font-medium text-gray-800">
+                        <div className="mt-5 mb-10">
+                                <h3 className="text-2xl font-medium pl-10 text-gray-800">
                                     Experience
                                 </h3>
-                                {/* <p className="text-gray-600">
-                2 years as a Software Developer Intern at XYZ Corp.
-              </p> */}
+
+                                <div className="mt-4 space-y-10">
                                 {user.experiences && user.experiences.length > 0 ? (
-                                    <ul className="text-gray-600 list-disc list-inside">
+                                    <ul className="pl-10  list-disc list-inside">
                                         {user.experiences.map((exp, index) => (
                                             <li key={index} className="mb-2">
                                                 <strong>{exp.JobTitle}</strong> at{" "}
                                                 {exp.CompanyName}
                                                 <br />
-                                                {formatDate(exp.StartDate)} - {formatDate(exp.EndDate)}
-                                                <br />
-                                                Location: {exp.Location}
+                                                <div className="pt-5 pl-5">{formatDate(exp.StartDate)} - {formatDate(exp.EndDate)}</div>
+                    
+                                                <div className="pl-5">Location: {exp.Location}</div>
                                             </li>
                                         ))}
                                     </ul>
@@ -208,14 +188,37 @@ const ProfilePage = () => {
                                         No experience listed.
                                     </p>
                                 )}
+                                </div>
+                        </div>
+
+                        <div className="border-t border-gray-300 ">
+
+                        <div className="mt-10 mb-10">
+                            {/* Skills Section */}
+                            <div>
+                                <h3 className="pl-10 text-2xl font-medium">
+                                    Skills
+                                </h3>
+
+                                {user.skills && user.skills.length > 0 ? (
+                                    <ul className="list-disc list-inside">
+                                        {user.skills.map((skill, index) => (
+                                            <li key={index} className="pl-10 pt-5">{skill}</li>
+                                        ))}
+                                    </ul>
+                                ) : (
+                                    <p className="text-gray-600">
+                                        No skills listed.
+                                    </p>
+                                )}
                             </div>
                             </div>
-                       
+                        </div>       
                     </div>
 
                     {/* Contact Section */}
-                    <div className="p-6 border-t border-gray-200">
-                        <h2 className="text-xl font-semibold mb-4 text-gray-800">
+                    <div className="p-6 border-t border-gray-200 mb-5">
+                        <h2 className="text-2xl font-medium mb-4 pl-5">
                             Contact Information
                         </h2>
                         {/* <ul className="text-gray-700">
@@ -224,7 +227,7 @@ const ProfilePage = () => {
             <li>Phone: +44 1234 567 890</li>
             <li>LinkedIn: linkedin.com/in/johndoe</li>
           </ul> */}
-                        <ul className="text-gray-700">
+                        <ul className="text-gray-700 pl-5">
                             {user.location && (
                                 <>
                                     {user.location.City && (
@@ -245,7 +248,7 @@ const ProfilePage = () => {
                                 </>
                             )}
                             {user.email && (
-                                <li>
+                                <li >
                                     Email:{" "}
                                     <a
                                         href={`mailto:${user.email}`}
@@ -256,42 +259,6 @@ const ProfilePage = () => {
                                 </li>
                             )}
                         </ul>
-                    </div>
-                    <div className="flex justify-center items-center mt-8">
-                        {user.social && (
-                            <div className="flex space-x-6">
-                                {user.social.linkedinProfile && (
-                                    <a
-                                        href={user.social.linkedinProfile}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-blue-500 text-3xl hover:text-blue-700"
-                                    >
-                                        <i className="fab fa-linkedin"></i>
-                                    </a>
-                                )}
-                                {user.social.githubProfile && (
-                                    <a
-                                        href={user.social.githubProfile}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-gray-700 text-3xl hover:text-gray-900"
-                                    >
-                                        <i className="fab fa-github"></i>
-                                    </a>
-                                )}
-                                {user.social.websiteURL && (
-                                    <a
-                                        href={user.social.websiteURL}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-green-500 text-3xl hover:text-green-700"
-                                    >
-                                        <i className="fas fa-globe"></i>
-                                    </a>
-                                )}
-                            </div>
-                        )}
                     </div>
                 </div>
             </div>
