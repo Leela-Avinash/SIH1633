@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import Navbar from '../components/navBar.jsx';
 import Sidebar from '../components/Sidebar.jsx';
 import MainContent from './MainContent.jsx';
-
+import Network from '../components/networkSection.jsx';
 import Profile from './Profile.jsx';
 
 const Dashboard = () => {
-  const [activePage, setActivePage] = useState('home');
+  const [activePage, setActivePage] = useState('profile');
 
   const handleNavClick = (page) => {
     setActivePage(page);
@@ -17,9 +17,11 @@ const Dashboard = () => {
       <Navbar onNavClick={handleNavClick} />
       <div className="flex">
         <Sidebar />
-        <div className='bg-black w-full'>
+        <div className=' w-full'>
           {/* <MainContent activePage={activePage} /> */}
-          <Profile />
+          {activePage === 'home' && <MainContent />}
+          {activePage === 'profile' && <Profile />}
+          {activePage === 'network' && <Network />}
         </div>
       </div>
     </div>

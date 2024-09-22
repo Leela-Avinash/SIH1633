@@ -13,6 +13,7 @@ import Dashboard from "./pages/dashBoard.jsx";
 import ProfilePage from "./components/profilePage.jsx";
 import ProfileCompletionForm from "./pages/ProfileCompletionForm.jsx";
 import Profile from "./pages/Profile.jsx";
+import Network from "./components/networkSection.jsx";
 const App = () => {
     const dispatch = useDispatch();
     const { isAuthenticated } = useSelector((state) => state.auth);
@@ -50,7 +51,7 @@ const App = () => {
     }, [dispatch]);
 
     return (
-        <div>
+        <div className="bg-gradient-to-b from-bgcol1 via-bgcol2 to-bgcol3 h-screen w-full">
             <Router>
                 <Routes>
                     <Route path="/" element= {<LandingPage />} />
@@ -62,6 +63,7 @@ const App = () => {
                     <Route path="/dashboard" element={isAuthenticated ? (isDocVerified ? <Dashboard/> : <Navigate to="/docai" />) : <Navigate to="/login" />} />
                     <Route path="/profile/:username" element={<Profile/> } />
                     <Route path="/profilecompletion" element={<ProfileCompletionForm/>}/>
+                    <Route path="/network" element={<Network/>}/>
                 </Routes>
             </Router>
         </div>

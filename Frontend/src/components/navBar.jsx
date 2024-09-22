@@ -14,7 +14,7 @@ const Navbar = ({ onNavClick }) => {
         <button onClick={() => onNavClick('forums')} className="hover:underline">Discussion Forums</button>
       </div>
       <div>
-        <img src={user.profilepic} alt="Profile" className="w-10 h-10 rounded-full" />
+        <img src={user.profilepic} alt="Profile" className="w-10 h-10 rounded-full" onClick={() => onNavClick('profile')}/>
       </div>
     </nav>
   );

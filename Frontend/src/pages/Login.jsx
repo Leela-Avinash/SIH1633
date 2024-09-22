@@ -12,10 +12,10 @@ import {
     clearFieldError,
 } from "../redux/slices/authSlice";
 
-const Login = ( ) => {
+const Login = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    
+
     const { credentials } = useSelector(
         (state) => state.auth
     );
@@ -63,16 +63,16 @@ const Login = ( ) => {
             console.log(json.user);
             dispatch(setUser(json.user));
             dispatch(resetCredentials());
-            if(json.user.role === "student") {
+            if (json.user.role === "student") {
                 navigate("/dashboard");
-            } else if(json.user.role === "alumni") {
-              if(!json.user.document_verification){
-                navigate("/docai");
-              }
-              else{
-                dispatch(setDoc(true));
-                navigate("/dashboard");
-              }
+            } else if (json.user.role === "alumni") {
+                if (!json.user.document_verification) {
+                    navigate("/docai");
+                }
+                else {
+                    dispatch(setDoc(true));
+                    navigate("/dashboard");
+                }
             }
         } else {
             dispatch(setError(json.message));
@@ -99,40 +99,66 @@ const Login = ( ) => {
         }
     };
     return (
-        <form
-            className="bg-white w-full rounded-br-lg rounded-tr-lg"
-            onSubmit={handleSubmit}
-            noValidate
-        >
-            <Input
-                type="text"
-                name="identifier"
-                value={credentials.identifier}
-                handleChange={handleChange}
-                label="Username or Email"
-            />
-            {errors.identifier && (
-                <p className="text-red-400 text-xs">{errors.identifier}</p>
-            )}
-            <Input
-                type="password"
-                name="password"
-                value={credentials.password}
-                handleChange={handleChange}
-                label="Password"
-                minLength={8}
-            />
-            {errors.password && (
-                <p className="text-red-400 text-xs">{errors.password}</p>
-            )}
-            <div className="w-full flex justify-center mt-2">{backendError && <p className="text-red-400 text-sm">{backendError}</p>}</div>
-            <button
-                type="submit"
-                className="w-full py-2 rounded-md mt-3 transition duration-300 bg-blue-500 text-white hover:bg-blue-600"
-            >
-                Sign In
-            </button>
-        </form>
+        <div className="flex h-screen bg-blue-50 justify-center items-center p-4">
+            <div className="bg-white rounded-lg shadow-lg flex flex-col lg:flex-row w-full max-w-5xl overflow-hidden">
+                <div className="lg:w-1/2 flex items-center justify-center ">
+                    <div className="text-center h-full">
+                        <img src="../public/student_registar.jpg" alt="UNNES Logo" className="" />
+                        {/* <p className="text-lg font-semibold text-gray-700 mb">Welcome to AlumniConnect</p> */}
+                    </div>
+                </div>
+
+                <div className="lg:w-1/2 pt-0 md:pt-8 p-8">
+                    <div className="text-center mb-8">
+                        <h2 className="text-2xl font-semibold text-gray-700 mb-2">Login Form</h2>
+                        <p className="text-sm text-gray-500 text-gray-700">Welcome back to AlumniConnect</p>
+                    </div>
+                    <form
+                        className="bg-white w-full rounded-br-lg rounded-tr-lg"
+                        onSubmit={handleSubmit}
+                        noValidate
+                    >
+                        <Input
+                            type="text"
+                            name="identifier"
+                            value={credentials.identifier}
+                            handleChange={handleChange}
+                            label="Username or Email"
+                        />
+                        {errors.identifier && (
+                            <p className="text-red-400 text-xs">{errors.identifier}</p>
+                        )}
+                        <Input
+                            type="password"
+                            name="password"
+                            value={credentials.password}
+                            handleChange={handleChange}
+                            label="Password"
+                            minLength={8}
+                        />
+                        {errors.password && (
+                            <p className="text-red-400 text-xs">{errors.password}</p>
+                        )}
+                        <div className="w-full flex justify-center mt-2">{backendError && <p className="text-red-400 text-sm">{backendError}</p>}</div>
+                        <div className="flex items-center justify-between mb-4">
+                            <label className="flex items-center text-gray-700">
+                                <input type="checkbox" className="mr-2" />
+                                Remember Me
+                            </label>
+                            <a href="#" className="text-sm text-blue-500 hover:text-blue-700">
+                                Forgot Password?
+                            </a>
+                        </div>
+                        <button
+                            type="submit"
+                            className="w-full py-2 rounded-md mt-3 transition duration-300 bg-blue-500 text-white hover:bg-blue-600"
+                        >
+                            Sign In
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
     );
 };
 export default Login;
