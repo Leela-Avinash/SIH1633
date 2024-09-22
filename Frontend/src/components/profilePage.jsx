@@ -30,6 +30,13 @@ const ProfilePage = () => {
   I am always eager to take on new challenges and continuously improve my knowledge and abilities in web development. My goal is to contribute to innovative projects and collaborate with like-minded professionals in the tech industry.
 `;
     const shortText = bioText.split(' ').slice(0, 30).join(' ') + '....';
+    const [showAll, setShowAll] = useState(false);
+
+    const toggleShowAll = () => {
+        setShowAll(!showAll);
+    };
+
+    const skillsToShow = showAll ? user.skills : user.skills.slice(0, 3);
     return (
         <div className="flex bg-custombg">
 
@@ -50,30 +57,46 @@ const ProfilePage = () => {
 
 
 
-                    <div className="flex items-center flex-col  p-3">
-                        <div className=" ml-auto ">
-                            <div className="font-semibold text-lg mr-32">Rating...</div>
-                            <div className="font-semibold text-lg mr-32">
-                                Credits 56</div>
+                    <div className="flex items-center flex-col space-y-3 p-3">
+                        <div className=" ml-auto space-y-2 ">
+                            <div className="font-semibold text-lg mr-36">Rating...</div>
+                            <div className="flex font-semibold text-lg mr-3">
+                            <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        className="fill-current text-yellow-500 mr-2 mt-1 text-black transform rotate-15"
+    >
+        <path d="M12 5C7.031 5 2 6.546 2 9.5S7.031 14 12 14c4.97 0 10-1.546 10-4.5S16.97 5 12 5zm-5 9.938v3c1.237.299 2.605.482 4 .541v-3a21.166 21.166 0 0 1-4-.541zm6 .54v3a20.994 20.994 0 0 0 4-.541v-3a20.994 20.994 0 0 1-4 .541zm6-1.181v3c1.801-.755 3-1.857 3-3.297v-3c0 1.44-1.199 2.542-3 3.297zm-14 3v-3C3.2 13.542 2 12.439 2 11v3c0 1.439 1.2 2.542 3 3.297z"></path>
+    </svg>Credits 77</div>
 
 
-                        </div>
+     </div>
 
                     </div>
                     <div className="pl-16">
-                        <div className="flex">
+                        <div className="">
 
                             <h1 className="text-4xl font-bold text-black">
                                 {user.fname}
                             </h1>
-                            {user.social && (
-                                <div className="flex space-x-6 ml-auto mr-28 ">
+                            
+
+
+                        <p className="text-gray-600 block-style text-lg font-medium mb-2">
+                            {user.role} at {user.collegeName}
+                        </p>
+
+
+                        {user.social && (
+                                <div className="flex space-x-4 mb-10">
                                     {user.social.linkedinProfile && (
                                         <a
                                             href={user.social.linkedinProfile}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="text-blue-500 text-2xl hover:text-blue-700"
+                                            className="text-blue-500 text-3xl hover:text-blue-700"
                                         >
                                             <i className="fab fa-linkedin"></i>
                                         </a>
@@ -83,7 +106,7 @@ const ProfilePage = () => {
                                             href={user.social.githubProfile}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="text-gray-700 text-2xl hover:text-gray-900"
+                                            className="text-gray-700 text-3xl hover:text-gray-900"
                                         >
                                             <i className="fab fa-github"></i>
                                         </a>
@@ -93,7 +116,7 @@ const ProfilePage = () => {
                                             href={user.social.websiteURL}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="text-green-500 text-2xl hover:text-green-700"
+                                            className="text-green-500 text-3xl hover:text-green-700"
                                         >
                                             <i className="fas fa-globe"></i>
                                         </a>
@@ -101,11 +124,6 @@ const ProfilePage = () => {
                                 </div>
                             )}
                         </div>
-
-
-                        <p className="text-gray-600 block-style text-lg font-medium mb-5">
-                            {user.role} at {user.collegeName}
-                        </p>
                     </div>
 
 
@@ -201,16 +219,28 @@ const ProfilePage = () => {
                                 </h3>
 
                                 {user.skills && user.skills.length > 0 ? (
-                                    <ul className="list-disc list-inside">
-                                        {user.skills.map((skill, index) => (
-                                            <li key={index} className="pl-10 pt-5">{skill}</li>
-                                        ))}
-                                    </ul>
-                                ) : (
-                                    <p className="text-gray-600">
-                                        No skills listed.
-                                    </p>
-                                )}
+                <div>
+                    <ul className="list-disc list-inside">
+                        {skillsToShow.map((skill, index) => (
+                            <li key={index} className="pl-10 pt-5">{skill}</li>
+                        ))}
+
+                        {user.skills.length > 3 && (
+                        <button
+                            onClick={toggleShowAll}
+                            className="mt-3 pl-10 text-blue-500 hover:underline"
+                        >
+                            {showAll ? 'Show Less' : 'Show More'}
+                        </button>
+                    )}
+                    </ul>
+                    
+                </div>
+            ) : (
+                <p className="text-gray-600">
+                    No skills listed.
+                </p>
+            )}
                             </div>
                             </div>
                         </div>       
