@@ -7,6 +7,7 @@ import Alumni from "../models/alumniModel.js"
 import Student from "../models/studentModel.js";
 import { v2 as cloudinary } from "cloudinary";
 import streamifier from "streamifier";
+import cosineSimilarity from 'compute-cosine-similarity';
 
 const getUserProfile = async (req, res) => {
     const { username } = req.params;
@@ -180,6 +181,93 @@ const loginUser = async (req, res) => {
     } catch (err) {
         res.status(500).json({ message: err.message });
         console.log("Error in login user: ", err.message);
+    }
+};
+
+const recommendationSystem=async (req,res) => {
+    try {
+        const currentUserName = req.user.username; // Current user for whom we want recommendations
+        const currentUser = await Alumni.findOne({ username: currentUserName });
+
+        if (!currentUser) {
+            console.log('Current user not found');
+            return;
+        }
+
+        // Fetch all users except the current user
+        const allUsers = await Alumni.find({ username: { $ne: currentUserName } });
+
+        // Extract all unique skills and interests
+        const allSkills = [...new Set(allUsers.flatMap(user => user.skills))];
+        const allInterests = [...new Set(allUsers.flatMap(user => user.interests))];
+
+        // Weights for the attributes
+        const weights = {
+            skills: 5,
+            interests: 5,
+            collegeName: 4,
+            city: 4,
+            jobTitle: 3
+        };
+
+        // Function to build a vector for a user
+        function buildVector(alumni, allAttributes) {
+            let vector = [];
+
+            // College name (1 if the same, 0 if different) multiplied by weight
+            vector.push((alumni.collegeName === currentUser.collegeName ? 1 : 0) * weights.collegeName);
+
+            // Skills (1 if the skill is present, 0 if not) multiplied by weight
+            allAttributes.skills.forEach(skill => {
+                vector.push((alumni.skills.includes(skill) ? 1 : 0) * weights.skills);
+            });
+
+            // Interests (1 if the interest is present, 0 if not) multiplied by weight
+            allAttributes.interests.forEach(interest => {
+                vector.push((alumni.interests.includes(interest) ? 1 : 0) * weights.interests);
+            });
+
+            // City (1 if the same city, 0 if different) multiplied by weight
+            vector.push((alumni.Location?.City === currentUser.Location?.City ? 1 : 0) * weights.city);
+
+            // Job title (1 if the same, 0 if different) multiplied by weight
+            vector.push((alumni.Experience?.some(exp => exp.JobTitle === currentUser.Experience[0]?.JobTitle) ? 1 : 0) * weights.jobTitle);
+
+            return vector;
+        }
+
+        // Get vectors for the current user and all other users
+        const currentUserVector = buildVector(currentUser, { skills: allSkills, interests: allInterests });
+        const userVectors = allUsers.map(user => ({
+            user,
+            vector: buildVector(user, { skills: allSkills, interests: allInterests })
+        }));
+
+        // Calculate cosine similarity for each user
+        const recommendations = userVectors.map(({ user, vector }) => {
+            const similarityScore = cosineSimilarity(currentUserVector, vector);
+            return { user, score: similarityScore };
+        });
+
+        // Sort users by similarity score (highest first)
+        recommendations.sort((a, b) => b.score - a.score);
+
+        // Take the top 5 recommendations
+        const topRecommendations = recommendations.slice(0, 20);
+        console.log('Currect user college name: ', currentUser.collegeName);
+
+        // Log the recommended users
+        topRecommendations.forEach(rec => {
+            console.log(`Recommended User: ${rec.user.username}, Similarity Score: ${rec.score}`);
+            // console.log(`Skills: ${rec.user.skills.join(', ')}`);
+            // console.log(`College Name: ${rec.user.collegeName}`);
+        });
+        res.status(201).json({
+            topRecommendations        
+        });
+
+    } catch (error) {
+        console.error('Error during recommendation process', error);
     }
 };
 
@@ -376,5 +464,6 @@ export {
     updateUser,
     getUserProfile,
     checkAuth,
-    verifyUser
+    verifyUser,
+    recommendationSystem
 };

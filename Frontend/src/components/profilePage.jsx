@@ -262,10 +262,6 @@ const ProfilePage = () => {
                     </div>
                 </div>
             </div>
-
-            <div className="bg-custombg">
-                <div className="bg-white w-96 h-screen mt-6 mr-5 rounded-lg shadow-md"></div>
-            </div>
         </div>
     );
 };

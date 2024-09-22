@@ -17,12 +17,16 @@ const Dashboard = () => {
       <Navbar onNavClick={handleNavClick} />
       <div className="flex">
         <Sidebar />
-        <div className=' w-full'>
+        <div className=''>
           {/* <MainContent activePage={activePage} /> */}
           {activePage === 'home' && <MainContent />}
           {activePage === 'profile' && <Profile />}
           {activePage === 'network' && <Network />}
+         
         </div>
+        <div className="bg-custombg">
+                <div className="bg-white w-96 h-screen mt-6 mr-5 rounded-lg shadow-md"></div>
+            </div>
       </div>
     </div>
   );

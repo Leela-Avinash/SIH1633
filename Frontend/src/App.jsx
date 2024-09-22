@@ -55,7 +55,7 @@ const App = () => {
                     }
                 );
                 const json = await response.json();
-                console.log(json);
+                console.log(json);   
                 if (json.success) {
                     localStorage.setItem("user", JSON.stringify(json.user));
                     dispatch(setUser(json.user));
@@ -75,7 +75,7 @@ const App = () => {
     }, [dispatch]);
 
     return (
-        <div className="">
+        <div className="bg-gradient-to-b from-bgcol1 via-bgcol2 to-bgcol3 h-screen w-full">
             <Router>
                 <Routes>
                     <Route path="/" element= {<LandingPage />} />
@@ -87,7 +87,7 @@ const App = () => {
                     <Route path="/dashboard" element={isAuthenticated ? (isDocVerified ? <Dashboard/> : <Navigate to="/docai" />) : <Navigate to="/login" />} />
                     <Route path="/profile/:username" element={<Profile/> } />
                     <Route path="/profilecompletion" element={<ProfileCompletionForm/>}/>
-                    <Route path="/network" element={<Network users={users}/>}/>
+                    <Route path="/network" element={<Network/>}/>
                 </Routes>
             </Router>
         </div>

@@ -8,6 +8,7 @@ import {
     signupUser,
     updateUser,
     verifyUser,
+    recommendationSystem
 } from "../controllers/userController.js";
 import protectRoute from "../middleware/protectRoute.js";
 import docAI from "../controllers/docAI.js";
@@ -26,6 +27,6 @@ router.get("/:role/:id/verify/:token", verifyUser);
 // router.put("/follow/:id", protectRoute, followUnfollow);
 router.put("/update/:id", protectRoute, upload.single('profilepic'), updateUser);
 router.get("/check-auth", protectRoute, checkAuth);
-
+router.get("/recommendations", protectRoute, recommendationSystem);
 router.post("/upload",protectRoute,docAI);
 export default router;
