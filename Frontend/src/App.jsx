@@ -19,6 +19,30 @@ const App = () => {
     const { isAuthenticated } = useSelector((state) => state.auth);
     const { isDocVerified } = useSelector((state) => state.auth);
     const user = useSelector((state) => state.user);
+    const users = [
+        {
+          id: 1,
+          name: 'John Doe',
+          jobTitle: 'Software Engineer',
+          profilePicture: 'https://via.placeholder.com/150',
+          skills: ['JavaScript', 'React', 'Node.js'],
+        },
+        {
+          id: 2,
+          name: 'Jane Smith',
+          jobTitle: 'Data Scientist',
+          profilePicture: 'https://via.placeholder.com/150',
+          skills: ['Python', 'Machine Learning', 'AI'],
+        },
+        {
+          id: 3,
+          name: 'Mike Johnson',
+          jobTitle: 'Product Manager',
+          profilePicture: 'https://via.placeholder.com/150',
+          skills: ['Leadership', 'Agile', 'Scrum'],
+        },
+        // Add more users...
+      ];
 
     useEffect(() => {
         const checkAuth = async () => {
@@ -63,7 +87,7 @@ const App = () => {
                     <Route path="/dashboard" element={isAuthenticated ? (isDocVerified ? <Dashboard/> : <Navigate to="/docai" />) : <Navigate to="/login" />} />
                     <Route path="/profile/:username" element={<Profile/> } />
                     <Route path="/profilecompletion" element={<ProfileCompletionForm/>}/>
-                    <Route path="/network" element={<Network/>}/>
+                    <Route path="/network" element={<Network users={users}/>}/>
                 </Routes>
             </Router>
         </div>

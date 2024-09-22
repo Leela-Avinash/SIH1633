@@ -1,49 +1,32 @@
-import React from "react";
+import React from 'react';
+
 
 const NetworkSection = ({ users }) => {
   return (
-    <div className="container mx-auto px-4">
-      <h1 className="text-2xl font-semibold mb-8 text-center">Network Section</h1>
-
-      {/* Grid layout for user cards */}
+    <div className="p-6">
+      {/* Grid Container */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {users.map((user) => (
-          <div
-            key={user.id}
-            className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300"
-          >
-            {/* User Profile Picture */}
+          <div key={user.id} className="bg-white rounded-lg shadow-lg p-6 flex flex-col items-center">
             <img
-              className="w-full h-48 object-cover"
               src={user.profilePicture}
-              alt={user.name}
+              alt={`${user.name} profile`}
+              className="w-24 h-24 rounded-full mb-4 object-cover"
             />
-
-            {/* User Info */}
-            <div className="p-4">
-              <h3 className="text-lg font-semibold">{user.name}</h3>
-              <p className="text-gray-500">{user.jobTitle}</p>
-
-              {/* Skills */}
-              <div className="mt-3">
-                <h4 className="font-medium text-gray-700">Skills</h4>
-                <ul className="flex flex-wrap">
-                  {user.skills.map((skill, index) => (
-                    <li
-                      key={index}
-                      className="text-xs bg-blue-100 text-blue-500 rounded-full px-2 py-1 mr-2 mb-2"
-                    >
-                      {skill}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Connect Button */}
-              <button className="bg-blue-500 text-white w-full py-2 mt-4 rounded-lg hover:bg-blue-600">
-                Connect
-              </button>
+            <h2 className="text-lg font-semibold text-gray-800 text-center mb-2">
+              {user.name}
+            </h2>
+            <p className="text-sm text-gray-500 text-center mb-4">{user.jobTitle}</p>
+            <div className="flex flex-wrap justify-center space-x-2 mb-4">
+              {user.skills.map((skill) => (
+                <span key={skill} className="px-2 py-1 bg-blue-100 text-blue-600 text-xs rounded-full">
+                  {skill}
+                </span>
+              ))}
             </div>
+            <button className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors">
+              Connect
+            </button>
           </div>
         ))}
       </div>
@@ -52,37 +35,6 @@ const NetworkSection = ({ users }) => {
 };
 
 // Example usage of the NetworkSection component with sample user data
-const users = [
-  {
-    id: 1,
-    name: "John Doe",
-    jobTitle: "Software Engineer",
-    profilePicture: "https://via.placeholder.com/150",
-    skills: ["JavaScript", "React", "Node.js"],
-  },
-  {
-    id: 2,
-    name: "Jane Smith",
-    jobTitle: "Data Scientist",
-    profilePicture: "https://via.placeholder.com/150",
-    skills: ["Python", "Machine Learning", "AI"],
-  },
-  {
-    id: 3,
-    name: "Mike Johnson",
-    jobTitle: "Product Manager",
-    profilePicture: "https://via.placeholder.com/150",
-    skills: ["Leadership", "Agile", "Scrum"],
-  },
-  // Add more users as needed...
-];
 
-const App = () => {
-  return (
-    <div>
-      <NetworkSection users={users} />
-    </div>
-  );
-};
 
-export default App;
+export default NetworkSection;
