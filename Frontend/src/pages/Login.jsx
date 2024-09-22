@@ -4,6 +4,7 @@ import { setAuth, setDoc } from "../redux/slices/authSlice.js";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setValidationErrors } from "../redux/slices/authSlice.js";
+import Navbar from "../components/landingNav.jsx";
 import { setUser } from "../redux/slices/userSlice.js";
 import {
     resetCredentials,
@@ -11,6 +12,7 @@ import {
     setError,
     clearFieldError,
 } from "../redux/slices/authSlice";
+
 
 const Login = () => {
     const navigate = useNavigate();
@@ -99,7 +101,12 @@ const Login = () => {
         }
     };
     return (
-        <div className="flex h-screen bg-blue-50 justify-center items-center p-4">
+        <div className="h-screen bg-custombg">
+             <Navbar></Navbar>
+             <div className="h-[calc(100vh-5.5rem)] flex  justify-center items-center ">
+    
+        <div className=" p-4">
+          
             <div className="bg-white rounded-lg shadow-lg flex flex-col lg:flex-row w-full max-w-5xl overflow-hidden">
                 <div className="lg:w-1/2 flex items-center justify-center ">
                     <div className="text-center h-full">
@@ -153,10 +160,12 @@ const Login = () => {
                             type="submit"
                             className="w-full py-2 rounded-md mt-3 transition duration-300 bg-blue-500 text-white hover:bg-blue-600"
                         >
-                            Sign In
+                            Login
                         </button>
                     </form>
                 </div>
+            </div>
+            </div>
             </div>
         </div>
     );
