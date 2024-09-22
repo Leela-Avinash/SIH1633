@@ -3,7 +3,7 @@ import Navbar from '../components/navBar.jsx';
 import Sidebar from '../components/Sidebar.jsx';
 import MainContent from './MainContent.jsx';
 import Network from '../components/networkSection.jsx';
-import Profile from './Profile.jsx';
+import Profile from '../components/profilePage.jsx';
 
 const Dashboard = () => {
   const [activePage, setActivePage] = useState('profile');
