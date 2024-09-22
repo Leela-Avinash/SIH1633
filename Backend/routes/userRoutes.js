@@ -18,7 +18,7 @@ const router = express.Router();
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
-// router.get("/profile/:username", getUserProfile);
+router.get("/profile/:username", getUserProfile);
 router.post("/signup", signupUser);
 router.post("/login", loginUser);
 router.post("/logout", logoutUser);

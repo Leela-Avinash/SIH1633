@@ -1,3 +1,4 @@
+<<<<<<< HEAD:Frontend/src/pages/profilePage.jsx
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 
@@ -25,6 +26,11 @@ const ProfilePage = () => {
   I am always eager to take on new challenges and continuously improve my knowledge and abilities in web development. My goal is to contribute to innovative projects and collaborate with like-minded professionals in the tech industry.
 `;
     const shortText = bioText.split(' ').slice(0, 30).join(' ') + '....';
+=======
+import React, { useEffect, useState } from "react";
+
+const ProfilePage = ({user, formatDate}) => {
+>>>>>>> 95833c748e991438d0716998c09793c8c7e6eafc:Frontend/src/components/profilePage.jsx
     return (
         <div className="flex">
 
