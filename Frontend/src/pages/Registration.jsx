@@ -21,9 +21,9 @@ const Registration=()=>{
         (state) => state.auth
     );
 
-    useEffect(() => {
-        dispatch(updateCredentials({ name: 'profilepic', value: e.target.files[0] }));
-    }, [dispatch]);
+    // useEffect(() => {
+    //     dispatch(updateCredentials({ name: 'profilepic', value: e.target.files[0] }));
+    // }, [dispatch]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;

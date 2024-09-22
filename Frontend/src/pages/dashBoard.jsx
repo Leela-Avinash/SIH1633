@@ -16,7 +16,7 @@ const Dashboard = () => {
       <Navbar onNavClick={handleNavClick} />
       <div className="flex">
         <Sidebar />
-        <div className='bg-black w-full'>
+        <div className=' w-full'>
           {/* <MainContent activePage={activePage} /> */}
           <ProfilePage />
         </div>

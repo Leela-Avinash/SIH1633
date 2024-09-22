@@ -261,7 +261,7 @@ const uploadToCloudinary = (buffer) => {
 
 const updateUser = async (req, res) => {
     try {
-        const { bio,fieldOfStudy, skills, interests, experiences, location,Social } = req.body;
+        const { bio,fieldOfStudy, skills, interests, experiences, location,social } = req.body;
         const userId = req.user._id;
         const role = req.user.role;
         console.log(req.body);
@@ -323,7 +323,7 @@ const updateUser = async (req, res) => {
             };
         }
 
-        user.Social = Social || user.Social;
+        user.social = social || user.social;
 
         user = await user.save();
 

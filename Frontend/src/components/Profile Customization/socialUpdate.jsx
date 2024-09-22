@@ -16,7 +16,7 @@ const socialUpdate = ({handleSocialChange,prevStep,handleSubmit}) => {
                         type="url"
                         id="linkedinProfile"
                         name="linkedinProfile"
-                        value={credentials.Social.linkedinProfile}
+                        value={credentials.social.linkedinProfile}
                         onChange={handleSocialChange}
                         className="w-full p-3 border border-gray-300 rounded-lg"
                         placeholder="Enter your LinkedIn profile URL"
@@ -32,7 +32,7 @@ const socialUpdate = ({handleSocialChange,prevStep,handleSubmit}) => {
                         type="url"
                         id="githubProfile"
                         name="githubProfile"
-                        value={credentials.Social.githubProfile}
+                        value={credentials.social.githubProfile}
                         onChange={handleSocialChange}
                         className="w-full p-3 border border-gray-300 rounded-lg"
                         placeholder="Enter your GitHub profile URL"
@@ -48,7 +48,7 @@ const socialUpdate = ({handleSocialChange,prevStep,handleSubmit}) => {
                         type="url"
                         id="websiteURL"
                         name="websiteURL"
-                        value={credentials.Social.websiteURL}
+                        value={credentials.social.websiteURL}
                         onChange={handleSocialChange}
                         className="w-full p-3 border border-gray-300 rounded-lg"
                         placeholder="Enter your personal website URL"
