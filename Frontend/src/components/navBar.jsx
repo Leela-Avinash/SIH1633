@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 const Navbar = ({ onNavClick }) => {
   const user = useSelector((state) => state.user);
   return (
-    <nav className="flex items-center bg-white text-black p-4">
+    <nav className="fixed top-0 z-50 w-full flex items-center bg-white text-black p-4">
       <div className="text-xl font-bold text-custom1 pl-4">
         AluminiConnect
       </div>

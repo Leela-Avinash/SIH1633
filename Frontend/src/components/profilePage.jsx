@@ -12,7 +12,6 @@ const ProfilePage = () => {
         const day = dateObj.getDate();
         const month = dateObj.toLocaleString('default', { month: 'short' });
         const year = dateObj.getFullYear();
-
         return `${day}-${month}-${year}`;
     };
 
@@ -20,24 +19,23 @@ const ProfilePage = () => {
     const [mentoropen,setmentoropen]=useState(false);
     const [guideopen,setguideopen]=useState(false);
     const [openSection, setOpenSection] = useState('posts');
-
+    const[guideVar,setguideVar]=useState(false);
+    
     const [showMore, setShowMore] = useState(false);
+    const carrer_guidance_var=`"When I graduated, I was uncertain about how to navigate the highly competitive tech industry. The key was focusing on building my technical portfolio by working on real-world projects, which I could showcase to potential employers. I also leveraged my network, particularly reaching out to alumni, which helped me secure interviews. My advice to current students is to always be curious and keep learning—especially emerging technologies like AI and cloud computing. And don’t hesitate to reach out to seniors for mentorship; I’m always happy to help! Work on real-world campaigns as part of your coursework or internships—practical experience is invaluable. I also emphasize the importance of building a personal brand online. In today’s world, having a well-maintained LinkedIn profile and an active social media presence can set you apart"`;
+    const carrer_guide_var2=carrer_guidance_var.split('').slice(0,50).join('')+'.....';
     const bioText = `
-  My name is Sala Satya Sai Sadguru Charan, and I am currently pursuing a B.Tech in Computer Science and Engineering at JNTU-GV, Vizianagaram, with an expected graduation in 2026. Prior to this, I completed my diploma at Sir CR Reddy Polytechnic, Eluru.
-  
-  I am deeply passionate about full stack development and have cultivated a diverse skill set in this area. My technical expertise includes HTML, CSS, JavaScript, Bootstrap, Node.js, Express.js, React, SQL, and Git. These skills enable me to build robust, efficient, and user-friendly web applications from the ground up.
-  
-  I am always eager to take on new challenges and continuously improve my knowledge and abilities in web development. My goal is to contribute to innovative projects and collaborate with like-minded professionals in the tech industry.
-`;
+  My name is S. Gowri Charan Teja, and I am currently pursuing a B.Tech in Computer Science and Engineering at JNTU-GV, Vizianagaram, with an expected graduation in 2026. Prior to this, I completed my diploma at Sir CR Reddy Polytechnic, Eluru.
+   I am deeply passionate about full stack development and have cultivated a diverse skill set in this area. My technical expertise includes HTML, CSS, JavaScript, Bootstrap, Node.js, Express.js, React, SQL, and Git. These skills enable me to build robust, efficient, and user-friendly web applications from the ground up.
+  I am always eager to take on new challenges and continuously improve my knowledge and abilities in web development. My goal is to contribute to innovative projects and collaborate with like-minded professionals in the tech industry.`;
     const shortText = bioText.split(' ').slice(0, 30).join(' ') + '....';
     return (
-        <div className="flex bg-custombg">
+        <div className="relative top-20 flex bg-custombg">
 
 
-            <div className="p-6 bg-custombg  w-9/12">
-                {/* Profile Card */}
-                <div className="bg-white shadow-lg rounded-lg overflow-hidden w-full">
-                    {/* Profile Photo and Info */}
+            <div className="p-6 bg-custombg w-9/12">
+
+                <div className="bg-white shadow-lg rounded-lg overflow-hidden ">
                     <div className="relative">
                         <img className="w-full h-52 object-cover object-center" src={user.profilepic} alt="Background" />
 
@@ -46,72 +44,67 @@ const ProfilePage = () => {
                         </div>
                     </div>
 
-
-
-
-
-                    <div className="flex items-center flex-col  p-3">
+                    <div  className="flex items-center flex-col p-3">
                         <div className=" ml-auto ">
-                            <div className="font-semibold text-lg mr-32">Rating...</div>
+                            <div className="font-semibold text-lg mr-32">Rating : </div>
                             <div className="font-semibold text-lg mr-32">
-                                Credits 56</div>
-
-
-                        </div>
-
-                    </div>
-                    <div className="pl-16">
-                        <div className="flex">
-
-                            <h1 className="text-4xl font-bold text-black">
-                                {user.fname}
-                            </h1>
-                            {user.social && (
-                                <div className="flex space-x-6 ml-auto mr-28 ">
-                                    {user.social.linkedinProfile && (
-                                        <a
-                                            href={user.social.linkedinProfile}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="text-blue-500 text-2xl hover:text-blue-700"
-                                        >
-                                            <i className="fab fa-linkedin"></i>
-                                        </a>
-                                    )}
-                                    {user.social.githubProfile && (
-                                        <a
-                                            href={user.social.githubProfile}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="text-gray-700 text-2xl hover:text-gray-900"
-                                        >
-                                            <i className="fab fa-github"></i>
-                                        </a>
-                                    )}
-                                    {user.social.websiteURL && (
-                                        <a
-                                            href={user.social.websiteURL}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="text-green-500 text-2xl hover:text-green-700"
-                                        >
-                                            <i className="fas fa-globe"></i>
-                                        </a>
-                                    )}
+                                Credits: 48</div>
                                 </div>
-                            )}
+                    </div>
+                    <div className="pl-12 flex h-fit  justify-between mb-3">
+                            <div className=" flex-col w-56">
+                                <div>
+                                <h1 className="text-4xl font-bold text-black">
+                                    {user.fname}
+                                </h1>
+                                <p className="text-gray-600 text-lg font-medium mb-2">
+                                    {user.role} at {user.collegeName}
+                                </p>
+                                </div>
+                                </div>
+
+                                <div className=" w-56 flex justify-center p-5  ">
+                                <div className="mt-auto flex space-x-5">
+                                {user.social && (
+                                    <div className="flex space-x-5">
+                                        {user.social.linkedinProfile && (
+                                            <a
+                                                href={user.social.linkedinProfile}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="text-custom1 text-2xl hover:text-blue-700"
+                                            >
+                                                <i className="fab fa-linkedin"></i>
+                                            </a>
+                                        )}
+                                        {user.social.githubProfile && (
+                                            <a
+                                                href={user.social.githubProfile}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="text-gray-700 text-2xl hover:text-gray-900"
+                                            >
+                                                <i className="fab fa-github"></i>
+                                            </a>
+                                        )}
+                                        {user.social.websiteURL && (
+                                            <a
+                                                href={user.social.websiteURL}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="text-2xl hover:text-gray-800">
+                                                <i className="fas fa-globe"></i>
+                                            </a>
+                                        )}
+                                    </div>
+                                )}   </div>
+                                </div>
+                               
+                           
                         </div>
 
+                    
 
-                        <p className="text-gray-600 block-style text-lg font-medium mb-5">
-                            {user.role} at {user.collegeName}
-                        </p>
-                    </div>
-
-
-
-
-                    {/* About Section  */}
                     <div className="p-4 border-t border-gray-300 pl-10">
                         <h2 className="text-2xl font-semibold mb-2 text-gray-800">
                             About
@@ -120,7 +113,7 @@ const ProfilePage = () => {
                             <div className="items-center">
                                 <p className="">{showMore ? bioText : shortText}
                                 <button
-                                    className="text-blue-500 ml-2"
+                                    className="text-custom1 ml-2"
                                     onClick={() => setShowMore(!showMore)}
                                 >
                                     {showMore ? 'See Less' : 'See More'}
@@ -131,36 +124,61 @@ const ProfilePage = () => {
                         </div>
                         </div>
 
-                    {/* About Section  <div className={`sm:hidden ${menuOpen ? "block" : "hidden"}`} id="mobile-menu">*/}
+                <div className="border-t border-gray-300 ">
+                <div className="font-semibold text-xl flex justify-around  pl-10 p-3   ">
+                    <div className={`transition-colors p-2  ${openSection === 'posts' ? 'text-black w-2/6 text-center bg-white ' : 'text-black bg-gray-200 border border-white w-2/6 text-center '}`}>
+                    <button type="button"onClick={() => setOpenSection('posts')}>Posts</button>
+                    </div>
 
-                        <div className="border-t border-gray-300 ">
-                            <div className="font-semibold text-xl flex pl-10 p-3 space-x-5  ">
-                                <div className=""><button
-                                type="button"
-                                className=""
-                                onClick={()=>setOpenSection(openSection === 'posts' ? 'posts' : 'posts')}>Posts</button></div>
-                                <div><button type="button" 
-                                onClick={()=>setOpenSection(openSection === 'mentor' ? 'mentor' : 'mentor')}>Mentorship</button></div>
-                                <div><button type="button" 
-                                onClick={()=>setOpenSection(openSection === 'guide' ? 'guide' : 'guide')}>CarrerGuidence</button></div>
-                            </div>
-                            <div className=" h-28 ">
-                                    <div className={openSection=== 'posts' ? "block" : "hidden"}> 
-                                        <h1 className="pl-10">Posts</h1>
-                                    </div>
-                                    <div className={openSection==='mentor' ? "block" : "hidden" }> 
-                                        <h1 className="pl-10">Mentorship</h1>
-                                    </div>
-                                    <div className={openSection==='guide' ? "block" : "hidden" }> 
-                                        <h1 className="pl-10">Guidenece</h1>
-                                    </div>
+                    <div className={`transition-colors p-2  ${openSection === 'mentor' ? 'text-black w-2/6 text-center bg-white ' : 'text-black bg-gray-200 border border-white w-2/6 text-center '}`}>
+                    <button type="button"onClick={() => setOpenSection('mentor')}>Mentorship</button>
+                    </div>
 
-                            </div>
+                    <div className={`transition-colors p-2  ${openSection === 'guide' ? 'text-black w-2/6 text-center bg-white ' : 'text-black bg-gray-200 w-2/6 border border-white text-center '}`}>
+                    <button type="button"onClick={() => setOpenSection('guide')}>Carrer Guidance</button>
+                    </div>
+
+                </div>
+
+                <div className="h-fit mb-5 ">  
+                    <div className={openSection === 'posts' ? "block" : "hidden"}>
+                        <div className="pl-10 flex space-x-4 ">
+                            <img src="sample1.jpg" alt="Post 1" className="w-24 h-24 rounded-lg shadow-lg" />
+                            <img src="sample2.jpg" alt="Post 2" className="w-24 h-24 rounded-lg shadow-lg" />
+                            <img src="sample3.jpg" alt="Post 3" className="w-24 h-24 rounded-lg shadow-lg" />
                         </div>
-
-
-
-
+                    </div>
+                    
+                    <div className={openSection === 'mentor' ? "block" : "hidden"}>
+                        <h1 className="pl-10 text-lg font-semibold p-3">Mentorship Programs offered by Charan teja</h1>
+                        <div className="pl-10 flex">
+                            <video controls className="w-48 h-28 rounded-lg shadow-lg">
+                                <source src="sample_video1.mp4" type="video/mp4" />
+                                Your browser does not support the video tag.
+                            </video>
+                            <video controls className="w-48 h-28 rounded-lg shadow-lg ml-4">
+                                <source src="sample_video2.mp4" type="video/mp4" />
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+                    
+                    <div className={openSection === 'guide' ? "block" : "hidden"}>
+                        <h1 className="pl-10 text-lg font-semibold">Career Guidance</h1>
+                        <div className="pl-10 space-y-2">
+                            <p className="text-gray-600">{guideVar ? carrer_guidance_var : carrer_guide_var2}
+                                <button
+                                    className="text-custom1 ml-2"
+                                    onClick={() =>setguideVar(!guideVar)}
+                                >
+                                    {guideVar ? 'See Less' : 'See More'}
+                                </button>
+                           <br/> <span className="text-black">Contact:</span>tejaunknown@gmail.com</p>
+                            
+                        </div>
+                    </div>
+                </div>
+                </div>
 
                         <div className="border-t border-gray-300 ">
 
@@ -221,12 +239,6 @@ const ProfilePage = () => {
                         <h2 className="text-2xl font-medium mb-4 pl-5">
                             Contact Information
                         </h2>
-                        {/* <ul className="text-gray-700">
-            <li>Location: London, UK</li>
-            <li>Email: johndoe@email.com</li>
-            <li>Phone: +44 1234 567 890</li>
-            <li>LinkedIn: linkedin.com/in/johndoe</li>
-          </ul> */}
                         <ul className="text-gray-700 pl-5">
                             {user.location && (
                                 <>

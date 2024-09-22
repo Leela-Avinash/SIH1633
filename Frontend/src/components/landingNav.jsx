@@ -16,8 +16,7 @@ function Navbar() {
           <img src="../public/logo1.svg" className="h-20 w-20" alt="logo" />
           <h1 className="pl-0 text-xl font-bold">
             Alumni
-            <span className="text-custom1 text-xl">
-              <span className="text-3xl"> C</span>onnect
+            <span className="text-custom1 text-xl">Connect
             </span>
           </h1>
         </div>
