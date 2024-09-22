@@ -10,7 +10,7 @@ function Navbar() {
   return (
     <div>
       {/* Navbar */}
-      <div className="container mx-auto flex justify-between items-center p-5">
+      <div className="shadow-md bg-white container mx-auto flex justify-between items-center p-1">
         {/* Logo Section */}
         <div className="flex items-center pl-0 md:pl-20 sm:mx-0 mx-auto ml-5 sm:ml-0">
           <img src="../public/logo1.svg" className="h-20 w-20" alt="logo" />
@@ -26,26 +26,26 @@ function Navbar() {
         <div className="hidden sm:flex ml-auto space-x-6 lg:ml-auto lg:pr-40 pr-5">
           <a
             href="#"
-            className="text-custom1 transition-colors duration-300 font-bold custom-underline hover:text-custom1"
+            className="transition-colors duration-300 font-bold custom-underline hover:text-custom1"
           >
             Home
           </a>
           <button
             type="button"
             onClick={()=>Navigate("/Doc_AI")}
-            className="text-custom1 transition-colors duration-300 font-bold custom-underline hover:text-custom1"
+            className=" transition-colors duration-300 font-bold custom-underline hover:text-custom1"
           >
             About
           </button>
           <a
             href="#"
-            className="text-custom1 transition-colors duration-300 font-bold custom-underline hover:text-custom1"
+            className=" transition-colors duration-300 font-bold custom-underline hover:text-custom1"
           >
             Features
           </a>
           <a
             href="#"
-            className="text-custom1 transition-colors duration-300 font-bold custom-underline hover:text-custom1"
+            className="transition-colors duration-300 font-bold custom-underline hover:text-custom1"
           >
             Contact
           </a>
@@ -71,25 +71,25 @@ function Navbar() {
           <div className="flex flex-col justify-center bg-transparent space-y-4 pt-5 pb-5">
             <a
               href="#"
-              className="pl-5 w-full text-start text-custom1 transition-colors duration-300 font-bold custom-underline hover:text-custom1"
+              className="pl-5 w-full text-start transition-colors duration-300 font-bold custom-underline hover:text-custom1"
             >
               Home
             </a>
             <a
               href="#"
-              className="pl-5 w-full text-start text-custom1 transition-colors duration-300 font-bold custom-underline hover:text-custom1"
+              className="pl-5 w-full text-start  transition-colors duration-300 font-bold custom-underline hover:text-custom1"
             >
               About
             </a>
             <a
               href="#"
-              className="pl-5 text-custom1 text-start transition-colors duration-300 font-bold custom-underline hover:text-custom1"
+              className="pl-5 text-start transition-colors duration-300 font-bold custom-underline hover:text-custom1"
             >
               Features
             </a>
             <a
               href="#"
-              className="pl-5 text-custom1 text-start transition-colors duration-300 font-bold custom-underline hover:text-custom1"
+              className="pl-5 text-start transition-colors duration-300 font-bold custom-underline hover:text-custom1"
             >
               Contact
             </a>

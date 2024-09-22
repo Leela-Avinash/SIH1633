@@ -16,6 +16,7 @@ export default {
         secondary:'#07A4B5',
         tertiary:'#C9EFF9',
         fourty:'#FED8A7',
+        custombg:'#ededeb',
         
       },
     },

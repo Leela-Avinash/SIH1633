@@ -11,7 +11,7 @@ function LandingPage(){
   return(
     <div>
       <Navbar/>
-      <div className="flex justify-center items-center lg:mt-10"> {/* Ensure full height to center vertically */}
+      <div className="bg-white flex justify-center items-center lg:mt-10"> {/* Ensure full height to center vertically */}
             <div className="grid-cols-1 lg:grid-cols-2 pl-10 pr-10 rounded-lg flex items-start">
             <div className="flex justify-center items-center p-5 ">
                     <img className="w-4/5" src="../public/bodylogo3.png" alt="Logo" />

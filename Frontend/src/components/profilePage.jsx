@@ -16,6 +16,11 @@ const ProfilePage = () => {
         return `${day}-${month}-${year}`;
     };
 
+    const [postopen,setpostopen]=useState(false);
+    const [mentoropen,setmentoropen]=useState(false);
+    const [guideopen,setguideopen]=useState(false);
+    const [openSection, setOpenSection] = useState('posts');
+
     const [showMore, setShowMore] = useState(false);
     const bioText = `
   My name is Sala Satya Sai Sadguru Charan, and I am currently pursuing a B.Tech in Computer Science and Engineering at JNTU-GV, Vizianagaram, with an expected graduation in 2026. Prior to this, I completed my diploma at Sir CR Reddy Polytechnic, Eluru.
@@ -26,12 +31,12 @@ const ProfilePage = () => {
 `;
     const shortText = bioText.split(' ').slice(0, 30).join(' ') + '....';
     return (
-        <div className="flex">
+        <div className="flex bg-custombg">
 
 
-            <div className="p-6 bg-custombg h-screen w-9/12">
+            <div className="p-6 bg-custombg  w-9/12">
                 {/* Profile Card */}
-                <div className="bg-white shadow-lg rounded-lg overflow-hidden w-full h-screen">
+                <div className="bg-white shadow-lg rounded-lg overflow-hidden w-full">
                     {/* Profile Photo and Info */}
                     <div className="relative">
                         <img className="w-full h-52 object-cover object-center" src={user.profilepic} alt="Background" />
@@ -106,7 +111,7 @@ const ProfilePage = () => {
 
 
 
-                    {/* About Section */}
+                    {/* About Section  */}
                     <div className="p-4 border-t border-gray-300 pl-10">
                         <h2 className="text-2xl font-semibold mb-2 text-gray-800">
                             About
@@ -125,6 +130,38 @@ const ProfilePage = () => {
                             </div>
                         </div>
                         </div>
+
+                    {/* About Section  <div className={`sm:hidden ${menuOpen ? "block" : "hidden"}`} id="mobile-menu">*/}
+
+                        <div className="border-t border-gray-300 ">
+                            <div className="font-semibold text-xl flex pl-10 p-3 space-x-5  ">
+                                <div className=""><button
+                                type="button"
+                                className=""
+                                onClick={()=>setOpenSection(openSection === 'posts' ? 'posts' : 'posts')}>Posts</button></div>
+                                <div><button type="button" 
+                                onClick={()=>setOpenSection(openSection === 'mentor' ? 'mentor' : 'mentor')}>Mentorship</button></div>
+                                <div><button type="button" 
+                                onClick={()=>setOpenSection(openSection === 'guide' ? 'guide' : 'guide')}>CarrerGuidence</button></div>
+                            </div>
+                            <div className=" h-28 ">
+                                    <div className={openSection=== 'posts' ? "block" : "hidden"}> 
+                                        <h1 className="pl-10">Posts</h1>
+                                    </div>
+                                    <div className={openSection==='mentor' ? "block" : "hidden" }> 
+                                        <h1 className="pl-10">Mentorship</h1>
+                                    </div>
+                                    <div className={openSection==='guide' ? "block" : "hidden" }> 
+                                        <h1 className="pl-10">Guidenece</h1>
+                                    </div>
+
+                            </div>
+                        </div>
+
+
+
+
+
                         <div className="border-t border-gray-300 ">
                         <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-4">
                             {/* Skills Section */}
@@ -175,6 +212,7 @@ const ProfilePage = () => {
                             </div>
                        
                     </div>
+
                     {/* Contact Section */}
                     <div className="p-6 border-t border-gray-200">
                         <h2 className="text-xl font-semibold mb-4 text-gray-800">
