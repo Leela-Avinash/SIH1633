@@ -98,7 +98,7 @@ Recommendation();
 
 } , []);
   return (
-    <div className="p-6 bg-gray-50 min-h-screen">
+    <div className="p-6 bg-gray-50 min-h-screen ml-52">
       <h1 className='text-3xl font-bold pb-5 text-blue-600'>Top Recommended Alumni</h1>
       {/* Grid Container */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
