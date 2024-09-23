@@ -20,7 +20,7 @@ const Dashboard = () => {
         <Sidebar />
           <div className='mt-20 ml-52 w-3/4'>
             {/* <MainContent activePage={activePage} /> */}
-            {activePage === 'home' && <MainContent />}
+            {activePage === 'home' && <HomePage />}
             {activePage === 'profile' && <Profile />}
             {activePage === 'network' && <Network />}
           
