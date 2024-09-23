@@ -4,6 +4,7 @@ import Sidebar from '../components/Sidebar.jsx';
 import MainContent from './MainContent.jsx';
 import Network from '../components/networkSection.jsx';
 import Profile from '../components/profilePage.jsx';
+import HomePage from './HomePage.jsx';
 
 const Dashboard = () => {
   const [activePage, setActivePage] = useState('profile');

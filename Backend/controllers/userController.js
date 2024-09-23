@@ -8,7 +8,7 @@ import Student from "../models/studentModel.js";
 import { v2 as cloudinary } from "cloudinary";
 import streamifier from "streamifier";
 import cosineSimilarity from 'compute-cosine-similarity';
-
+import Post from "../models/postModel.js";
 const getUserProfile = async (req, res) => {
     const { username } = req.params;
     let success = false;
@@ -19,8 +19,8 @@ const getUserProfile = async (req, res) => {
 
         if (!user) {
             user = await Student.findOne({ username })
-            .select("-password")
-            .select("-updatedAt");
+                .select("-password")
+                .select("-updatedAt");
             if (!user) {
                 return res
                     .status(400)
@@ -40,7 +40,7 @@ const signupUser = async (req, res) => {
     try {
         console.log(req.body);
         let success = false;
-        const { fname, lname, email, username,collegeName, password, role, degree, gyear, gmonth, rollnumber} = req.body;
+        const { fname, lname, email, username, collegeName, password, role, degree, gyear, gmonth, rollnumber } = req.body;
 
         let modelName, otherModel;
         if (role === "alumni") {
@@ -86,16 +86,16 @@ const signupUser = async (req, res) => {
             collegeName,
             password: hashedPassword,
             role,
-            degree, 
-            gyear, 
-            gmonth, 
+            degree,
+            gyear,
+            gmonth,
             rollnumber
         });
 
         if (user) {
             const token = await Token.create({
                 userId: user._id,
-                token : crypto.randomBytes(32).toString("hex")
+                token: crypto.randomBytes(32).toString("hex")
             });
 
             const url = `${process.env.BASE_URL}users/${user.role}/${user._id}/verify/${token.token}`;
@@ -119,9 +119,8 @@ const signupUser = async (req, res) => {
     } catch (err) {
         if (err.code === 11000) {
             const field = Object.keys(err.keyPattern)[0];
-            const message = `${
-                field.charAt(0).toUpperCase() + field.slice(1)
-            } already exists`;
+            const message = `${field.charAt(0).toUpperCase() + field.slice(1)
+                } already exists`;
             return res.status(400).json({ success: false, message });
         }
         res.status(500).json({ success: false, message: err.message });
@@ -135,7 +134,7 @@ const loginUser = async (req, res) => {
         let success = false;
 
         const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(identifier);
-        
+
         let user = await Student.findOne(
             isEmail ? { email: identifier } : { username: identifier }
         );
@@ -156,27 +155,27 @@ const loginUser = async (req, res) => {
             return res.status(400).json({ message: "Invalid Password" });
         }
 
-        if(!user.email_verified) {
-            let token = await Token.findOne({userId: user._id});
-            if(!token) {
+        if (!user.email_verified) {
+            let token = await Token.findOne({ userId: user._id });
+            if (!token) {
                 const token = await Token.create({
                     userId: user._id,
-                    token : crypto.randomBytes(32).toString("hex")
+                    token: crypto.randomBytes(32).toString("hex")
                 });
-    
+
                 const url = `${process.env.BASE_URL}users/${user.role}/${user._id}/verify/${token.token}`;
-    
+
                 await sendEmail(user.email, "Verify Email", url)
             }
-            res.status(400).send({message: "verification Email Sent"})
+            res.status(400).send({ message: "verification Email Sent" })
         }
-        generateTokenAndSetCookie(user._id,user.role, res);
+        generateTokenAndSetCookie(user._id, user.role, res);
         delete user.password;
         console.log("success");
         success = true;
         res.status(201).json({
             success,
-            user        
+            user
         });
     } catch (err) {
         res.status(500).json({ message: err.message });
@@ -184,7 +183,7 @@ const loginUser = async (req, res) => {
     }
 };
 
-const recommendationSystem=async (req,res) => {
+const recommendationSystem = async (req, res) => {
     try {
         const currentUserName = req.user.username; // Current user for whom we want recommendations
         const currentUser = await Alumni.findOne({ username: currentUserName });
@@ -263,7 +262,7 @@ const recommendationSystem=async (req,res) => {
             // console.log(`College Name: ${rec.user.collegeName}`);
         });
         res.status(201).json({
-            topRecommendations        
+            topRecommendations
         });
 
     } catch (error) {
@@ -337,7 +336,7 @@ const uploadToCloudinary = (buffer) => {
 
 const updateUser = async (req, res) => {
     try {
-        const { bio,fieldOfStudy, skills, interests, experiences, location,social } = req.body;
+        const { bio, fieldOfStudy, skills, interests, experiences, location, social } = req.body;
         const userId = req.user._id;
         const role = req.user.role;
         console.log(req.body);
@@ -362,7 +361,7 @@ const updateUser = async (req, res) => {
                 .json({ message: "You cannot update other user's profile" });
         }
 
-        let profilepic = user.profilepic; 
+        let profilepic = user.profilepic;
 
         if (req.file) {
             if (user.profilepic) {
@@ -410,6 +409,36 @@ const updateUser = async (req, res) => {
     }
 };
 
+const createPost = async (req, res) => {
+    try {
+        const { content, tags } = req.body;
+        console.log(req.body);
+        const userId = req.user._id;
+        const authorId = userId;
+        if (req.file) {
+            const media = await uploadToCloudinary(req.file.buffer);
+            const post = await Post.create({
+                authorId,
+                content,
+                media,
+                tags
+            });
+            res.status(201).json({ message: "Post created successfully", post });
+        } else {
+            const post = await Post.create({
+                authorId,
+                content,
+                tags
+            });
+            res.status(201).json({ message: "Post created successfully", post });
+        }
+
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+        console.log("Error in create post: ", err.message);
+    }
+}
+
 const checkAuth = (req, res) => {
     console.log(req.user);
     const user = req.user;
@@ -430,16 +459,16 @@ const verifyUser = async (req, res) => {
         } else {
             return res.status(400).json({ message: "Invalid role" });
         }
-        const user = await modelName.findOne({_id: req.params.id});
-        if(!user) {
-            return res.status(400).send({message: "Invalid Link"});
+        const user = await modelName.findOne({ _id: req.params.id });
+        if (!user) {
+            return res.status(400).send({ message: "Invalid Link" });
         }
         const token = await Token.findOne({
             userId: user._id,
             token: req.params.token
         });
-        if(!token) {
-            return res.status(400).send({message: "Invalid Link"});
+        if (!token) {
+            return res.status(400).send({ message: "Invalid Link" });
         }
 
         await modelName.findOneAndUpdate(
@@ -465,5 +494,6 @@ export {
     getUserProfile,
     checkAuth,
     verifyUser,
-    recommendationSystem
+    recommendationSystem,
+    createPost
 };
