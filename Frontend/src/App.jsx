@@ -14,6 +14,7 @@ import ProfilePage from "./components/profilePage.jsx";
 import ProfileCompletionForm from "./pages/ProfileCompletionForm.jsx";
 import Profile from "./pages/Profile.jsx";
 import Network from "./components/networkSection.jsx";
+import ChatPage from "./pages/ChatPage.jsx";
 const App = () => {
     const dispatch = useDispatch();
     const { isAuthenticated } = useSelector((state) => state.auth);
@@ -89,6 +90,7 @@ const App = () => {
                     <Route path="/profilecompletion" element={<ProfileCompletionForm/>}/>
                     <Route path="/network" element={<Network/>}/>
                     {/* <Route path="/login" element={<Login/>}/> */}
+                    <Route path="/chat" element={isAuthenticated ? <ChatPage /> : <Navigate to={"/login"}/>} />
                 </Routes>
             </Router>
         </div>

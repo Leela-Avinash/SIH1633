@@ -12,7 +12,9 @@ const clientdoc = new DocumentProcessorServiceClient({
 const clientlan = new language.LanguageServiceClient({
   keyFilename: 'E:/SIH1633_UNKNOWN2.0/SIH1633/Backend/natural-pipe-435404-f3-3e7d64d566f7.json', // Update with the path to your JSON credentials file
 });
-
+//'D:/AVIATOR CODESPACE/Unknown2.0/Backend/natural-pipe-435404-f3-3e7d64d566f7.json',
+//'D:/Codes/Web_Development/SIH1633/Backend/natural-pipe-435404-f3-3e7d64d566f7.json',
+//'E:/SIH1633_UNKNOWN2.0/SIH1633/Backend/natural-pipe-435404-f3-3e7d64d566f7.json'
 let entities = [];
 
 const storage = multer.diskStorage({
