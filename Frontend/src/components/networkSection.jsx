@@ -98,18 +98,27 @@ Recommendation();
 
 } , []);
   return (
-    <div className="p-6 bg-gray-50 min-h-screen ml-52">
+    <div className="mt-20 p-6 bg-custombg min-h-screen ml-52">
       <h1 className='text-3xl font-bold pb-5 text-blue-600'>Top Recommended Alumni</h1>
       {/* Grid Container */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {recommendations.map((recommendation) => (
           <div key={recommendation.user.id} className="bg-white rounded-xl shadow-md p-6 flex flex-col items-center border border-gray-200">
             {/* Profile Picture */}
-            <img
+            {recommendation.user.profilepic?(
+              <img
               src={recommendation.user.profilepic}
               alt={`${recommendation.user.fname} profile`}
               className="w-24 h-24 rounded-full mb-4 object-cover border border-gray-300"
             />
+          ):
+          <img
+          src="userlogo.jpeg"
+          alt={`${recommendation.user.fname} profile`}
+          className="w-24 h-24 rounded-full mb-4 object-cover border border-gray-300"
+        />
+            }
+            
 
             {/* User Name */}
             <a href={`/profile/${recommendation.user.username}`} className="text-blue-600 font-semibold text-lg text-center hover:underline">

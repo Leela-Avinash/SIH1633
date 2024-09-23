@@ -32,13 +32,10 @@ const ProfilePage = () => {
   const carrer_guidance_var = `"When I graduated, I was uncertain about how to navigate the highly competitive tech industry. The key was focusing on building my technical portfolio by working on real-world projects, which I could showcase to potential employers. I also leveraged my network, particularly reaching out to alumni, which helped me secure interviews. My advice to current students is to always be curious and keep learning—especially emerging technologies like AI and cloud computing. And don’t hesitate to reach out to seniors for mentorship; I’m always happy to help! Work on real-world campaigns as part of your coursework or internships—practical experience is invaluable. I also emphasize the importance of building a personal brand online. In today’s world, having a well-maintained LinkedIn profile and an active social media presence can set you apart"`;
   const carrer_guide_var2 =
     carrer_guidance_var.split("").slice(0, 50).join("") + ".....";
-  const bioText = `
-  My name is S. Gowri Charan Teja, and I am currently pursuing a B.Tech in Computer Science and Engineering at JNTU-GV, Vizianagaram, with an expected graduation in 2026. Prior to this, I completed my diploma at Sir CR Reddy Polytechnic, Eluru.
-   I am deeply passionate about full stack development and have cultivated a diverse skill set in this area. My technical expertise includes HTML, CSS, JavaScript, Bootstrap, Node.js, Express.js, React, SQL, and Git. These skills enable me to build robust, efficient, and user-friendly web applications from the ground up.
-  I am always eager to take on new challenges and continuously improve my knowledge and abilities in web development. My goal is to contribute to innovative projects and collaborate with like-minded professionals in the tech industry.`;
+  const bioText = user.bio;
   const shortText = bioText.split(" ").slice(0, 30).join(" ") + "....";
   return (
-    <div className="relative top-20 flex bg-custombg ml-52">
+    <div className="relative  bg-slate-600 top-20 flex ml-52 w-fit">
       <div className="p-6 bg-custombg w-9/12">
         <div className="bg-white shadow-lg rounded-lg overflow-hidden">
           <div className="relative">
@@ -126,7 +123,7 @@ const ProfilePage = () => {
             </div>
           </div>
 
-          <div className="p-4 border-t border-gray-300 pl-10">
+          <div className="p-4 border-t border-gray-300 pl-10 ">
             <h2 className="text-2xl font-semibold mb-2 text-gray-800">About</h2>
             <div className="text-gray-700 mb-4 ">
               <div className="items-center">
