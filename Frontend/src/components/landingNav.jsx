@@ -9,95 +9,119 @@ function Navbar() {
 
   return (
     <div>
-      {/* Navbar */}
-      <div className="shadow-md bg-white container mx-auto flex justify-between items-center p-1">
-        {/* Logo Section */}
-        <div className="flex items-center pl-0 md:pl-20 sm:mx-0 mx-auto ml-5 sm:ml-0">
-          <img src="../public/logo1.svg" className="h-20 w-20" alt="logo" />
-          <h1 className="pl-0 text-xl font-bold">
-            Alumni
-            <span className="text-custom1 text-xl">Connect
-            </span>
-          </h1>
-        </div>
+  {/* Navbar */}
+  <div className="shadow-lg bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 container mx-auto flex items-center p-6  transform transition-all duration-300 hover:scale-105">
+    {/* Logo Section */}
+    <div className="flex items-center pl-0 md:pl-20 sm:mx-0 mx-auto ml-5 sm:ml-0 text-white backdrop-blur-lg bg-white/30 p-2 rounded-lg">
+      <h1 className="text-3xl font-extrabold font-sans drop-shadow-lg">
+        Alumni
+        <span className="text-yellow-400 text-3xl font-serif">Connect</span>
+      </h1>
+    </div>
 
-        {/* Links for Desktop */}
-        <div className="hidden sm:flex ml-auto space-x-6 lg:ml-auto lg:pr-40 pr-5">
-          <a
-            href="#"
-            className="transition-colors duration-300 font-bold custom-underline hover:text-custom1"
-          >
-            Home
-          </a>
+    {/* Links for Desktop */}
+    <div className="hidden sm:flex ml-auto space-x-8 lg:ml-auto lg:pr-40 pr-5 text-white">
+      <a href="#" className="transition duration-300 flex items-center space-x-2 hover:text-yellow-300 hover:scale-110 transform">
+        <i className="fas fa-home w-5 h-5"></i>
+        <span className="font-bold text-lg">Home</span>
+      </a>
+      <button
+        type="button"
+        onClick={() => Navigate("/Doc_AI")}
+        className="transition duration-300 flex items-center space-x-2 hover:text-yellow-300 hover:scale-110 transform"
+      >
+        <i className="fas fa-info-circle w-5 h-5"></i>
+        <span className="font-bold text-lg">About</span>
+      </button>
+      <a href="#" className="transition duration-300 flex items-center space-x-2 hover:text-yellow-300 hover:scale-110 transform">
+        <i className="fas fa-bolt w-5 h-5"></i>
+        <span className="font-bold text-lg">Features</span>
+      </a>
+      <a href="#" className="transition duration-300 flex items-center space-x-2 hover:text-yellow-300 hover:scale-110 transform">
+        <i className="fas fa-phone w-5 h-5"></i>
+        <span className="font-bold text-lg">Contact</span>
+      </a>
+      {/* Sign In/Register */}
+      <button
+        type="button"
+        className="bg-white text-blue-500 px-4 py-2 rounded-full hover:bg-gray-100 font-bold shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl transform"
+      >
+        Sign In
+      </button>
+      <button
+        type="button"
+        className="bg-yellow-400 text-white px-4 py-2 rounded-full hover:bg-yellow-500 font-bold shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl transform"
+      >
+        Register
+      </button>
+    </div>
+
+    {/* Mobile Menu Icon */}
+    <div className="sm:hidden block pr-5 icon-container">
+      <button type="button" onClick={toggleMenu}>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 448 512"
+          className="w-8 h-8 text-white hover:text-yellow-300 transition-all duration-300 transform hover:scale-110"
+        >
+          <path d="M..." />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  {/* Mobile Menu */}
+  <div className={`sm:hidden ${menuOpen ? "block" : "hidden"}`} id="mobile-menu">
+    <div className="ml-10 mr-10">
+      <div className="flex flex-col justify-center bg-white shadow-lg space-y-4 pt-5 pb-5 rounded-lg backdrop-blur-lg bg-white/30">
+        <a
+          href="#"
+          className="pl-5 w-full text-start flex items-center space-x-2 text-gray-700 transition duration-300 hover:text-yellow-500 hover:scale-110 transform"
+        >
+          <i className="fas fa-home w-5 h-5"></i>
+          <span className="font-bold text-lg">Home</span>
+        </a>
+        <a
+          href="#"
+          className="pl-5 w-full text-start flex items-center space-x-2 text-gray-700 transition duration-300 hover:text-yellow-500 hover:scale-110 transform"
+        >
+          <i className="fas fa-info-circle w-5 h-5"></i>
+          <span className="font-bold text-lg">About</span>
+        </a>
+        <a
+          href="#"
+          className="pl-5 text-start flex items-center space-x-2 text-gray-700 transition duration-300 hover:text-yellow-500 hover:scale-110 transform"
+        >
+          <i className="fas fa-bolt w-5 h-5"></i>
+          <span className="font-bold text-lg">Features</span>
+        </a>
+        <a
+          href="#"
+          className="pl-5 text-start flex items-center space-x-2 text-gray-700 transition duration-300 hover:text-yellow-500 hover:scale-110 transform"
+        >
+          <i className="fas fa-phone w-5 h-5"></i>
+          <span className="font-bold text-lg">Contact</span>
+        </a>
+        {/* Mobile Sign In/Register */}
+        <div className="flex justify-start space-x-4 pl-5">
           <button
             type="button"
-            onClick={()=>Navigate("/Doc_AI")}
-            className=" transition-colors duration-300 font-bold custom-underline hover:text-custom1"
+            className="bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 font-bold shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl transform"
           >
-            About
+            Sign In
           </button>
-          <a
-            href="#"
-            className=" transition-colors duration-300 font-bold custom-underline hover:text-custom1"
+          <button
+            type="button"
+            className="bg-yellow-400 text-white px-4 py-2 rounded-full hover:bg-yellow-500 font-bold shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl transform"
           >
-            Features
-          </a>
-          <a
-            href="#"
-            className="transition-colors duration-300 font-bold custom-underline hover:text-custom1"
-          >
-            Contact
-          </a>
-        </div>
-
-        {/* Mobile Menu Icon */}
-        <div className="sm:hidden block pr-5 icon-container">
-          <button type="button" onClick={toggleMenu}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 448 512"
-              className="w-8 h-8 text-gray-500 hover:text-green-500 transition-colors duration-300"
-            >
-              <path d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z" />
-            </svg>
+            Register
           </button>
         </div>
       </div>
+    </div>
+  </div>
+</div>
 
-      {/* Mobile Menu */}
-      <div className={`sm:hidden ${menuOpen ? "block" : "hidden"}`} id="mobile-menu">
-        <div className="ml-10 mr-10">
-          <div className="flex flex-col justify-center bg-transparent space-y-4 pt-5 pb-5">
-            <a
-              href="#"
-              className="pl-5 w-full text-start transition-colors duration-300 font-bold custom-underline hover:text-custom1"
-            >
-              Home
-            </a>
-            <a
-              href="#"
-              className="pl-5 w-full text-start  transition-colors duration-300 font-bold custom-underline hover:text-custom1"
-            >
-              About
-            </a>
-            <a
-              href="#"
-              className="pl-5 text-start transition-colors duration-300 font-bold custom-underline hover:text-custom1"
-            >
-              Features
-            </a>
-            <a
-              href="#"
-              className="pl-5 text-start transition-colors duration-300 font-bold custom-underline hover:text-custom1"
-            >
-              Contact
-            </a>
-          </div>
-        </div>
-      </div>
-
-
-          </div>
      
   );
 }

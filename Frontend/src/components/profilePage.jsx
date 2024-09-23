@@ -38,20 +38,20 @@ const ProfilePage = () => {
   I am always eager to take on new challenges and continuously improve my knowledge and abilities in web development. My goal is to contribute to innovative projects and collaborate with like-minded professionals in the tech industry.`;
   const shortText = bioText.split(" ").slice(0, 30).join(" ") + "....";
   return (
-    <div className="relative top-20 flex bg-custombg">
+    <div className="relative top-20 flex bg-custombg ml-52">
       <div className="p-6 bg-custombg w-9/12">
         <div className="bg-white shadow-lg rounded-lg overflow-hidden">
           <div className="relative">
             <img
-              className="w-full h-52 object-cover object-center"
-              // src={user.profilepic}
+              className="w-full h-52 object-cover object-center "
+              //  src={user.profilepic}
               src="../public/background.jpg"
               alt="Background"
             />
 
             <div className="absolute top-16 left-12">
               <img
-                className="w-52 h-52 rounded-full object-cover"
+                className="w-52 h-52 rounded-full object-cover border-8 border-white"
                 src={user.profilepic}
                 alt="User"
               />
