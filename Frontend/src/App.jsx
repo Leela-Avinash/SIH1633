@@ -88,6 +88,7 @@ const App = () => {
                     <Route path="/profile/:username" element={<Profile/> } />
                     <Route path="/profilecompletion" element={<ProfileCompletionForm/>}/>
                     <Route path="/network" element={<Network/>}/>
+                    {/* <Route path="/login" element={<Login/>}/> */}
                 </Routes>
             </Router>
         </div>

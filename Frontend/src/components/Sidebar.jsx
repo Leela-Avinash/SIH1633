@@ -2,7 +2,7 @@ import React from 'react';
 
 const Sidebar = () => {
   return (
-    <aside className="relative top-16 w-80 bg-white p-4">
+    <aside className="relative top-16 w-80 bg-white p-5">
       <ul className="space-y-4 mt-5">
      
       <li className="pl-5 cursor-pointer hover:rounded-full hover:bg-gray-50 hover:text-custom1 p-2 rounded flex items-center space-x-2 hover:shadow-md group">

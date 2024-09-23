@@ -40,11 +40,12 @@ const ProfilePage = () => {
   return (
     <div className="relative top-20 flex bg-custombg">
       <div className="p-6 bg-custombg w-9/12">
-        <div className="bg-white shadow-lg rounded-lg overflow-hidden ">
+        <div className="bg-white shadow-lg rounded-lg overflow-hidden">
           <div className="relative">
             <img
               className="w-full h-52 object-cover object-center"
-              src={user.profilepic}
+              // src={user.profilepic}
+              src="../public/background.jpg"
               alt="Background"
             />
 
@@ -143,42 +144,37 @@ const ProfilePage = () => {
           </div>
 
           <div className="border-t border-gray-300 ">
-            <div className="font-semibold text-xl flex justify-around  pl-10 p-3   ">
+            <div className="font-semibold text-xl flex justify-around   p-2  ">
               <div
-                className={`transition-colors p-2  ${
+                onClick={() => setOpenSection("posts")}
+                className={`transition-colors p-2 cursor-pointer ${
                   openSection === "posts"
-                    ? "text-black w-2/6 text-center bg-white "
-                    : "text-black bg-gray-200 border border-white w-2/6 text-center "
+                    ? "text-black w-2/6 text-center bg-white"
+                    : "text-black bg-gray-200 border border-white w-2/6 text-center"
                 }`}
               >
-                <button type="button" onClick={() => setOpenSection("posts")}>
-                  Posts
-                </button>
-              </div>
-
+                Posts
+              </div>   
               <div
-                className={`transition-colors p-2  ${
+                onClick={() => setOpenSection("mentor")} 
+                className={`transition-colors p-2 cursor-pointer ${
                   openSection === "mentor"
-                    ? "text-black w-2/6 text-center bg-white "
-                    : "text-black bg-gray-200 border border-white w-2/6 text-center "
+                    ? "text-black w-2/6 text-center bg-white"
+                    : "text-black bg-gray-200 border border-white w-2/6 text-center"
                 }`}
               >
-                <button type="button" onClick={() => setOpenSection("mentor")}>
-                  Mentorship
-                </button>
-              </div>
-
+                Mentorship
+              </div> 
               <div
-                className={`transition-colors p-2  ${
+                onClick={() => setOpenSection("guide")}
+                className={`transition-colors p-2 cursor-pointer ${
                   openSection === "guide"
-                    ? "text-black w-2/6 text-center bg-white "
-                    : "text-black bg-gray-200 w-2/6 border border-white text-center "
+                    ? "text-black w-2/6 text-center bg-white"
+                    : "text-black bg-gray-200 border border-white w-2/6 text-center"
                 }`}
               >
-                <button type="button" onClick={() => setOpenSection("guide")}>
-                  Carrer Guidance
-                </button>
-              </div>
+                Carrier Guidance
+              </div>    
             </div>
 
             <div className="h-fit mb-5 ">

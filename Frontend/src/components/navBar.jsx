@@ -5,7 +5,7 @@ const Navbar = ({ onNavClick }) => {
   return (
     <nav className="fixed top-0 z-50 w-full flex items-center bg-white text-black p-4">
       <div className="text-xl font-bold text-custom1 pl-4">
-        AluminiConnect
+        AlumniConnect
       </div>
       <div className="ml-10 w-7/12">
       <div className="flex space-x-10 justify-center"> 
