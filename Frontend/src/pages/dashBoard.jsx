@@ -17,7 +17,7 @@ const Dashboard = () => {
       <Navbar onNavClick={handleNavClick} />
       <div className="flex">
         <Sidebar />
-        <div className=''>
+        <div className='mt-20 ml-52'>
           {/* <MainContent activePage={activePage} /> */}
           {activePage === 'home' && <MainContent />}
           {activePage === 'profile' && <Profile />}

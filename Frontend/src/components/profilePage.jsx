@@ -35,7 +35,7 @@ const ProfilePage = () => {
   const bioText = user.bio;
   const shortText = bioText.split(" ").slice(0, 30).join(" ") + "....";
   return (
-    <div className="relative  bg-slate-600 top-20 flex ml-52 w-fit">
+    <div className=" bg-slate-600 top-20 flex w-fit">
       <div className="p-6 bg-custombg w-9/12">
         <div className="bg-white shadow-lg rounded-lg overflow-hidden">
           <div className="relative">
@@ -56,15 +56,21 @@ const ProfilePage = () => {
           </div>
 
           <div className="flex items-center flex-col space-y-3 p-3">
-            <div className=" ml-auto space-y-2 ">
-              <div className="font-semibold text-lg mr-36">Rating : </div>
-              <div className="flex font-semibold text-lg mr-3">
+          <div className=" ml-auto space-y-2 ">
+              <div className="flex font-semibold text-md mr-10 "> 
+                <svg xmlns="http://www.w3.org/2000/svg"  width="22"
+                  height="22" viewBox="0 0 576 512" 
+                   className="fill-current text-gray-700 hover:text-gray-950 mr-1 mt-1 text-black transform rotate-15"
+                  >
+                <path d="M288 376.4l.1-.1 26.4 14.1 85.2 45.5-16.5-97.6-4.8-28.7 20.7-20.5 70.1-69.3-96.1-14.2-29.3-4.3-12.9-26.6L288.1 86.9l-.1 .3 0 289.2zm175.1 98.3c2 12-3 24.2-12.9 31.3s-23 8-33.8 2.3L288.1 439.8 159.8 508.3C149 514 135.9 513.1 126 506s-14.9-19.3-12.9-31.3L137.8 329 33.6 225.9c-8.6-8.5-11.7-21.2-7.9-32.7s13.7-19.9 25.7-21.7L195 150.3 259.4 18c5.4-11 16.5-18 28.8-18s23.4 7 28.8 18l64.3 132.3 143.6 21.2c12 1.8 22 10.2 25.7 21.7s.7 24.2-7.9 32.7L438.5 329l24.6 145.7z"/>
+              </svg>Rating : (4.5) </div>
+              <div className="flex font-semibold text-md mr-3 ">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
+                  width="22"
+                  height="22"
                   viewBox="0 0 24 24"
-                  className="fill-current text-yellow-500 mr-2 mt-1 text-black transform rotate-15"
+                  className="fill-current text-yellow-700  hover:text-yellow-900 mr-1 mt-1 text-black transform rotate-15"
                 >
                   <path d="M12 5C7.031 5 2 6.546 2 9.5S7.031 14 12 14c4.97 0 10-1.546 10-4.5S16.97 5 12 5zm-5 9.938v3c1.237.299 2.605.482 4 .541v-3a21.166 21.166 0 0 1-4-.541zm6 .54v3a20.994 20.994 0 0 0 4-.541v-3a20.994 20.994 0 0 1-4 .541zm6-1.181v3c1.801-.755 3-1.857 3-3.297v-3c0 1.44-1.199 2.542-3 3.297zm-14 3v-3C3.2 13.542 2 12.439 2 11v3c0 1.439 1.2 2.542 3 3.297z"></path>
                 </svg>
