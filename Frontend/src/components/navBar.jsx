@@ -15,7 +15,7 @@ const Navbar = ({ onNavClick }) => {
       <div className="flex space-x-10 justify-center"> 
         
       <div>
-          <button onClick={() => onNavClick('network')} className="hover: flex items-center">
+          <button onClick={() => onNavClick('home')} className="hover: flex items-center">
               {/* Replace with the provided SVG */}
               <div className='flex flex-col items-center  hover:text-custom1 fill-current'>
             <div>
@@ -30,7 +30,7 @@ const Navbar = ({ onNavClick }) => {
         <div className=''>Home</div>
         </div>
         </button>
-        
+
     </div>
 
 
