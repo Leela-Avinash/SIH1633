@@ -9,15 +9,15 @@ function LandingPage(){
     setChatVisible(!isChatVisible);
   };
   return(
-    <div>
+    <div className="">
       <Navbar/>
-      <div className="bg-white flex justify-center items-center lg:mt-10"> {/* Ensure full height to center vertically */}
+      <div className="flex justify-center items-center h-[calc(100vh-5.5rem)]"> {/* Ensure full height to center vertically */}
             <div className="grid-cols-1 lg:grid-cols-2 pl-10 pr-10 rounded-lg flex items-start">
             <div className="flex justify-center items-center p-5 ">
                     <img className="w-4/5" src="../public/bodylogo3.png" alt="Logo" />
                 </div>
 
-                <div className=" p-5 pl-5 lg:pl-10 pt-5 lg:pt-14">
+                <div className=" p-5 pl-5 mt-20 nlg:pl-10 pt-5 lg:pt-14 ">
                     <h1 className="text-black text-4xl md:text-5xl lg:text-4xl font-bold">Empower Your Alumni Network</h1>
                     <h1 className="text-black mt-2 text-2xl md:text-3xl lg:text-2xl font-bold">Foster Connections, Drive Engagement</h1>
                     <p className="text-black mt-3 font-semibold text-md md:text-xl lg:text-md">A dynamic platform that enables alumni and students to stay connected. Foster meaningful interactions, professional development, and mentorships.</p>
