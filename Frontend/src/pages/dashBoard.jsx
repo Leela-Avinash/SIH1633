@@ -14,18 +14,26 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-row">
       <Navbar onNavClick={handleNavClick} />
-      <div className="flex">
+      <div className="flex w-full">
         <Sidebar />
-        <div className=''>
-          {/* <MainContent activePage={activePage} /> */}
-          {activePage === 'home' && <MainContent />}
-          {activePage === 'profile' && <Profile />}
-          {activePage === 'network' && <Network />}
-         
+          <div className='mt-20 ml-52 w-3/4'>
+            {/* <MainContent activePage={activePage} /> */}
+            {activePage === 'home' && <MainContent />}
+            {activePage === 'profile' && <Profile />}
+            {activePage === 'network' && <Network />}
+          
+          </div>
+
+          <div className="">
+          <div className= "w-96  mt-6 mr-5 rounded-lg shadow-md"></div>
         </div>
+        
       </div>
+      
+      
+      
     </div>
   );
 };
