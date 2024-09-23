@@ -130,6 +130,9 @@ const AlumniSchema = mongoose.Schema({
     social: {
         type: SocialSchema,
     },
+    bio:{
+        type:String,
+    },
 
 }, {
     timeStamps: true,
