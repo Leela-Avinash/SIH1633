@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 
@@ -29,7 +29,24 @@ const ProfilePage = () => {
   const [openSection, setOpenSection] = useState("posts");
   const [guideVar, setguideVar] = useState(false);
   const [showAll, setShowAll] = useState(false);
+  const [userPosts,setPosts]=useState([]);
   const maxVisibleExperiences = 1; 
+  useEffect(() => {
+    const fetchUserPosts = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/api/users/userposts", {
+          method: "GET",
+          credentials: "include",
+        });
+        const json = await response.json();
+        console.log(json);
+        setPosts(json.posts);
+      } catch (error) {
+        console.error("Error fetching user posts:", error);
+      }
+    };
+    fetchUserPosts();
+  }, []);
 
   const toggleShowAll = () => {
     setShowAll(!showAll);
@@ -190,14 +207,27 @@ const ProfilePage = () => {
                     : "text-black bg-gray-200 border border-white w-2/6 text-center"
                   }`}
               >
-                Carrier Guidance
+                Career Guidance
               </div>
             </div>
 
             <div className="h-fit mb-5 ">
-              <div className={openSection === "posts" ? "block" : "hidden"}>
+              <div className={openSection === "posts" ? "block flex flex-col gap-6" : "hidden"}>
                 <div className="pl-10 flex space-x-4 ">
-                  <img
+                  {userPosts.map((post) => (
+                    <div key={post._id} className="w-56 h-56 rounded-lg shadow-lg">
+                      <img
+                        src={post.media[0]}
+                        alt="Post"
+                        className="w-56 h-56 rounded-lg shadow-lg"
+                      />
+                    </div>
+                  ))}
+                  </div>
+                  <div className="flex justify-center items-center">
+                    <h1 className="text-md font-semibold text-blue-500">Show all {openSection}</h1>
+                  </div>
+                  {/* <img
                     src="sample1.jpg"
                     alt="Post 1"
                     className="w-24 h-24 rounded-lg shadow-lg"
@@ -211,8 +241,7 @@ const ProfilePage = () => {
                     src="sample3.jpg"
                     alt="Post 3"
                     className="w-24 h-24 rounded-lg shadow-lg"
-                  />
-                </div>
+                  /> */}
               </div>
 
               <div className={openSection === "mentor" ? "block" : "hidden"}>
