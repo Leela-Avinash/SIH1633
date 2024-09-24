@@ -75,8 +75,8 @@ const ProfilePage = () => {
           <div className="relative">
             <img
               className="w-full h-52 object-cover object-center "
-              //  src={user.profilepic}
-              src="../public/background.jpg"
+               src={user.profilepic}
+             // src="../public/background.jpg"
               alt="Background"
             />
 
@@ -219,7 +219,7 @@ const ProfilePage = () => {
                       <img
                         src={post.media[0]}
                         alt="Post"
-                        className="w-56 h-56 rounded-lg shadow-lg"
+                        className="w-56 h-56 rounded-lg shadow-lg object-cover"
                       />
                     </div>
                   ))}
