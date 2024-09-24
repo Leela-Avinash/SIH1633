@@ -270,6 +270,88 @@ const recommendationSystem = async (req, res) => {
     }
 };
 
+const recommendPosts = async (req, res) => {
+    try {
+        const currentUserName = req.user.username; // Current user for whom we want post recommendations
+        const currentUser = await Alumni.findOne({ username: currentUserName });
+
+        if (!currentUser) {
+            console.log('Current user not found');
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Fetch all posts and populate author details
+        const allPosts = await Post.find().populate('authorId', 'fname profilepic skills'); // Assuming Post is your post model
+
+        // Weights for the attributes
+        const weights = {
+            tags: 4,
+            authorSkills: 3
+        };
+
+        // Function to build a vector for a post based on user attributes
+        function buildPostVector(post) {
+            const vector = [];
+
+            // Check if post tags match user skills/interests
+            const hasTagMatch = post.tags.some(tag => currentUser.skills.includes(tag) || currentUser.interests.includes(tag));
+            vector.push(hasTagMatch ? weights.tags : 0);
+
+            // Check if the author's skills match the user's skills
+            const authorSkillsMatch = post.authorId.skills.filter(skill => currentUser.skills.includes(skill)).length;
+            vector.push(authorSkillsMatch * weights.authorSkills);
+
+            return vector;
+        }
+
+        // Get vectors for all posts
+        const postVectors = allPosts.map(post => ({
+            post,
+            vector: buildPostVector(post)
+        }));
+
+        // Calculate similarity scores
+        const recommendations = postVectors.map(({ post, vector }) => {
+            const similarityScore = vector.reduce((acc, val) => acc + val, 0); // Sum of vector components as a simple score
+            return { post, score: similarityScore };
+        });
+
+        // Sort posts by similarity score (highest first)
+        recommendations.sort((a, b) => b.score - a.score);
+
+        // Take the top 10 recommendations
+        const topRecommendations = recommendations.slice(0, 10);
+
+        // Log the recommended posts
+        topRecommendations.forEach(rec => {
+            console.log(`Recommended Post: ${rec.post.content}, Author: ${rec.post.authorId.username}, Similarity Score: ${rec.score}`);
+        });
+
+        // Respond with recommended posts
+        res.status(200).json({
+            topRecommendations: topRecommendations.map(rec => ({
+                _id: rec.post._id,
+                content: rec.post.content,
+                media: rec.post.media,
+                author: {
+                    name: rec.post.authorId.fname,
+                    profilepic: rec.post.authorId.profilepic
+                },
+                tags: rec.post.tags,
+                createdAt: rec.post.createdAt,
+                likes: rec.post.likes.length,
+                comments: rec.post.comments.length
+            }))
+        });
+
+    } catch (error) {
+        console.error('Error during post recommendation process', error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+};
+
+
+
 const logoutUser = (req, res) => {
     try {
         res.cookie("jwt", "", { maxAge: 1 });
@@ -495,5 +577,6 @@ export {
     checkAuth,
     verifyUser,
     recommendationSystem,
-    createPost
+    createPost,
+    recommendPosts
 };

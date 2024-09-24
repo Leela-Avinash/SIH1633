@@ -9,7 +9,8 @@ import {
     updateUser,
     verifyUser,
     recommendationSystem,
-    createPost
+    createPost,
+    recommendPosts
 } from "../controllers/userController.js";
 import protectRoute from "../middleware/protectRoute.js";
 import docAI from "../controllers/docAI.js";
@@ -31,4 +32,5 @@ router.get("/check-auth", protectRoute, checkAuth);
 router.get("/recommendations", protectRoute, recommendationSystem);
 router.post("/upload",protectRoute,docAI);
 router.post("/post",protectRoute,upload.single('media'),createPost);
+router.get("/posts",protectRoute,recommendPosts);
 export default router;
