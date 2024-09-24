@@ -58,8 +58,8 @@ const ProfilePage = () => {
           <div className="relative">
             <img
               className="w-full h-52 object-cover object-center "
-              //  src={user.profilepic}
-              src="../public/background.jpg"
+               src={user.profilepic}
+             // src="../public/background.jpg"
               alt="Background"
             />
 
