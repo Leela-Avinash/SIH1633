@@ -350,6 +350,17 @@ const recommendPosts = async (req, res) => {
     }
 };
 
+const userPosts=async(req,res)=>{
+    try{
+        const userId=req.user._id;
+        const posts=await Post.find({authorId:userId});
+        res.status(200).json({posts:posts});
+    }catch(err){
+        res.status(500).json({message:err.message});
+        console.log("Error in user posts: ",err.message);
+    }
+} 
+
 
 
 const logoutUser = (req, res) => {
@@ -578,5 +589,6 @@ export {
     verifyUser,
     recommendationSystem,
     createPost,
-    recommendPosts
+    recommendPosts,
+    userPosts
 };
