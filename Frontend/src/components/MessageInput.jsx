@@ -54,7 +54,7 @@ const MessageInput = ({ setMessages }) => {
         <button className="text-gray-500 hover:text-gray-600">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
+            className="h-6 w-6 ml-2"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -67,12 +67,12 @@ const MessageInput = ({ setMessages }) => {
             />
           </svg>
         </button>
-        <form action="" className="flex items-center space-x-2" onSubmit={handleSendMessage}>
+        <form className="flex w-full space-x-2 pr-5" onSubmit={handleSendMessage}>
           <input
             type="text"
             value={messageText}
             onChange={(e) => setMessagetext(e.target.value || "")} 
-            className="flex-1 p-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-300"
+            className="flex-1 p-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-300 w-[80%]"
             placeholder="Sent a Message"
           />
           <button className="text-gray-500 hover:text-gray-600">
