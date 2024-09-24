@@ -219,7 +219,7 @@ const ProfilePage = () => {
                       <img
                         src={post.media[0]}
                         alt="Post"
-                        className="w-56 h-56 rounded-lg shadow-lg"
+                        className="w-56 h-56 rounded-lg shadow-lg object-cover"
                       />
                     </div>
                   ))}
