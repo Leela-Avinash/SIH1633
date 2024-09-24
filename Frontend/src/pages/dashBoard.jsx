@@ -26,8 +26,8 @@ const Dashboard = () => {
           
           </div>
 
-          <div className="">
-          <div className= "w-96  mt-6 mr-5 rounded-lg shadow-md"></div>
+          <div className="w-96  mt-20 mr-5 shadow-md ">
+            <h1 className="mt-5 ml-5">LeaderBoard</h1> 
         </div>
         
       </div>

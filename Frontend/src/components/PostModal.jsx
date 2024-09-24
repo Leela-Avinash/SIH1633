@@ -59,16 +59,15 @@ const PostModal = ({ onClose }) => {
       <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-lg">
         <h2 className="text-2xl font-bold mb-4">Create a Post</h2>
         <form onSubmit={handleSubmit}>
-          <textarea
-            id='content'
-            name='content'
-            className="w-full p-4 border border-gray-300 rounded-lg mb-4"
-            rows="4"
-            placeholder="What's on your mind?"
-            value={post.content}
-            onChange={handleContentChange}
-          ></textarea>
-          
+        <textarea
+    id="content"
+    name="content"
+    className="w-full p-4 border border-gray-300 rounded-lg mb-4 resize-none" // Allow vertical resizing only
+    rows="4"
+    placeholder="What's on your mind?"
+    value={post.content}
+    onChange={handleContentChange}
+/>
           <div className="mb-4">
             <label className="block text-gray-700 mb-2">Add Media</label>
             <input
