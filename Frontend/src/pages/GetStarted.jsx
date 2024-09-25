@@ -15,7 +15,7 @@ const GetStarted = () => {
     {/* Adjusting height for the navbar space */}
     <div className="flex flex-col bg-white rounded-lg shadow-lg p-6 w-full lg:w-1/3 h-fit">
       <div className="flex justify-center">
-        <img src="../public/alumni.jpg" className="h-48 w-full object-cover rounded-lg" alt="Alumni" />
+        <img src="../alumni.jpg" className="h-48 w-full object-cover rounded-lg" alt="Alumni" />
       </div>
       <div className="flex justify-center items-center flex-col mt-4"> 
         <p className="font-bold text-3xl text-center">Click here to register as</p>
@@ -33,7 +33,7 @@ const GetStarted = () => {
 
     <div className="flex flex-col bg-white rounded-lg shadow-lg p-6 w-full lg:w-1/3 h-fit">
       <div className="flex justify-center">
-        <img src="../public/studentlogo.jpg" className="h-48 w-full object-cover rounded-lg" alt="Student" />
+        <img src="../studentlogo.jpg" className="h-48 w-full object-cover rounded-lg" alt="Student" />
       </div>
       <div className="flex justify-center items-center flex-col mt-4"> 
         <p className="font-bold text-3xl text-center">Click here to register as</p>

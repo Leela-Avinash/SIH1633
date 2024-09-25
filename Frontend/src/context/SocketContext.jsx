@@ -2,7 +2,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { io } from "socket.io-client";
-import { setConversations } from "../redux/slices/conversationSlice";
 const SocketContext = createContext(null);
 
 export const useSocket = () => {

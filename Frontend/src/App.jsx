@@ -81,7 +81,7 @@ const App = () => {
             <Router>
                 <Routes>
                     <Route path="/" element= {<LandingPage />} />
-                    <Route path="/getstarted" element={isAuthenticated? (isDocVerified? <Navigate to="/dashboard" /> : <Navigate to="/docai"/>): <GetStarted />} />
+                    <Route path="/getstarted" element={<GetStarted />} />
                     <Route path="/:role/signup" element={isAuthenticated? (isDocVerified? <Navigate to="/dashboard" /> : <Navigate to="/docai"/>) : <Registration />} />
                     <Route path="/users/:role/:id/verify/:token" element={<EmailVerify />} />
                     <Route path="/docai" element={isAuthenticated ? (isDocVerified? <Navigate to="/dashboard" />: <DocUpload/>):<Navigate to="/login"/>}/>

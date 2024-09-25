@@ -6,7 +6,7 @@ const Navbar = ({ onNavClick }) => {
     <nav className="fixed top-0 z-50 w-full flex items-center bg-white text-black p-4">
       <div className="text-xl font-bold text-custom1 pl-4 flex text-center w-60">
         <div>
-      <img src="../public/logo1.svg" className="h-14 w-14" alt="logo" /></div>
+      <img src="../logo1.svg" className="h-14 w-14" alt="logo" /></div>
       <div className=' w-48 pr-5 pt-3 text-black'>
         Alumni<span className='text-custom1'>Connect</span></div>
       </div>

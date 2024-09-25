@@ -11,10 +11,11 @@ function Navbar() {
   return (
     <>
       {/* Navbar */}
+      <div className="bg-white shadow-md text-black container mx-auto flex items-center p-2 transform transition-all duration-300">
       <div className=" text-black container mx-auto flex items-center p-2 transform transition-all duration-300">
         {/* Logo Section */}
-        <button  onClick={() => navigate("/h")} className="flex items-center pl-0 md:pl-20 sm:mx-0 mx-auto sm:ml-0 backdrop-blur-lg bg-white/30 p-1 rounded-lg">
-          <img src="../public/logo1.svg" className="h-16 w-16" alt="logo" />
+        <div className="flex items-center pl-0 md:pl-20 sm:mx-0 mx-auto sm:ml-0 backdrop-blur-lg bg-white/30 p-1 rounded-lg">
+          <img src="../logo1.svg" className="h-16 w-16" alt="logo" />
           <h1 className="text-3xl font-extrabold font-sans drop-shadow-lg">
             Alumni
             <span className="text-yellow-400 text-3xl font-serif">Connect</span>
@@ -28,6 +29,7 @@ function Navbar() {
             className="transition duration-300 flex items-center hover:scale-110 transform"
           >
            
+           
             <span className="font-bold text-lg">Home</span>
           </a>
           <button
@@ -36,6 +38,7 @@ function Navbar() {
             className="transition duration-300 flex items-center hover:scale-110 transform"
           >
             
+            
             <span className="font-bold text-lg">About</span>
           </button>
           <a
@@ -43,12 +46,14 @@ function Navbar() {
             className="transition duration-300 flex items-center hover:scale-110 transform"
           >
             
+            
             <span className="font-bold text-lg">Features</span>
           </a>
           <a
             href="#"
             className="transition duration-300 flex items-center hover:scale-110 transform"
           >
+           
             
             <span className="font-bold text-lg">Contact</span>
           </a>
@@ -89,28 +94,28 @@ function Navbar() {
               href="#"
               className="pl-5 w-full text-start flex items-center space-x-2 text-gray-700 transition duration-300 hover:text-yellow-500 hover:scale-110 transform"
             >
-              <i className="fas fa-home w-5 h-5"></i>
+              
               <span className="font-bold text-lg">Home</span>
             </a>
             <a
               href="#"
               className="pl-5 w-full text-start flex items-center space-x-2 text-gray-700 transition duration-300 hover:text-yellow-500 hover:scale-110 transform"
             >
-              <i className="fas fa-info-circle w-5 h-5"></i>
+             
               <span className="font-bold text-lg">About</span>
             </a>
             <a
               href="#"
               className="pl-5 text-start flex items-center space-x-2 text-gray-700 transition duration-300 hover:text-yellow-500 hover:scale-110 transform"
             >
-              <i className="fas fa-bolt w-5 h-5"></i>
+             
               <span className="font-bold text-lg">Features</span>
             </a>
             <a
               href="#"
               className="pl-5 text-start flex items-center space-x-2 text-gray-700 transition duration-300 hover:text-yellow-500 hover:scale-110 transform"
             >
-              <i className="fas fa-phone w-5 h-5"></i>
+              
               <span className="font-bold text-lg">Contact</span>
             </a>
             {/* Mobile Sign In/Register */}

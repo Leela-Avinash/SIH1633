@@ -73,19 +73,11 @@ const getConversations = async (req, res) => {
         const userId = req.user._id;
         const conversations = await Conversation.find({ participants: userId }).sort({ updatedAt: 1 });
 
-        // conversations.forEach((conversation) => {
-        //     conversation.participants = conversation.participants.filter(
-        //         (participant) =>
-        //             participant._id.toString() !== userId.toString()
-        //     );
-        // });
-
-        // res.status(200).send(conversations);
-
         const participantIds = new Set();
         conversations.forEach((conversation) => {
             conversation.participants.forEach((participantId) => participantIds.add(participantId.toString()));
         });
+
         const alumniParticipants = await Alumni.find({ _id: { $in: Array.from(participantIds) } }, "username profilepic");
         const studentParticipants = await Student.find({ _id: { $in: Array.from(participantIds) } }, "username profilepic");
 
@@ -94,34 +86,37 @@ const getConversations = async (req, res) => {
                 _id: alumni._id,
                 username: alumni.username,
                 profilepic: alumni.profilepic,
-                role: 'alumni' // Optional: Add participant type for clarity
+                role: 'alumni'
             })),
             ...studentParticipants.map((student) => ({
                 _id: student._id,
                 username: student.username,
                 profilepic: student.profilepic,
-                role: 'student' // Optional: Add participant type for clarity
+                role: 'student'
             }))
         ];
 
         const populatedConversations = conversations.map((conversation) => {
             const populatedParticipants = conversation.participants.map((participantId) =>
-                allParticipants.find((participant) => participant._id.toString() === participantId.toString())
+                allParticipants.find((participant) => participant && participant._id.toString() === participantId.toString())
             );
             return {
                 ...conversation.toObject(), // Convert Mongoose document to plain object
-                participants: populatedParticipants // Replace participant IDs with details
+                participants: populatedParticipants.filter(p => p) // Filter out undefined participants
             };
         });
+
         populatedConversations.forEach((conversation) => {
             conversation.participants = conversation.participants.filter(
                 (participant) =>
-                    participant._id.toString() !== userId.toString()
+                    participant && participant._id.toString() !== userId.toString() // Ensure participant is defined
             );
         });
-        res.status(200).json(populatedConversations)
+
+        res.status(200).json(populatedConversations);
     } catch (error) {
         res.status(500).json({ message: error.message });
+        console.log(error);
     }
 };
 

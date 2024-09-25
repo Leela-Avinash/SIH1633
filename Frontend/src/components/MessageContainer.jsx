@@ -71,7 +71,7 @@ const MessageContainer = () => {
         <div className="flex items-center">
           <img
             className="w-10 h-10 rounded-full mr-3"
-            src={selectedConversation.userProfilePic || "../../IMG/profile.JPG"}
+            src={selectedConversation.userProfilePic || "../../userlogo.jpeg"}
             alt={selectedConversation.username}
           />
           <div>
