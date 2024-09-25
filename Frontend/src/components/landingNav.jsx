@@ -17,7 +17,7 @@ function Navbar() {
           <img src="../logo1.svg" className="h-16 w-16" alt="logo" />
           <h1 className="text-3xl font-extrabold font-sans drop-shadow-lg">
             Alumni
-            <span className="text-yellow-400 text-3xl font-serif">Connect</span>
+            <span className="text-yellow-400 text-3xl font-medium">Connect</span>
           </h1>
         </div>
 

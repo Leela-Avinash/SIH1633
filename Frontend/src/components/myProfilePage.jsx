@@ -8,7 +8,7 @@ const MyProfilePage = ({formatDate}) => {
     return (
         <div className="p-6">
             {/* Profile Card */}
-            <div className="bg-white shadow-lg rounded-lg overflow-hidden w-full ">
+            <div className="bg-white shadow-lg rounded-lg overflow-hidden ">
                 {/* Profile Photo and Info */}
                 <div className="flex items-center p-6">
                     <img
