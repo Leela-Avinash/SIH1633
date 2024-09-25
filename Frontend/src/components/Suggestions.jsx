@@ -7,7 +7,7 @@ const Suggestions = () => {
         },
         {
             name: "Badam Jyothi",
-            college: "Alumni at RITV-Rajasthan",
+            college: "Alumni at VIT-AP",
             profilePic: "../boy.jpg",
         },
         {
@@ -22,42 +22,50 @@ const Suggestions = () => {
         },
         {
             name: "P SivaRam",
-            college: "Alumni at Andhra University",
+            college: "Alumni at JNTU Kakinada",
             profilePic: "../boy.jpg",
         },
     ];
 
     return (
-        <div className="bg-gray-100 rounded-lg p-4 mt-5 ml-8">
-            <h1 className="text-xl text-center te-tgray-570 m font-semibold b-4 pb-5">Suggestions</h1>
-            <div className="grid grid-cols-1 gap-4">
-                {suggestions.map((suggestion, index) => (
-                    <div 
-                        key={index} 
-                        className="flex items-center justify-between  p-4 rounded-lg shadow-md bg-gray-50"
-                    >
-                        {/* Profile picture */}
-                        <img 
-                            src={suggestion.profilePic} 
-                            alt={suggestion.name} 
-                            className="h-12 w-12 rounded-full object-cover mr-4"
-                        />
+        <div className=" rounded-lg p-4 ml-7 ">
+            <h1 className="text-2xl text-center text-gray-700 m font-bold b-4 pb-5">Suggestions</h1>
+            <div className="border-2 rounded-md">
+                <div className="grid grid-cols-1">
+                    {suggestions.map((suggestion, index) => (
+                        <div>
+                        <div
+                            key={index}
+                            className="h-20 flex items-center justify-between  p-4 "
+                        >
+                            {/* Profile picture */}
+                            <img
+                                src={suggestion.profilePic}
+                                alt={suggestion.name}
+                                className="h-12 w-12 rounded-full object-cover mr-4"
+                            />
 
-                        {/* Name and College */}
-                        <div className="flex-grow">
-                            <h1 className="text-lg font-semibold">{suggestion.name}</h1>
-                            <p className="text-sm text-gray-500">{suggestion.college}</p>
+                            {/* Name and College */}
+                            <div className="flex-grow">
+                                <h1 className="text-lg font-semibold">{suggestion.name}</h1>
+                                <p className="text-xs text-gray-500">{suggestion.college}</p>
+                            </div>
+
+                            {/* Buttons */}
+                            <div className="flex items-center space-x-2 ml-4">
+                                <button className="bg-blue-500 text-white px-2 py-1 rounded-md hover:bg-blue-600">
+                                    Connect
+                                </button>
+
+                            </div>
+                            
+                        </div>
+                        <hr className=" w-full border-t border-gray-300" />
                         </div>
 
-                        {/* Buttons */}
-                        <div className="flex items-center space-x-2 ml-4">
-                            <button className="bg-blue-500 text-white px-2 py-2 rounded-lg hover:bg-blue-600">
-                                Connect
-                            </button>
-
-                        </div>
-                    </div>
-                ))}
+                    ))}
+                    
+                </div>
             </div>
         </div>
     );

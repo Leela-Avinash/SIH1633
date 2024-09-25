@@ -69,6 +69,7 @@ const Dashboard = () => {
        <h1 className="text-xl pl-5 my-1 mt-10 ml-2 text-gray-700 font-semibold">Upcoming Events</h1>
           <UpcomingEvents />
         </div>
+        <div class="my-10 h-100 w-[1px] bg-gray-300"></div>
         <div className="w-1/2 ">
           <h1 className="text-xl my-1 mt-10 ml-2 pl-5 text-gray-700 font-semibold">Upcoming Mentorship Programs</h1>
           <MentorshipProgram/>
