@@ -17,7 +17,18 @@ export default {
         tertiary:'#C9EFF9',
         fourty:'#FED8A7',
         custombg:'#ededeb',
-        
+      },
+      fontSize:{
+        'tiny':'0.70rem',
+      },
+      width:{
+        '74':'18.5rem',
+      },
+      height:{
+        '22':'5.5rem',  
+      },
+      fontFamily:{
+        'mono':['Lato'],
       },
     },
   },

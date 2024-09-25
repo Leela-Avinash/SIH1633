@@ -9,7 +9,8 @@ import EmailVerify from "./pages/emailverify.jsx";
 import DocUpload from "./pages/docUpload.jsx";
 import Login from "./pages/Login.jsx";
 import Registration from "./pages/Registration.jsx";
-import Dashboard from "./pages/dashBoard.jsx";
+// import Dashboard from "./pages/dashBoard.jsx";
+import MainPage from "./pages/MainPage.jsx";
 import ProfilePage from "./components/profilePage.jsx";
 import ProfileCompletionForm from "./pages/ProfileCompletionForm.jsx";
 import Profile from "./pages/Profile.jsx";
@@ -85,7 +86,7 @@ const App = () => {
                     <Route path="/users/:role/:id/verify/:token" element={<EmailVerify />} />
                     <Route path="/docai" element={isAuthenticated ? (isDocVerified? <Navigate to="/dashboard" />: <DocUpload/>):<Navigate to="/login"/>}/>
                     <Route path="/login" element={isAuthenticated ? (isDocVerified? <Navigate to="/dashboard" /> : <Navigate to="/docai"/>) : <Login/>}/>
-                    <Route path="/dashboard" element={isAuthenticated ? (isDocVerified ? <Dashboard/> : <Navigate to="/docai" />) : <Navigate to="/login" />} />
+                    <Route path="/dashboard" element={isAuthenticated ? (isDocVerified ? <MainPage/> : <Navigate to="/docai" />) : <Navigate to="/login" />} />
                     <Route path="/profile/:username" element={<Profile/> } />
                     <Route path="/profilecompletion" element={<ProfileCompletionForm/>}/>
                     <Route path="/network" element={<Network/>}/>

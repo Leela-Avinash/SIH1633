@@ -282,24 +282,26 @@ const recommendPosts = async (req, res) => {
 
         // Fetch all posts and populate author details
         const allPosts = await Post.find().populate('authorId', 'fname profilepic skills'); // Assuming Post is your post model
-
         // Weights for the attributes
         const weights = {
             tags: 4,
             authorSkills: 3
         };
+       
 
         // Function to build a vector for a post based on user attributes
         function buildPostVector(post) {
             const vector = [];
+            // console.log(post);
 
             // Check if post tags match user skills/interests
             const hasTagMatch = post.tags.some(tag => currentUser.skills.includes(tag) || currentUser.interests.includes(tag));
             vector.push(hasTagMatch ? weights.tags : 0);
 
             // Check if the author's skills match the user's skills
-            const authorSkillsMatch = post.authorId.skills.filter(skill => currentUser.skills.includes(skill)).length;
-            vector.push(authorSkillsMatch * weights.authorSkills);
+            // if(!post.authorId.skills) console.log(post);
+            // const authorSkillsMatch = post.authorId.skills.filter(skill => currentUser.skills.includes(skill)).length;
+            // vector.push(authorSkillsMatch * weights.authorSkills);
 
             return vector;
         }
