@@ -11,7 +11,7 @@ function Navbar() {
   return (
     <>
       {/* Navbar */}
-      <div className="shadow-lg text-black container mx-auto flex items-center p-2 transform transition-all duration-300">
+      <div className="bg-white shadow-md text-black container mx-auto flex items-center p-2 transform transition-all duration-300">
         {/* Logo Section */}
         <div className="flex items-center pl-0 md:pl-20 sm:mx-0 mx-auto sm:ml-0 backdrop-blur-lg bg-white/30 p-1 rounded-lg">
           <img src="../public/logo1.svg" className="h-16 w-16" alt="logo" />
@@ -27,7 +27,7 @@ function Navbar() {
             href="#"
             className="transition duration-300 flex items-center hover:scale-110 transform"
           >
-            <i className="fas fa-home w-5 h-5 mt-1"></i>
+           
             <span className="font-bold text-lg">Home</span>
           </a>
           <button
@@ -35,21 +35,21 @@ function Navbar() {
             onClick={() => navigate("/Doc_AI")}
             className="transition duration-300 flex items-center hover:scale-110 transform"
           >
-            <i className="fas fa-info-circle w-5 h-5 mt-1"></i>
+            
             <span className="font-bold text-lg">About</span>
           </button>
           <a
             href="#"
             className="transition duration-300 flex items-center hover:scale-110 transform"
           >
-            <i className="fas fa-bolt w-5 h-5 mt-1"></i>
+            
             <span className="font-bold text-lg">Features</span>
           </a>
           <a
             href="#"
             className="transition duration-300 flex items-center hover:scale-110 transform"
           >
-            <i className="fas fa-phone w-5 h-5 mt-1"></i>
+           
             <span className="font-bold text-lg">Contact</span>
           </a>
           {/* Sign In/Register */}
@@ -89,28 +89,28 @@ function Navbar() {
               href="#"
               className="pl-5 w-full text-start flex items-center space-x-2 text-gray-700 transition duration-300 hover:text-yellow-500 hover:scale-110 transform"
             >
-              <i className="fas fa-home w-5 h-5"></i>
+              
               <span className="font-bold text-lg">Home</span>
             </a>
             <a
               href="#"
               className="pl-5 w-full text-start flex items-center space-x-2 text-gray-700 transition duration-300 hover:text-yellow-500 hover:scale-110 transform"
             >
-              <i className="fas fa-info-circle w-5 h-5"></i>
+             
               <span className="font-bold text-lg">About</span>
             </a>
             <a
               href="#"
               className="pl-5 text-start flex items-center space-x-2 text-gray-700 transition duration-300 hover:text-yellow-500 hover:scale-110 transform"
             >
-              <i className="fas fa-bolt w-5 h-5"></i>
+             
               <span className="font-bold text-lg">Features</span>
             </a>
             <a
               href="#"
               className="pl-5 text-start flex items-center space-x-2 text-gray-700 transition duration-300 hover:text-yellow-500 hover:scale-110 transform"
             >
-              <i className="fas fa-phone w-5 h-5"></i>
+              
               <span className="font-bold text-lg">Contact</span>
             </a>
             {/* Mobile Sign In/Register */}
