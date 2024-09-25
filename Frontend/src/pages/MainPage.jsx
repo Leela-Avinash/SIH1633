@@ -18,9 +18,9 @@ const MainPage = () => {
 
   return (
     <div className="flex flex-row">
-      <Navbar onNavClick={handleNavClick} />
+      <Navbar onNavClick={handleNavClick} activePage={activePage}/>
       <div className="flex w-full">
-        <Sidebar onNavClick={handleNavClick}/>
+        <Sidebar onNavClick={handleNavClick} activePage={activePage}/>
           <div className='mt-20 ml-52 w-3/4 h-svh'>
             {/* <MainContent activePage={activePage} /> */}
             {activePage === 'home' && <HomePage />}

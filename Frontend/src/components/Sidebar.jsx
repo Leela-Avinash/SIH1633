@@ -1,14 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const Sidebar = ({ onNavClick }) => {
+const Sidebar = ({ onNavClick, activePage }) => {
     const navigate = useNavigate();
     return (
         <aside className="fixed top-16  bg-white p-5 ">
             <ul className="space-y-4 mt-5">
-                <li className="pl-5 cursor-pointer hover:rounded-full hover:bg-gray-50 hover:text-custom1 p-2 rounded flex items-center space-x-2 hover:shadow-md group" onClick={() => onNavClick('dashboard')}>
+                <li className={`pl-5 cursor-pointer hover:rounded-full hover:bg-gray-50 hover:text-custom1 p-2 rounded flex items-center space-x-2 hover:shadow-md group ${activePage == "dashboard" ? "text-custom1" : "text-black"}`} onClick={() => onNavClick('dashboard')}>
                     <svg
-                        className="w-5 h-5  group-hover:text-custom1 fill-current"
+                        className="w-5 h-5 group-hover:text-custom1 fill-current"
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 512 512"
                     >
@@ -16,7 +16,7 @@ const Sidebar = ({ onNavClick }) => {
                     </svg>
                     <span>Dashboard</span>
                 </li>
-                <li className="pl-5 cursor-pointer hover:rounded-full hover:bg-gray-50 hover:text-custom1 p-2 rounded flex items-center space-x-2 hover:shadow-md group" onClick={() => { navigate("/chat") }}>
+                <li className={`pl-5 cursor-pointer hover:rounded-full hover:bg-gray-50 hover:text-custom1 p-2 rounded flex items-center space-x-2 hover:shadow-md group ${activePage == "messages" ? "text-custom1" : "text-black"}`} onClick={() => { navigate("/chat") }}>
                     <svg
                         className="w-5 h-5  group-hover:text-custom1 fill-current"
                         xmlns="http://www.w3.org/2000/svg"
@@ -27,7 +27,7 @@ const Sidebar = ({ onNavClick }) => {
                     <span>Messages</span>
                 </li>
 
-                <li className="pl-5 cursor-pointer hover:rounded-full hover:bg-gray-50 hover:text-custom1 p-2 rounded flex items-center space-x-2 hover:shadow-md group">
+                <li className={`pl-5 cursor-pointer hover:rounded-full hover:bg-gray-50 hover:text-custom1 p-2 rounded flex items-center space-x-2 hover:shadow-md group ${activePage == "notifications" ? "text-custom1" : "text-black"}`}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 448 512"
@@ -38,7 +38,7 @@ const Sidebar = ({ onNavClick }) => {
                     <span>Notifications</span>
                 </li>
 
-                <li className="pl-5 cursor-pointer hover:rounded-full hover:bg-gray-50 hover:text-custom1 p-2 rounded flex items-center space-x-2 hover:shadow-md group">
+                <li className={`pl-5 cursor-pointer hover:rounded-full hover:bg-gray-50 hover:text-custom1 p-2 rounded flex items-center space-x-2 hover:shadow-md group ${activePage == "requests" ? "text-custom1" : "text-black"}`}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 384 512"
@@ -50,7 +50,7 @@ const Sidebar = ({ onNavClick }) => {
                     <span>Requests</span>
                 </li>
 
-                <li className="pl-5 cursor-pointer hover:rounded-full hover:bg-gray-50 hover:text-custom1 p-2 rounded flex items-center space-x-2 hover:shadow-md group">
+                <li className={`pl-5 cursor-pointer hover:rounded-full hover:bg-gray-50 hover:text-custom1 p-2 rounded flex items-center space-x-2 hover:shadow-md group ${activePage == "settings" ? "text-custom1" : "text-black"}`}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 512 512"
@@ -61,7 +61,7 @@ const Sidebar = ({ onNavClick }) => {
                     <span>Settings</span>
                 </li>
 
-                <li className="pl-5 cursor-pointer hover:rounded-full hover:bg-gray-50  hover:text-custom1 p-2 rounded flex items-center space-x-2 hover:shadow-md group">
+                <li className={`pl-5 cursor-pointer hover:rounded-full hover:bg-gray-50  hover:text-custom1 p-2 rounded flex items-center space-x-2 hover:shadow-md group ${activePage == "logout" ? "text-custom1" : "text-black"}`}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 512 512"
