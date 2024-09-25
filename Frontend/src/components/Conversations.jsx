@@ -13,7 +13,7 @@ const Conversations = ({ conversation, isOnline }) => {
   const user = conversation.participants[0] || {
     _id: "",
     username: "Unknown User",
-    profilepic: "../../IMG/landing.png",
+    profilepic: "../../userlogo.jpeg",
   };
 
   const dispatch = useDispatch();
@@ -37,7 +37,7 @@ const Conversations = ({ conversation, isOnline }) => {
       <div className="relative">
         <img
           className="w-12 h-12 rounded-full mr-3"
-          src={user.profilepic || "/default-avatar.png"}
+          src={user.profilepic || "../../userlogo.jpeg"}
           alt="Avatar"
         />
         {isOnline ? (

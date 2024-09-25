@@ -14,7 +14,7 @@ function Navbar() {
       <div className="bg-white shadow-md text-black container mx-auto flex items-center p-2 transform transition-all duration-300">
         {/* Logo Section */}
         <div className="flex items-center pl-0 md:pl-20 sm:mx-0 mx-auto sm:ml-0 backdrop-blur-lg bg-white/30 p-1 rounded-lg">
-          <img src="../public/logo1.svg" className="h-16 w-16" alt="logo" />
+          <img src="../logo1.svg" className="h-16 w-16" alt="logo" />
           <h1 className="text-3xl font-extrabold font-sans drop-shadow-lg">
             Alumni
             <span className="text-yellow-400 text-3xl font-serif">Connect</span>

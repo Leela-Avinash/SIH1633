@@ -36,8 +36,8 @@ const Message = ({ message, ownMessage }) => {
         //   </p>
         // </div>
         <div className="flex justify-start">
-          <div className="bg-white rounded-lg p-3 max-w-xs lg:max-w-md">
-            <p className="text-gray-800">
+          <div className="bg-gray-300 rounded-lg p-3 max-w-xs lg:max-w-md">
+            <p className="text-black">
               {message.text}
             </p>
             {/* <p className="text-xs text-gray-500 mt-1">10:15 AM</p> */}

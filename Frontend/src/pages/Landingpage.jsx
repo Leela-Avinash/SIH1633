@@ -15,7 +15,7 @@ function LandingPage(){
       <div className="bg-white shadow-md rounded-xl flex justify-center items-center h-[calc(100vh-10rem)] m-9"> {/* Ensure full height to center vertically */}
             <div className="grid-cols-1 lg:grid-cols-2 pl-10 pr-10 rounded-lg flex items-start">
             <div className="flex justify-center items-center p-5 ">
-                    <img className="w-4/5" src="../public/bodylogo3.png" alt="Logo" />
+                    <img className="w-4/5" src="../bodylogo3.png" alt="Logo" />
                 </div>
 
                 <div className=" p-5 pl-5 mt-20 nlg:pl-10 pt-5 lg:pt-14 ">

@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setSelectedConversation } from "../redux/slices/setConversationSlice";
 import { setConversations } from "../redux/slices/conversationSlice.js";
 import { useSocket } from "../context/SocketContext.jsx";
+import Navbar from "../components/navBar.jsx";
 
 const ChatPage = () => {
   const host = "http://localhost:5000";
@@ -128,7 +129,9 @@ const ChatPage = () => {
           },
           credentials: "include",
         });
+        console.log(response)
         const data = await response.json();
+        console.log(data)
         if (!response.ok) {
           const message = data.message || "Failed to fetch conversations.";
           console.log(message);
