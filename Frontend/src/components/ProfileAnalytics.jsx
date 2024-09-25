@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 const ProfileAnalytics = () => {
+  const user = useSelector((state) => state.user);
   const [credits, setCredits] = useState(0);
   const [mentorship, setMentorship] = useState(0);
   const [followers, setFollowers] = useState(0);
@@ -42,7 +45,7 @@ const ProfileAnalytics = () => {
     <div className="flex w-full h-80 justify-around items-center bg-gray-50 shadow-md mx-5 ">
       
       <div className="flex flex-col items-center justify-center ml-8">
-        <img src="../5.jpg" className=" rounded-full w-60 h-60  shadow-md border-4 p-1 border-blue-400" alt="Profile" />
+        <img src={user.profilepic} className="object-cover rounded-full w-60 h-60  shadow-md border-4 p-1 border-blue-400" alt="Profile" />
       </div>
       <div className="flex flex-col justify-evenly items-center space-y-5 w-3/4 h-full">
         {/* Credits Section */}
