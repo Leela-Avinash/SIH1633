@@ -69,8 +69,8 @@ const ProfilePage = () => {
   const shortText = bioText.split(" ").slice(0, 30).join(" ") + "....";
   return (
     <div className="top-20 flex ">
-      <div className="p-6 bg-custombg ">
-        <div className="bg-white shadow-lg rounded-lg overflow-hidden">
+      <div className="p-6 bg-custombg w-11/12">
+        <div className="bg-white shadow-lg rounded-lg overflow-hidden w-full">
           <div className="relative">
             <img
               className="w-full h-52 object-cover object-center "
