@@ -1,11 +1,15 @@
 import MentorshipProgram from "./MentorShipProgram.jsx";
 import ProfileAnalytics from "./ProfileAnalytics.jsx";
 import UpcomingEvents from "./UpcomingEvents.jsx";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+
 const Dashboard = () => {
+  const user = useSelector((state) => state.user);
   return (
     <div className=" h-full ">
       {/* <hr className="mt-2 w-full border-t border-gray-300"/> */}
-      <h1 className="font-semibold text-2xl m-3">Welcome,<span className="text-blue-500 text-3xl font-bold"> Charan Teja</span> </h1>
+      <h1 className="font-semibold text-2xl m-3">Welcome,<span className="text-blue-500 text-3xl font-bold">{user.fname}</span> </h1>
       {/* <hr className="mt-5 mb-3 w-full border-t border-gray-300"/> */}
       <div className="w-full flex justify-around h-24 items-center">
         <button>
