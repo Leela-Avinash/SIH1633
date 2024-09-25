@@ -1,12 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const Sidebar = () => {
+const Sidebar = ({ onNavClick }) => {
     const navigate = useNavigate();
     return (
         <aside className="fixed top-16  bg-white p-5 ">
             <ul className="space-y-4 mt-5">
-            <li className="pl-5 cursor-pointer hover:rounded-full hover:bg-gray-50 hover:text-custom1 p-2 rounded flex items-center space-x-2 hover:shadow-md group" onClick={() => {navigate("/dashboard")}}>
+                <li className="pl-5 cursor-pointer hover:rounded-full hover:bg-gray-50 hover:text-custom1 p-2 rounded flex items-center space-x-2 hover:shadow-md group" onClick={() => onNavClick('dashboard')}>
                     <svg
                         className="w-5 h-5  group-hover:text-custom1 fill-current"
                         xmlns="http://www.w3.org/2000/svg"
@@ -16,7 +16,7 @@ const Sidebar = () => {
                     </svg>
                     <span>Dashboard</span>
                 </li>
-                <li className="pl-5 cursor-pointer hover:rounded-full hover:bg-gray-50 hover:text-custom1 p-2 rounded flex items-center space-x-2 hover:shadow-md group" onClick={() => {navigate("/chat")}}>
+                <li className="pl-5 cursor-pointer hover:rounded-full hover:bg-gray-50 hover:text-custom1 p-2 rounded flex items-center space-x-2 hover:shadow-md group" onClick={() => { navigate("/chat") }}>
                     <svg
                         className="w-5 h-5  group-hover:text-custom1 fill-current"
                         xmlns="http://www.w3.org/2000/svg"

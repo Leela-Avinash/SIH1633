@@ -6,7 +6,7 @@ const ProfileAnalytics = () => {
   const [followers, setFollowers] = useState(0);
   const [eventsHosted, setEventsHosted] = useState(0);
 
-  const userCredits = 100;
+  const userCredits = 1633;
   const userMentorship = 15;
   const userFollowers = 200;
   const userEventsHosted = 3;

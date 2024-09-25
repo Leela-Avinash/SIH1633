@@ -20,7 +20,7 @@ const MainPage = () => {
     <div className="flex flex-row">
       <Navbar onNavClick={handleNavClick} />
       <div className="flex w-full">
-        <Sidebar />
+        <Sidebar onNavClick={handleNavClick}/>
           <div className='mt-20 ml-52 w-3/4 h-svh'>
             {/* <MainContent activePage={activePage} /> */}
             {activePage === 'home' && <HomePage />}
