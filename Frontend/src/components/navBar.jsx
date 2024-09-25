@@ -132,7 +132,7 @@ const Navbar = ({ onNavClick }) => {
 
 
 
-  <div className="ml-auto pr-5">
+  <div className="ml-auto pr-5" onClick={()=>onNavClick('profile')}>
     <img src={user.profilepic} alt="Profile" className="w-12 h-12 object-cover rounded-full" />
   </div>
 
