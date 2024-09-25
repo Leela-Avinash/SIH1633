@@ -22,7 +22,6 @@ const ProfilePage = () => {
     return `${day}-${month}-${year}`;
   };
 
-
   const [postopen, setpostopen] = useState(false);
   const [mentoropen, setmentoropen] = useState(false);
   const [guideopen, setguideopen] = useState(false);
@@ -76,7 +75,6 @@ const ProfilePage = () => {
             <img
               className="w-full h-52 object-cover object-center "
                src={user.profilepic}
-             // src="../public/background.jpg"
               alt="Background"
             />
 

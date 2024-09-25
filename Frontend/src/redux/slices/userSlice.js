@@ -13,7 +13,7 @@ const initialState = {
         gyear: "",
         gmonth: "",
         rollnumber: "",
-        profilepic: "https://via.placeholder.com/150",
+        profilepic: "../../../userlogo.jpeg",
         skills: [],
         interests: [],
         fieldOfStudy: '',

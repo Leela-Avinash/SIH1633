@@ -110,7 +110,7 @@ const Login = () => {
           <div className="bg-white rounded-lg shadow-lg flex flex-col lg:flex-row w-full max-w-5xl overflow-hidden">
             <div className="lg:w-1/2 flex items-center justify-center ">
               <div className="text-center h-full">
-                <img src="../public/student_registar.jpg"/>
+                <img src="../student_registar.jpg"/>
               </div>
             </div>
 
