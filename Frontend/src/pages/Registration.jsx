@@ -77,53 +77,39 @@ const Registration = () => {
     };
     return (
 
-        <div className="grid flex flex-col-reverse lg:grid-cols-2 bg-blue-50">
-            <div className={`mx-auto  bg-white p-6 shadow-lg rounded-lg lg:w-8/12 w-11/12 ${toggleReg ? "mt-10" : "lg:h-fit mt-20 h-full "}`}>
-                <div className="flex justify-center mb-6 mt-5">
-                    <div className="flex items-center space-x-4">
-                        <div
-                            className={`w-8 h-8 rounded-full flex items-center justify-center bg-blue-600 text-white
-                                `}
-                        >
-                            1
-                        </div>
-                        <div className={`h-1 w-16  ${toggleReg ? "bg-blue-600" : "bg-gray-300"}`}></div>
-                        <div
-                            className={`w-8 h-8 rounded-full flex items-center justify-center ${toggleReg ? "bg-blue-600 text-white" : "bg-gray-300"
-                                }`}
-                        >
-                            2
-                        </div>
-                    </div>
-                </div>
-                <div>
-                <h2 className="text-2xl font-bold text-blue-600 mb-4">Register as {_.capitalize(param.role)}</h2>
-                    {!toggleReg ? (
-                        <RegistrationFormPage1
-                            credentials={credentials}
-                            handleChange={handleChange}
-                            setToggleReg={setToggleReg}
-                        />
-                    ) : (
-                        <RegistrationFormPage2
-                            credentials={credentials}
-                            handleChange={handleChange}
-                            onSubmit={handleSignupSubmit}
-                            setToggleReg={setToggleReg}
-                        />
-                    )}
-                </div>
-            </div>
-            <div className="flex justify-end lg:h-screen lg:items-center lg:justify-end lg:mr-24 lg:m-0 m-10 mt-28">
-                {param.role === "alumni" ? (
-                <div className="">
-                    <img src="/alumni_registar.jpg" alt="alumni_register" className=""></img>
-                </div>
-                ):(<div className="w-5/6 h-fit lg:mt-0 mt-20">
-                    <img src="/students.jpg" alt="alumni_register" className="w-dvw rounded"></img>
-                  </div>)}
-            </div>
+        <div className="relative flex items-center justify-center min-h-screen bg-blue-50">
+        <div className="absolute inset-0">
+          <img src={param.role === "alumni" ? "/alumni_registar.jpg" : "/studen.jpg"} alt="background" className="w-full h-full object-cover"/>
+          <div className="absolute inset-0 bg-black opacity-50"></div>
         </div>
+        <div className="relative z-10 bg-white bg-opacity-95 p-8 shadow-2xl rounded-lg lg:w-5/12 w-11/12 mx-auto">
+          <div className="flex justify-center mb-6">
+            <div className="flex items-center space-x-4">
+              <div className="w-8 h-8 rounded-full flex items-center justify-center bg-blue-600 text-white">1</div>
+              <div className={`h-1 w-16 ${toggleReg ? "bg-blue-600" : "bg-gray-300"} transition-all duration-500`}></div>
+              <div className={`w-8 h-8 rounded-full flex items-center justify-center ${toggleReg ? "bg-blue-600 text-white" : "bg-gray-300"} transition-all duration-500`}>2</div>
+            </div>
+          </div>
+          <h2 className="text-3xl font-bold text-blue-600 mb-6">Register as {_.capitalize(param.role)}</h2>
+          {!toggleReg ? (
+            <RegistrationFormPage1
+              credentials={credentials}
+              handleChange={handleChange}
+              setToggleReg={setToggleReg}
+            />
+          ) : (
+            <RegistrationFormPage2
+              credentials={credentials}
+              handleChange={handleChange}
+              onSubmit={handleSignupSubmit}
+              setToggleReg={setToggleReg}
+            />
+          )}
+        </div>
+      </div>
+      
+
+
     )
 }
 export default Registration;

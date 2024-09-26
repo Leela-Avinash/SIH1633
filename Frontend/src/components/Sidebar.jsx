@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const Sidebar = ({ onNavClick, activePage }) => {
     const navigate = useNavigate();
     return (
-        <aside className="fixed top-16  bg-white p-5 ">
+        <aside className="fixed top-16  bg-gray-50 p-5 ">
             <ul className="space-y-4 mt-5">
                 <li className={`pl-5 cursor-pointer hover:rounded-full hover:bg-gray-50 hover:text-custom1 p-2 rounded flex items-center space-x-2 hover:shadow-md group ${activePage == "dashboard" ? "text-custom1" : "text-black"}`} onClick={() => onNavClick('dashboard')}>
                     <svg
