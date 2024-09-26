@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "./redux/slices/userSlice.js";
-// import React, { useState } from "react";
 import { setAuth,setDoc } from "./redux/slices/authSlice.js";
 import LandingPage from "./pages/Landingpage.jsx";
 import GetStarted from "./pages/GetStarted.jsx";
@@ -17,18 +16,11 @@ import ProfileCompletionForm from "./pages/ProfileCompletionForm.jsx";
 import Profile from "./pages/Profile.jsx";
 import Network from "./components/networkSection.jsx";
 import ChatPage from "./pages/ChatPage.jsx";
-import Chatbot from "./components/Chatbot.jsx";
 const App = () => {
     const dispatch = useDispatch();
     const { isAuthenticated } = useSelector((state) => state.auth);
     const { isDocVerified } = useSelector((state) => state.auth);
     const user = useSelector((state) => state.user);
-    const [isChatOpen, setIsChatOpen] = useState(false);
-
-  const handleToggleChat = () => {
-    setIsChatOpen(!isChatOpen);
-  };
-
     const users = [
         {
           id: 1,
@@ -90,10 +82,10 @@ const App = () => {
                 <Routes>
                     <Route path="/" element= {<LandingPage />} />
                     <Route path="/getstarted" element={<GetStarted />} />
-                    <Route path="/:role/signup" element={<Registration />} />
+                    <Route path="/:role/signup" element={isAuthenticated? (isDocVerified? <Navigate to="/dashboard" /> : <Navigate to="/docai"/>) : <Registration />} />
                     <Route path="/users/:role/:id/verify/:token" element={<EmailVerify />} />
                     <Route path="/docai" element={isAuthenticated ? (isDocVerified? <Navigate to="/dashboard" />: <DocUpload/>):<Navigate to="/login"/>}/>
-                    <Route path="/login" element={ <Login/>}/>
+                    <Route path="/login" element={isAuthenticated ? (isDocVerified? <Navigate to="/dashboard" /> : <Navigate to="/docai"/>) : <Login/>}/>
                     <Route path="/dashboard" element={isAuthenticated ? (isDocVerified ? <MainPage/> : <Navigate to="/docai" />) : <Navigate to="/login" />} />
                     <Route path="/profile/:username" element={<Profile/> } />
                     <Route path="/profilecompletion" element={<ProfileCompletionForm/>}/>
@@ -101,12 +93,6 @@ const App = () => {
                     {/* <Route path="/login" element={<Login/>}/> */}
                     <Route path="/chat" element={isAuthenticated ? <ChatPage /> : <Navigate to={"/login"}/>} />
                 </Routes>
-                <button className="fixed bottom-3 left-5 p-4 rounded-full text-white focus:outline-none z-50"
-          onClick={handleToggleChat}
-        >
-          <img src="../chatbot1.gif" className="w-20 h-20"></img>
-        </button>
-        <Chatbot isOpen={isChatOpen} handleToggle={handleToggleChat} />
             </Router>
         </div>
     );
