@@ -17,7 +17,7 @@ const MainPage = () => {
   };
 
   return (
-    <div className="flex flex-row">
+    <div className="flex flex-row bg-gray-50">
       <Navbar onNavClick={handleNavClick} activePage={activePage}/>
       <div className="flex w-full">
         <Sidebar onNavClick={handleNavClick} activePage={activePage}/>

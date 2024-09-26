@@ -281,7 +281,7 @@ const recommendPosts = async (req, res) => {
         }
 
         // Fetch all posts and populate author details
-        const allPosts = await Post.find().populate('authorId', 'fname profilepic skills'); // Assuming Post is your post model
+        const allPosts = await Post.find({authorId:{$ne:currentUser._id}}).populate('authorId', 'fname profilepic skills'); // Assuming Post is your post model
         // Weights for the attributes
         const weights = {
             tags: 4,
