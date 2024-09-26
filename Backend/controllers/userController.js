@@ -337,11 +337,12 @@ const recommendPosts = async (req, res) => {
                     currentUser.interests.includes(tag)
             );
             vector.push(hasTagMatch ? weights.tags : 0);
+            console.log(post);
 
             // Check if the author's skills match the user's skills
-            // if(!post.authorId.skills) console.log(post);
-            // const authorSkillsMatch = post.authorId.skills.filter(skill => currentUser.skills.includes(skill)).length;
-            // vector.push(authorSkillsMatch * weights.authorSkills);
+            if(post.authorId.skills===null) return vector;
+            const authorSkillsMatch = post.authorId.skills.filter(skill => currentUser.skills.includes(skill)).length;
+            vector.push(authorSkillsMatch * weights.authorSkills);
 
             return vector;
         }

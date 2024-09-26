@@ -21,7 +21,7 @@ const MainPage = () => {
       <Navbar onNavClick={handleNavClick} activePage={activePage}/>
       <div className="flex w-full">
         <Sidebar onNavClick={handleNavClick} activePage={activePage}/>
-          <div className='mt-20 ml-52 w-3/4 h-svh'>
+          <div className='mt-20 ml-52 w-3/4'>
             {/* <MainContent activePage={activePage} /> */}
             {activePage === 'home' && <HomePage />}
             {activePage === 'profile' && <Profile />}
@@ -34,11 +34,11 @@ const MainPage = () => {
           {/* <div className="w-96  h-1/2 bg-gray-300 mt-20 mr-5 shadow-md ">
             <h1 className="mt-5 ml-5">LeaderBoard</h1>
           </div> */}
+          <div>
           <LeaderBoard />
-          <div className="w-96 h-fit mr-5">
+          </div>
+          <div className="w-96 mr-5">
            <Suggestions />
-            <div>
-            </div>
           </div>
         </div>
         

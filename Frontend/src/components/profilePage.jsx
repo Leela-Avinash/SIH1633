@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import _ from 'lodash';
 
 
 const ProfilePage = () => {
@@ -68,9 +69,9 @@ const ProfilePage = () => {
   const bioText = user.bio;
   const shortText = bioText.split(" ").slice(0, 30).join(" ") + "....";
   return (
-    <div className="top-20 flex ">
-      <div className="p-6 bg-custombg w-11/12">
-        <div className="bg-white shadow-lg rounded-lg overflow-hidden w-full">
+    <div className="top-20 flex">
+      <div className="p-2">
+        <div className="bg-white shadow-md rounded-sm overflow-hidden w-full">
           <div className="relative">
             <img
               className="w-full h-52 object-cover object-center "
@@ -106,7 +107,7 @@ const ProfilePage = () => {
                 >
                   <path d="M12 5C7.031 5 2 6.546 2 9.5S7.031 14 12 14c4.97 0 10-1.546 10-4.5S16.97 5 12 5zm-5 9.938v3c1.237.299 2.605.482 4 .541v-3a21.166 21.166 0 0 1-4-.541zm6 .54v3a20.994 20.994 0 0 0 4-.541v-3a20.994 20.994 0 0 1-4 .541zm6-1.181v3c1.801-.755 3-1.857 3-3.297v-3c0 1.44-1.199 2.542-3 3.297zm-14 3v-3C3.2 13.542 2 12.439 2 11v3c0 1.439 1.2 2.542 3 3.297z"></path>
                 </svg>
-                Credits: 100
+                Credits: 1633
               </div>
             </div>
 
@@ -115,8 +116,8 @@ const ProfilePage = () => {
             <div className=" flex-col w-56">
               <div>
                 <h1 className="text-4xl font-bold text-black">{user.fname}</h1>
-                <p className="text-gray-600 text-lg font-medium mb-2">
-                  {user.role} at {user.collegeName}
+                <p className="text-gray-600 text-md mt-1 font-medium mb-2">
+                  {_.capitalize(user.role)} at {user.collegeName}
                 </p>
               </div>
             </div>
@@ -179,7 +180,7 @@ const ProfilePage = () => {
           </div>
 
           <div className="border-t border-gray-300 ">
-            <div className="font-semibold text-xl flex justify-around   p-2  ">
+            <div className="font-semibold  text-xl flex justify-around   p-2  ">
               <div
                 onClick={() => setOpenSection("posts")}
                 className={`transition-colors p-2 cursor-pointer ${openSection === "posts"
@@ -209,7 +210,7 @@ const ProfilePage = () => {
               </div>
             </div>
 
-            <div className="h-fit mb-5 ">
+            <div className="h-fit mb-5 mt-3">
               <div className={openSection === "posts" ? "block flex flex-col gap-6" : "hidden"}>
                 <div className="pl-10 flex space-x-4 ">
                   {userPosts.map((post) => (
@@ -262,8 +263,8 @@ const ProfilePage = () => {
               </div>
 
               <div className={openSection === "guide" ? "block" : "hidden"}>
-                <h1 className="pl-10 text-lg font-semibold">Career Guidance</h1>
-                <div className="pl-10 space-y-2">
+                <h1 className="pl-5 text-lg font-semibold">Career Guidance</h1>
+                <div className="pl-5 space-y-2">
                   <p className="text-gray-600">
                     {guideVar ? carrer_guidance_var : carrer_guide_var2}
                     <button

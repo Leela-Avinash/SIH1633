@@ -89,7 +89,7 @@ const HomePage = () => {
                 ) : recommendedPosts.length > 0 ? (
                     recommendedPosts.map((post) => {
                         const isExpanded = expandedPosts[post._id] || false;
-                        const smallContent = post.content.split(" ").slice(0, 10).join(" ") + ".....";
+                        const smallContent = post.content.split(" ").slice(0, 20).join(" ") + ".....";
                         return (
                             <div key={post._id} className="border-b border-gray-300 py-4">
                                 <div>
@@ -125,11 +125,24 @@ const HomePage = () => {
                                     )}
                                 </div>
                                 {post.media && post.media.map((url, index) => (
-                                    <img key={index} src={url} alt={`Post media ${index}`} className="mt-2 w-full h-96 object-cover shadow-sm" />
+                                    <img
+                                        key={index}
+                                        src={url}
+                                        alt={`Post media ${index}`}
+                                        className="mt-2 w-full bg-white h-96 object-contain shadow-sm"
+                                    />
                                 ))}
                                 <div className="flex justify-between mt-2">
-                                    <span className="text-gray-500 text-sm">Likes: 15</span>
-                                    <span className="text-gray-500 text-sm">Comments: 20</span>
+                                    <div className='ml-2 mt-1 flex justify-center items-center gap-2'>
+                                        <img src="/like.png" className='h-7 w-7 hover:scale-125' />
+                                        <span className="text-gray-500 text-md">Likes: 16</span>
+                                    </div>
+                                    {/* <span className="text-gray-500 text-sm">Comments: 20</span>
+                                     */}
+                                     <div className='ml-2 mt-1 flex justify-center items-center gap-2'>
+                                        <img src="/comment.png" className='h-7 w-7 hover:scale-125' />
+                                        <span className="text-gray-500 text-md">Comments: 33</span>
+                                    </div>
                                 </div>
                             </div>
                         )
