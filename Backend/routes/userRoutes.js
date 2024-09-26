@@ -11,7 +11,8 @@ import {
     recommendationSystem,
     createPost,
     recommendPosts,
-    userPosts
+    userPosts,
+    resendOtp
 } from "../controllers/userController.js";
 import protectRoute from "../middleware/protectRoute.js";
 import docAI from "../controllers/docAI.js";
@@ -26,7 +27,8 @@ router.get("/profile/:username", getUserProfile);
 router.post("/signup", signupUser);
 router.post("/login", loginUser);
 router.post("/logout", logoutUser);
-router.get("/:role/:id/verify/:token", verifyUser);
+router.post("/verify", verifyUser);
+router.post("/resend", resendOtp)
 // router.put("/follow/:id", protectRoute, followUnfollow);
 router.put("/update/:id", protectRoute, upload.single('profilepic'), updateUser);
 router.get("/check-auth", protectRoute, checkAuth);
@@ -34,5 +36,5 @@ router.get("/recommendations", protectRoute, recommendationSystem);
 router.post("/upload",protectRoute,docAI);
 router.post("/post",protectRoute,upload.single('media'),createPost);
 router.get("/posts",protectRoute,recommendPosts);
-router.get("/userposts",protectRoute,userPosts)
+router.get("/userposts",protectRoute,userPosts);
 export default router;
