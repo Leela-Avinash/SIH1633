@@ -70,6 +70,7 @@ const Registration = () => {
                 localStorage.setItem('user', JSON.stringify(json.user));
                 dispatch(setUser(json.user));
                 dispatch(resetCredentials());
+                navigate("/otp");
             } else {
                 dispatch(setError(json.message));
             }
