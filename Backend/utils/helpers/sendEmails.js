@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer";
 
-async function sendEmail(email, subject, url) {
+async function sendEmail(email, subject, otp) {
     try {
         const transporter = nodemailer.createTransport({
             host: process.env.HOST,
@@ -18,12 +18,11 @@ async function sendEmail(email, subject, url) {
             to: email,
             subject: subject,
             html: `<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; text-align: center;">
-                <p style="font-size: 18px; color: #333;">Click the button below to verify your email:</p>
-                <a href="${url}" style="text-decoration: none;">
-                  <button style="background-color: #3b82f6; color: white; padding: 10px 20px; border: none; border-radius: 5px; font-size: 16px; cursor: pointer;">
-                    Verify Email
-                  </button>
-                </a>
+                <p style="font-size: 18px; color: #333;">Your OTP for email verification is:</p>
+                <div style="font-size: 24px; font-weight: bold; color: #3b82f6; padding: 10px;">
+                    ${otp}
+                </div>
+                <p style="font-size: 16px; color: #333;">Please enter this OTP on the signup page to complete your registration.</p>
               </div>`
         };
 
@@ -31,13 +30,13 @@ async function sendEmail(email, subject, url) {
             if (error) {
                 console.error(error);
             } else {
-                console.log('Verification email sent: ' + info.response);
+                console.log('OTP email sent: ' + info.response);
             }
         });
 
-        console.log("Email sent Seccussfully");
-    } catch(error){
-        console.log("Error! email not send");
+        console.log("Email sent successfully");
+    } catch (error) {
+        console.log("Error! email not sent");
         console.log(error);
     }
 }
