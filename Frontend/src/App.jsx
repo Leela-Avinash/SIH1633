@@ -18,6 +18,7 @@ import Profile from "./pages/Profile.jsx";
 import Network from "./components/networkSection.jsx";
 import ChatPage from "./pages/ChatPage.jsx";
 import Chatbot from "./components/Chatbot.jsx";
+import Otp from "./pages/Otp.jsx";
 const App = () => {
     const dispatch = useDispatch();
     const { isAuthenticated } = useSelector((state) => state.auth);
@@ -100,6 +101,7 @@ const App = () => {
                     <Route path="/network" element={<Network/>}/>
                     {/* <Route path="/login" element={<Login/>}/> */}
                     <Route path="/chat" element={isAuthenticated ? <ChatPage /> : <Navigate to={"/login"}/>} />
+                    <Route path="/otp" element={<Otp/>} />
                 </Routes>
                 <button className="fixed bottom-3 left-5 p-4 rounded-full text-white focus:outline-none z-50"
           onClick={handleToggleChat}
