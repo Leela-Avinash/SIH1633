@@ -9,7 +9,7 @@ const Dashboard = () => {
   return (
     <div className=" h-full ">
       {/* <hr className="mt-2 w-full border-t border-gray-300"/> */}
-      <h1 className="font-semibold text-2xl m-3">Welcome,<span className="text-blue-500 text-3xl font-bold">{user.fname}</span> </h1>
+      <h1 className="font-semibold text-2xl m-3">Welcome, <span className="text-blue-500 text-3xl font-bold">{user.fname}</span> </h1>
       {/* <hr className="mt-5 mb-3 w-full border-t border-gray-300"/> */}
       <div className="w-full flex justify-around h-24 items-center">
         <button>
