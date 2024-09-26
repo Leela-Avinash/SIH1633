@@ -175,6 +175,7 @@ const RegisterForm = () => {
     console.log("Form Data Submitted:", formData);
     navigate("/"); // Redirect after successful registration
   };
+const [passwordVisible,setvisible]=useState(flase); 
 
   return (
     <div className="grid flex flex-col-reverse lg:grid-cols-2 bg-blue-50">
@@ -222,6 +223,10 @@ const RegisterForm = () => {
                 value={formData.password}
                 onChange={handleChange}
               />
+              {passwordVisible ? (<button type="button" onClick={()=>passwordVisible=!passwordVisible}>
+                Hide
+              </button>):(<button type="button" onClick={()=>passwordVisible=!passwordVisible}>Show</button>)} 
+
             </div>
             <div className="mb-4">
               <label className="block mb-1 text-sm font-bold">Confirm Password</label>

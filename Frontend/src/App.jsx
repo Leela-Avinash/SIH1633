@@ -93,7 +93,7 @@ const App = () => {
                     <Route path="/:role/signup" element={<Registration />} />
                     <Route path="/users/:role/:id/verify/:token" element={<EmailVerify />} />
                     <Route path="/docai" element={isAuthenticated ? (isDocVerified? <Navigate to="/dashboard" />: <DocUpload/>):<Navigate to="/login"/>}/>
-                    <Route path="/login" element={isAuthenticated ? (isDocVerified? <Navigate to="/dashboard" /> : <Navigate to="/docai"/>) : <Login/>}/>
+                    <Route path="/login" element={ <Login/>}/>
                     <Route path="/dashboard" element={isAuthenticated ? (isDocVerified ? <MainPage/> : <Navigate to="/docai" />) : <Navigate to="/login" />} />
                     <Route path="/profile/:username" element={<Profile/> } />
                     <Route path="/profilecompletion" element={<ProfileCompletionForm/>}/>
