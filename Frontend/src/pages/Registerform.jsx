@@ -181,7 +181,7 @@ const RegisterForm = () => {
       <div className="flex lg:h-screen items-center justify-center">
         <div className="w-5/6 h-fit lg:mt-0 mt-20">
           <img
-            src={role === "student" ? "/students.jpg" : "/alumni_registrar.jpg"}
+            src={role === "student" ? "/students.jpg" : "/alumni_registr.jpg"}
             alt={role === "student" ? "Student Registration" : "Alumni Registration"}
             className="w-full rounded"
           />
