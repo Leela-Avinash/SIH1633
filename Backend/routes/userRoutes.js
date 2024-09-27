@@ -12,7 +12,8 @@ import {
     createPost,
     recommendPosts,
     userPosts,
-    resendOtp
+    resendOtp,
+    OtherUserPosts
 } from "../controllers/userController.js";
 import protectRoute from "../middleware/protectRoute.js";
 import docAI from "../controllers/docAI.js";
@@ -37,4 +38,5 @@ router.post("/upload",protectRoute,docAI);
 router.post("/post",protectRoute,upload.single('media'),createPost);
 router.get("/posts",protectRoute,recommendPosts);
 router.get("/userposts",protectRoute,userPosts);
+router.post("/userposts", protectRoute, OtherUserPosts)
 export default router;
