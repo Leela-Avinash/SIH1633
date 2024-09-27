@@ -74,7 +74,8 @@ const ProfilePage = ({user}) => {
           <div className="relative">
             <img
               className="w-full h-52 object-cover object-center "
-               src={user.profilepic}
+              //  src={user.profilepic}
+              src="../premmm.png"
               alt="Background"
             />
 
