@@ -3,8 +3,7 @@ import { useSelector } from "react-redux";
 import _ from 'lodash';
 
 
-const ProfilePage = () => {
-  const user = useSelector((state) => state.user);
+const ProfilePage = ({user}) => {
   console.log(user);
 
   const Experience = ({ user }) => {

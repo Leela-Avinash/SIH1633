@@ -51,7 +51,6 @@ const Otp = () => {
         }
     };
 
-    // Handle Resend OTP
     const handleResendSubmit = async () => {
         const response = await fetch(`${host}/api/users/resend`, {
             method: "POST",

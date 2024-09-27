@@ -3,7 +3,7 @@ import Navbar from '../components/navBar.jsx';
 import Sidebar from '../components/Sidebar.jsx';
 import MainContent from './MainContent.jsx';
 import Network from '../components/networkSection.jsx';
-import Profile from '../components/profilePage.jsx';
+import MyProfilePage from '../components/myProfilePage.jsx';
 import HomePage from './HomePage.jsx';
 import Dashboard from '../components/dashBoard.jsx';
 import LeaderBoard from '../components/LeaderBoard.jsx';
@@ -24,10 +24,9 @@ const MainPage = () => {
           <div className='mt-20 ml-52 w-3/4'>
             {/* <MainContent activePage={activePage} /> */}
             {activePage === 'home' && <HomePage />}
-            {activePage === 'profile' && <Profile />}
+            {activePage === 'profile' && <MyProfilePage />}
             {activePage === 'network' && <Network />}
             {activePage === 'dashboard' && <Dashboard />}
-          
           </div>
 
           <div className="flex flex-col">
