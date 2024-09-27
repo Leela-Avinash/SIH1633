@@ -32,7 +32,7 @@ const UpcomingEvents = () => {
             {/* <h1 className="text-2xl font-semibold">Upcoming Events</h1> */}
             <div className="grid grid-cols-1 gap-4 ">
                 {events.map((event, index) => (
-                    <div key={index} className="flex justify-between items-center bg-gray-50 rounded-lg shadow-md p-5 hover:scale-95 hover:border-2 hover:border-blue-400 h-44">
+                    <div key={index} className="cursor-pointer flex justify-between items-center bg-gray-50 rounded-lg shadow-md p-5 hover:scale-95 hover:border-2 hover:border-blue-400 h-44">
                         <div className="flex items-center gap-4">
                             <img 
                                 src={event.image} 
@@ -41,7 +41,7 @@ const UpcomingEvents = () => {
                             />
                             <div className="">
                             {/* <p className="text-sm font-normal text-gray-500">Organized by: <span className="font-semibold hover:text-blue-400">{event.organizer}</span></p> */}
-                                <h1 className="text-xl text-gray-800 font-bold">{event.name}</h1>
+                                <h1 className="hover:text-blue-500 text-xl text-gray-800 font-bold">{event.name}</h1>
                                 <p className="text-sm font-normal text-gray-500">Organized by: <span className="font-semibold hover:text-blue-400">{event.organizer}</span></p>
                                 <p className="text-sm font-normal text-gray-500">Date: {event.date}</p>
                                 <p className="text-sm font-normal text-gray-500">Time: {event.time}</p>

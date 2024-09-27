@@ -22,6 +22,7 @@ const Chatbot = ({ isOpen, handleToggle }) => {
         clearInterval(typingInterval);
         setTimeout(() => {
           setMessages((prevMessages) => [...prevMessages, { text, sender: "bot" }]); // Add the full message to the chat
+          setTypingMessage(""); // Clear the typing effect message
           setIsTyping(false); // Stop typing status
         }, 500); // Small delay after typing finishes
       }
@@ -55,7 +56,7 @@ const Chatbot = ({ isOpen, handleToggle }) => {
       style={{ width: "300px", height: "400px", zIndex: 50 }}
     >
       {/* Chatbot Header */}
-      <div className="bg-green-400 text-white p-4 rounded-t-lg flex justify-between items-center">
+      <div className="bg-green-500 text-white p-4 rounded-t-lg flex justify-between items-center">
         <h3>Need Help? Chat with Us!</h3>
         <button className="text-xl text-gray-500" onClick={handleToggle}>
           x

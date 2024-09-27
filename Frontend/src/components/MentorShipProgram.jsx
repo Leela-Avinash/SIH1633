@@ -35,7 +35,7 @@ const MentorshipProgram = () => {
         <div className=" rounded-2xl p-4  mb-14">
             <div className="grid grid-cols-1 gap-4">
                 {events.map((event, index) => (
-                    <div key={index} className="flex justify-between items-center rounded-lg hover:scale-95 hover:border-2 hover:border-purple-400 bg-gray-50 shadow-md p-5 h-44">
+                    <div key={index} className="cursor-pointer flex justify-between items-center rounded-lg hover:scale-95 hover:border-2 hover:border-purple-400 bg-gray-50 shadow-md p-5 h-44">
                         <div className="flex items-center gap-4">
                             <img
                                 src={event.image}
@@ -43,7 +43,7 @@ const MentorshipProgram = () => {
                                 className="h-20 w-20 object-cover rounded-lg"
                             />
                             <div>
-                                <h1 className="text-xl font-bold text-gray-800">{event.name}</h1>
+                                <h1 className="hover:text-violet-700 text-xl font-bold text-gray-800">{event.name}</h1>
                                 {/* <p className="text-sm font-normal text-gray-500">Date: {event.date}</p> */}
                                 <p className="text-sm font-normal text-gray-500">Organized by: <span className="font-semibold hover:text-blue-400">{event.organizer}</span></p>
                                 <div className="flex gap-2">
