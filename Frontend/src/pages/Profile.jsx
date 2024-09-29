@@ -3,10 +3,10 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import MyProfilePage from "../components/myProfilePage";
 import ProfilePage from "../components/profilePage";
-import Navbar from "../components/navBar"; // Assuming Navbar component exists
-import Sidebar from "../components/Sidebar"; // Assuming Sidebar component exists
-import LeaderBoard from "../components/LeaderBoard"; // Assuming LeaderBoard component exists
-import Suggestions from "../components/Suggestions"; // Assuming Suggestions component exists
+import Navbar from "../components/navBar"; 
+import Sidebar from "../components/Sidebar"; 
+import LeaderBoard from "../components/LeaderBoard"; 
+import Suggestions from "../components/Suggestions"; 
 
 const Profile = () => {
     const navigate = useNavigate();

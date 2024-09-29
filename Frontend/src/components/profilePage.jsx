@@ -30,11 +30,19 @@ const ProfilePage = ({user}) => {
   const [showAll, setShowAll] = useState(false);
   const [userPosts,setPosts]=useState([]);
   const maxVisibleExperiences = 1; 
+
   useEffect(() => {
     const fetchUserPosts = async () => {
+      console.log("hello")
       try {
         const response = await fetch("http://localhost:5000/api/users/userposts", {
-          method: "GET",
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userId: user._id,
+          }),
           credentials: "include",
         });
         const json = await response.json();
@@ -46,6 +54,7 @@ const ProfilePage = ({user}) => {
     };
     fetchUserPosts();
   }, []);
+  console.log(userPosts)
 
   const toggleShowAll = () => {
     setShowAll(!showAll);

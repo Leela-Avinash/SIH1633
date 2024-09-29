@@ -405,6 +405,17 @@ const userPosts = async (req, res) => {
     }
 };
 
+const OtherUserPosts = async (req, res) => {
+    try {
+        const { userId }= req.body;
+        const posts = await Post.find({ authorId: userId });
+        res.status(200).json({ posts: posts });
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+        console.log("Error in user posts: ", err.message);
+    }
+};
+
 const logoutUser = (req, res) => {
     try {
         res.cookie("jwt", "", { maxAge: 1 });
@@ -671,4 +682,5 @@ export {
     recommendPosts,
     userPosts,
     resendOtp,
+    OtherUserPosts,
 };

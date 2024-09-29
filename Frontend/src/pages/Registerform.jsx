@@ -174,8 +174,7 @@ const RegisterForm = () => {
     e.preventDefault();
     console.log("Form Data Submitted:", formData);
     navigate("/"); // Redirect after successful registration
-  };
-const [passwordVisible,setvisible]=useState(flase); 
+  }; 
 
   return (
     <div className="grid flex flex-col-reverse lg:grid-cols-2 bg-blue-50">
